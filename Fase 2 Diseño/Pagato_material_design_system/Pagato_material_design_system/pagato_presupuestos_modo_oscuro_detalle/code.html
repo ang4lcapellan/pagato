@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PagaTo' - Budgets</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Roboto+Flex:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#000613",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fbf9f8",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-container": "#efeded",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#000802",
+                        "inverse-surface": "#303031",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#b0f2c0",
+                        "secondary-fixed": "#dae3f8",
+                        "on-tertiary-fixed": "#00210e",
+                        "on-background": "#1b1c1c",
+                        "on-secondary-container": "#5a6375",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#94d5a6",
+                        "on-surface-variant": "#43474e",
+                        "primary-fixed-dim": "#afc8f0",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e4e2e2",
+                        "on-primary-container": "#6f88ad",
+                        "surface-tint": "#476083",
+                        "secondary-container": "#d7e0f5",
+                        "primary-container": "#001f3f",
+                        "surface-bright": "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "on-secondary-fixed-variant": "#3e4758",
+                        "surface": "#fbf9f8",
+                        "secondary": "#565f71",
+                        "surface-container-high": "#e9e8e7",
+                        "tertiary-container": "#002510",
+                        "on-tertiary-fixed-variant": "#0e512d",
+                        "on-secondary-fixed": "#131c2b",
+                        "inverse-primary": "#afc8f0",
+                        "surface-container-low": "#f5f3f3",
+                        "outline-variant": "#c4c6cf",
+                        "secondary-fixed-dim": "#bec7db",
+                        "on-primary-fixed-variant": "#2f486a",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#559469",
+                        "outline": "#74777f",
+                        "primary-fixed": "#d4e3ff",
+                        "surface-container-highest": "#e4e2e2",
+                        "surface-dim": "#dbdad9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "column-margin": "24px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "base": "8px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Roboto Flex"],
+                        "label-sm": ["Inter"],
+                        "title-md": ["Roboto Flex"],
+                        "label-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Roboto Flex"],
+                        "display-lg": ["Roboto Flex"],
+                        "headline-lg-mobile": ["Roboto Flex"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Force Dark Mode colors for specific elements since we are designing a dark mode screen but the config is light */
+        .dark-bg-screen { background-color: #121212; }
+        .dark-surface { background-color: #1E1E1E; }
+        .dark-surface-container-low { background-color: #2C2C2C; }
+        .dark-surface-container { background-color: #333333; }
+        .dark-text-primary { color: #E2E2E2; }
+        .dark-text-secondary { color: #A0A0A0; }
+        .dark-border { border-color: #444444; }
+        .dark-drawer { background-color: #242424; box-shadow: -4px 0 16px rgba(0,0,0,0.5); }
+        .dark-progress-bg { background-color: #444444; }
+        .dark-progress-fill-safe { background-color: #81C784; }
+        .dark-progress-fill-warn { background-color: #FFB74D; }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1E1E1E; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #444; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="dark-bg-screen dark-text-primary font-body-md h-screen overflow-hidden flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="dark-surface-container-low border-r dark-border h-screen w-64 fixed left-0 top-0 flex flex-col py-md px-sm z-30 transition-all duration-200 ease-in-out">
+<div class="px-md pb-lg">
+<h1 class="font-headline-lg text-headline-lg font-black dark-text-primary">PagaTo'</h1>
+<p class="font-label-sm text-label-sm dark-text-secondary">Financial System</p>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-sm">
+<a class="flex items-center gap-md px-md py-sm dark-text-secondary hover:bg-white/5 rounded-full transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md px-md py-sm dark-text-secondary hover:bg-white/5 rounded-full transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+                Transactions
+            </a>
+<a class="flex items-center gap-md px-md py-sm dark-text-secondary hover:bg-white/5 rounded-full transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+                Accounts
+            </a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container font-bold rounded-full transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                Budgets
+            </a>
+<a class="flex items-center gap-md px-md py-sm dark-text-secondary hover:bg-white/5 rounded-full transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                Reports
+            </a>
+<a class="flex items-center gap-md px-md py-sm dark-text-secondary hover:bg-white/5 rounded-full transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<div class="pt-md border-t dark-border flex flex-col gap-sm">
+<a class="flex items-center gap-md px-md py-sm dark-text-secondary hover:bg-white/5 rounded-full transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Help
+            </a>
+<a class="flex items-center gap-md px-md py-sm dark-text-secondary hover:bg-white/5 rounded-full transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col h-screen overflow-hidden relative">
+<!-- TopAppBar (Shared Component) -->
+<header class="dark-surface border-b dark-border h-16 sticky top-0 flex justify-between items-center px-lg w-full z-20 shadow-sm">
+<div class="flex items-center gap-md">
+<h2 class="font-title-lg text-title-lg dark-text-primary">Budgets</h2>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 dark-text-secondary hover:bg-white/10 rounded-full transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 dark-text-secondary hover:bg-white/10 rounded-full transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover border dark-border ml-2" data-alt="A small circular user profile picture showing a professional headshot of an adult with a neutral expression in a dark studio setting. Lighting is dramatic and moody, fitting a dark mode financial dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-noBTqKQ5gj6K76MDrjm_1487Wm21g59lzFuG2luj3lQIHBzB-J0LfxTeqkaXzRV3UTUwq6DdXTSFmiTHEqwpciqe-73pD4I4NGAUDZE5F-6u4_qhUWU8TruzIrWf5xWSVidopnq3Qm33vDoi-fPHPT39SrgqusgH4z41MvJ287W6pmHn-SkqQCUhVom8o8hDJN9rc0NTW_fUblbnQfsN-XVtIZEjy1EzlbsGAFphWdBowiNkQ9zs"/>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-lg flex flex-col gap-lg pb-[300px]"> <!-- Extra padding for drawer space if needed, though drawer is absolute -->
+<!-- Summary Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div>
+<h3 class="font-body-lg text-body-lg dark-text-secondary mb-1">Presupuesto Mensual - Octubre 2023</h3>
+<div class="font-display-lg text-display-lg dark-text-primary">RD$ 85,000</div>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-2 border dark-border rounded-full font-label-lg text-label-lg dark-text-primary hover:bg-white/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                        Mes Actual
+                    </button>
+<button class="px-md py-2 bg-primary-container text-on-primary-container rounded-full font-label-lg text-label-lg hover:brightness-110 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Nuevo Presupuesto
+                    </button>
+</div>
+</div>
+<!-- Global Progress -->
+<div class="dark-surface-container-low p-md rounded-xl border dark-border">
+<div class="flex justify-between mb-2">
+<span class="font-body-md text-body-md dark-text-secondary">Total Gastado</span>
+<span class="font-title-md text-title-md dark-text-primary">RD$ 62,300 / 85,000</span>
+</div>
+<div class="h-2 w-full dark-progress-bg rounded-full overflow-hidden">
+<div class="h-full dark-progress-fill-warn" style="width: 73%"></div>
+</div>
+<div class="mt-2 text-right">
+<span class="font-label-sm text-label-sm dark-text-secondary">Quedan RD$ 22,700</span>
+</div>
+</div>
+<!-- Budget Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md mt-4">
+<!-- Selected Card (Alimentación) -->
+<div class="dark-surface p-md rounded-xl border-2 border-primary-container cursor-pointer transition-transform hover:-translate-y-1 relative overflow-hidden bg-white/5">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full dark-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md dark-text-primary">Alimentación</h4>
+<p class="font-label-sm text-label-sm dark-text-secondary">Supermercado y restaurantes</p>
+</div>
+</div>
+<div class="mb-sm">
+<div class="font-title-lg text-title-lg dark-text-primary">RD$ 11,450</div>
+<div class="font-label-sm text-label-sm dark-text-secondary">de RD$ 15,000</div>
+</div>
+<div class="h-1.5 w-full dark-progress-bg rounded-full overflow-hidden mb-2">
+<div class="h-full dark-progress-fill-warn" style="width: 76%"></div>
+</div>
+<div class="font-label-sm text-label-sm dark-text-secondary text-right">76% consumido</div>
+</div>
+<!-- Other Cards -->
+<div class="dark-surface p-md rounded-xl border dark-border cursor-pointer transition-transform hover:-translate-y-1">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full dark-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md dark-text-primary">Vivienda</h4>
+<p class="font-label-sm text-label-sm dark-text-secondary">Alquiler y servicios</p>
+</div>
+</div>
+<div class="mb-sm">
+<div class="font-title-lg text-title-lg dark-text-primary">RD$ 35,000</div>
+<div class="font-label-sm text-label-sm dark-text-secondary">de RD$ 35,000</div>
+</div>
+<div class="h-1.5 w-full dark-progress-bg rounded-full overflow-hidden mb-2">
+<div class="h-full bg-error" style="width: 100%"></div>
+</div>
+<div class="font-label-sm text-label-sm text-error text-right">100% consumido</div>
+</div>
+<div class="dark-surface p-md rounded-xl border dark-border cursor-pointer transition-transform hover:-translate-y-1">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full dark-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md dark-text-primary">Transporte</h4>
+<p class="font-label-sm text-label-sm dark-text-secondary">Combustible y peajes</p>
+</div>
+</div>
+<div class="mb-sm">
+<div class="font-title-lg text-title-lg dark-text-primary">RD$ 5,200</div>
+<div class="font-label-sm text-label-sm dark-text-secondary">de RD$ 10,000</div>
+</div>
+<div class="h-1.5 w-full dark-progress-bg rounded-full overflow-hidden mb-2">
+<div class="h-full dark-progress-fill-safe" style="width: 52%"></div>
+</div>
+<div class="font-label-sm text-label-sm dark-text-secondary text-right">52% consumido</div>
+</div>
+</div>
+</div>
+<!-- Detail Drawer (Open) -->
+<aside class="absolute top-0 right-0 h-full w-[400px] dark-drawer z-40 border-l dark-border flex flex-col transform translate-x-0 transition-transform duration-300">
+<!-- Drawer Header -->
+<div class="p-lg border-b dark-border flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">restaurant</span>
+</div>
+<h3 class="font-title-lg text-title-lg dark-text-primary">Alimentación</h3>
+</div>
+<button class="p-2 dark-text-secondary hover:bg-white/10 rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-lg flex flex-col gap-xl">
+<!-- Drawer Summary -->
+<div class="grid grid-cols-2 gap-md">
+<div class="dark-surface-container-low p-md rounded-lg border dark-border">
+<div class="font-label-sm text-label-sm dark-text-secondary mb-1">Presupuesto</div>
+<div class="font-title-md text-title-md dark-text-primary">RD$ 15,000</div>
+</div>
+<div class="dark-surface-container-low p-md rounded-lg border dark-border">
+<div class="font-label-sm text-label-sm dark-text-secondary mb-1">Gastado</div>
+<div class="font-title-md text-title-md dark-text-primary">RD$ 11,450</div>
+</div>
+<div class="col-span-2 dark-surface-container-low p-md rounded-lg border dark-border flex justify-between items-center bg-white/5">
+<div>
+<div class="font-label-sm text-label-sm dark-text-secondary mb-1">Disponible</div>
+<div class="font-title-lg text-title-lg text-primary-fixed-dim font-bold">RD$ 3,550</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-label-sm dark-text-secondary mb-1">Recomendado Diario</div>
+<div class="font-title-md text-title-md dark-text-primary">RD$ 142/día</div>
+</div>
+</div>
+</div>
+<!-- Trend Insight -->
+<div class="flex items-start gap-md p-md rounded-lg bg-[#332a1e] border border-[#523d24]">
+<span class="material-symbols-outlined text-[#FFB74D] mt-1">trending_flat</span>
+<div>
+<h5 class="font-title-md text-title-md text-[#FFB74D]">Gastando según lo previsto</h5>
+<p class="font-body-md text-body-md dark-text-secondary mt-1">A este ritmo, terminarás el mes justo en el límite de tu presupuesto. Considera reducir gastos pequeños.</p>
+</div>
+</div>
+<!-- Recent Movements -->
+<div>
+<div class="flex justify-between items-center mb-md">
+<h4 class="font-title-md text-title-md dark-text-primary">Movimientos Recientes</h4>
+<button class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Ver todos</button>
+</div>
+<div class="flex flex-col gap-sm">
+<!-- Transaction Item -->
+<div class="flex items-center justify-between p-sm hover:bg-white/5 rounded-lg transition-colors cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full dark-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">local_grocery_store</span>
+</div>
+<div>
+<div class="font-body-lg text-body-lg dark-text-primary">Supermercado Nacional</div>
+<div class="font-body-md text-body-md dark-text-secondary">Hoy, 10:45 AM</div>
+</div>
+</div>
+<div class="font-title-md text-title-md dark-text-primary">-RD$ 3,240</div>
+</div>
+<!-- Transaction Item -->
+<div class="flex items-center justify-between p-sm hover:bg-white/5 rounded-lg transition-colors cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full dark-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+</div>
+<div>
+<div class="font-body-lg text-body-lg dark-text-primary">Pizzería El Hornito</div>
+<div class="font-body-md text-body-md dark-text-secondary">Ayer, 8:30 PM</div>
+</div>
+</div>
+<div class="font-title-md text-title-md dark-text-primary">-RD$ 1,150</div>
+</div>
+<!-- Transaction Item -->
+<div class="flex items-center justify-between p-sm hover:bg-white/5 rounded-lg transition-colors cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full dark-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">local_cafe</span>
+</div>
+<div>
+<div class="font-body-lg text-body-lg dark-text-primary">Cafetería Central</div>
+<div class="font-body-md text-body-md dark-text-secondary">24 Oct, 9:15 AM</div>
+</div>
+</div>
+<div class="font-title-md text-title-md dark-text-primary">-RD$ 350</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-md border-t dark-border flex gap-md">
+<button class="flex-1 py-2 border dark-border rounded-full font-label-lg text-label-lg dark-text-primary hover:bg-white/5 transition-colors">Editar</button>
+<button class="flex-1 py-2 border border-error text-error rounded-full font-label-lg text-label-lg hover:bg-error/10 transition-colors">Eliminar</button>
+</div>
+</aside>
+<!-- Overlay for Drawer (optional, usually used if drawer is modal, but keeping it subtle here) -->
+<div class="absolute inset-0 bg-black/20 z-30 pointer-events-none"></div>
+</main>
+</body></html>

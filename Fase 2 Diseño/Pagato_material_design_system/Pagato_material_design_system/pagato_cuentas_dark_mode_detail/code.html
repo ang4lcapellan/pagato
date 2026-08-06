@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PagaTo - Cuentas (Modo Oscuro)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Roboto+Flex:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#476083",
+                        "surface-variant": "#e4e2e2",
+                        "tertiary-fixed": "#b0f2c0",
+                        "background": "#fbf9f8",
+                        "on-background": "#1b1c1c",
+                        "surface-container-low": "#f5f3f3",
+                        "surface": "#fbf9f8",
+                        "surface-container-highest": "#e4e2e2",
+                        "primary-fixed": "#d4e3ff",
+                        "outline-variant": "#c4c6cf",
+                        "surface-dim": "#dbdad9",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#131c2b",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#6f88ad",
+                        "tertiary-container": "#002510",
+                        "on-primary-fixed-variant": "#2f486a",
+                        "secondary-fixed-dim": "#bec7db",
+                        "primary-fixed-dim": "#afc8f0",
+                        "on-secondary-fixed-variant": "#3e4758",
+                        "tertiary-fixed-dim": "#94d5a6",
+                        "inverse-on-surface": "#f2f0f0",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303031",
+                        "outline": "#74777f",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#dae3f8",
+                        "primary": "#000613",
+                        "on-secondary-container": "#5a6375",
+                        "surface-bright": "#fbf9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e8e7",
+                        "inverse-primary": "#afc8f0",
+                        "tertiary": "#000802",
+                        "secondary-container": "#d7e0f5",
+                        "secondary": "#565f71",
+                        "surface-container": "#efeded",
+                        "on-tertiary-fixed-variant": "#0e512d",
+                        "on-primary-fixed": "#001c3a",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1b1c1c",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#559469",
+                        "on-tertiary-fixed": "#00210e",
+                        "on-surface-variant": "#43474e",
+                        "primary-container": "#001f3f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "base": "8px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "column-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Roboto Flex"],
+                        "headline-lg-mobile": ["Roboto Flex"],
+                        "title-md": ["Roboto Flex"],
+                        "display-lg": ["Roboto Flex"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Roboto Flex"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base Dark Mode overrides since we are forcing dark mode in the HTML tag but using a config that defines generic tokens. 
+           In a real scenario, the config would have dark mode specifics mapped, but here we manually map the conceptual dark theme tokens to the available light theme names as instructed for 'MD3 Dark Theme tokens' simulation if needed, or rely on Tailwind's dark: modifier with the provided colors.
+           We will use standard dark mode utility classes. */
+        
+        body {
+            background-color: #1b1c1c; /* on-background used as dark bg */
+            color: #f2f0f0; /* inverse-on-surface */
+        }
+        
+        .dark-surface { background-color: #303031; } /* inverse-surface */
+        .dark-surface-low { background-color: #43474e; } /* on-surface-variant */
+        .dark-surface-high { background-color: #5a6375; } /* on-secondary-container */
+        .dark-primary-text { color: #afc8f0; } /* inverse-primary */
+        .dark-secondary-text { color: #bec7db; } /* secondary-fixed-dim */
+        .dark-border { border-color: #74777f; } /* outline */
+        
+        /* Attention state */
+        .dark-error-bg { background-color: #93000a; } /* on-error-container */
+        .dark-error-text { color: #ffdad6; } /* error-container */
+
+        /* Hide scrollbar for drawer */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-body-md min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-surface-container-low dark:dark-surface-low border-r border-outline-variant dark:dark-border w-64 fixed left-0 top-0 z-40 flex flex-col h-screen p-md">
+<div class="mb-xl px-lg py-md">
+<h1 class="font-headline-lg text-headline-lg font-black text-primary dark:dark-primary-text">PagaTo</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant dark:dark-secondary-text mt-xs">Personal Finance</p>
+</div>
+<div class="flex-1 space-y-sm">
+<a class="flex items-center gap-md text-on-surface-variant dark:dark-secondary-text hover:bg-surface-container-highest transition-all rounded-full px-lg py-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-lg text-label-lg">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:dark-secondary-text hover:bg-surface-container-highest transition-all rounded-full px-lg py-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-lg text-label-lg">Transactions</span>
+</a>
+<a class="flex items-center gap-md bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:dark-primary-text rounded-full px-lg py-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-label-lg text-label-lg">Accounts</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:dark-secondary-text hover:bg-surface-container-highest transition-all rounded-full px-lg py-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-lg text-label-lg">Budgets</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:dark-secondary-text hover:bg-surface-container-highest transition-all rounded-full px-lg py-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</div>
+<div class="mt-auto pt-lg border-t border-outline-variant dark:dark-border">
+<button class="w-full flex items-center justify-center gap-sm bg-primary dark:dark-primary-text text-on-primary dark:text-primary-container py-md rounded-full font-label-lg text-label-lg hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Add Transaction
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 flex h-screen overflow-hidden relative">
+<!-- Left Side: Summary & Accounts List -->
+<div class="flex-1 overflow-y-auto p-xl relative z-10 bg-[#1b1c1c]">
+<!-- Top App Bar Area (Inline for specific page context) -->
+<header class="flex justify-between items-center mb-xl sticky top-0 bg-[#1b1c1c] z-20 py-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface dark:dark-primary-text font-bold tracking-tight">Cuentas</h2>
+<p class="font-body-md text-body-md text-on-surface-variant dark:dark-secondary-text mt-xs">Resumen general de tu patrimonio</p>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full bg-surface-container-highest dark:dark-surface-low text-on-surface-variant dark:dark-secondary-text hover:bg-outline-variant transition-colors" id="toggle-privacy">
+<span class="material-symbols-outlined" id="privacy-icon">visibility_off</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-secondary-container dark:dark-surface-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container dark:dark-primary-text">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Patrimonio Summary (Bento-style) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md mb-xl">
+<div class="bg-surface-container-low dark:dark-surface p-lg rounded-xl border border-outline-variant dark:dark-border flex flex-col justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant dark:dark-secondary-text mb-sm">Patrimonio Neto</span>
+<span class="font-display-lg text-display-lg text-primary dark:dark-primary-text balance-value">RD$ 2,450,000</span>
+<div class="flex items-center gap-xs mt-md text-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-label-sm text-label-sm">+2.4% este mes</span>
+</div>
+</div>
+<div class="bg-surface-container-low dark:dark-surface p-lg rounded-xl border border-outline-variant dark:dark-border flex flex-col justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant dark:dark-secondary-text mb-sm">Activos Totales</span>
+<span class="font-title-lg text-title-lg text-on-surface dark:text-inverse-on-surface balance-value">RD$ 3,100,000</span>
+<div class="w-full bg-surface-variant dark:dark-surface-low h-1 mt-md rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full w-[80%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low dark:dark-surface p-lg rounded-xl border border-outline-variant dark:dark-border flex flex-col justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant dark:dark-secondary-text mb-sm">Deudas Totales</span>
+<span class="font-title-lg text-title-lg text-error dark:text-error-container balance-value">RD$ 650,000</span>
+<div class="w-full bg-surface-variant dark:dark-surface-low h-1 mt-md rounded-full overflow-hidden">
+<div class="bg-error-container h-full w-[20%]"></div>
+</div>
+</div>
+</section>
+<!-- Accounts Grouped -->
+<div class="space-y-xl">
+<!-- Efectivo y Bancos -->
+<section>
+<h3 class="font-title-md text-title-md text-on-surface-variant dark:dark-secondary-text mb-md flex items-center gap-sm border-b border-outline-variant dark:dark-border pb-xs">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+                        Efectivo e Inversiones Líquidas
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Account Card 1 -->
+<div class="bg-surface-container-low dark:dark-surface p-md rounded-xl border border-outline-variant dark:dark-border cursor-pointer hover:border-primary transition-colors flex items-center gap-md" onclick="openDrawer()">
+<div class="w-12 h-12 rounded-full bg-primary-container dark:bg-primary-fixed-dim flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-container dark:text-primary-container">account_balance</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-surface dark:text-inverse-on-surface">Banco Popular</h4>
+<p class="font-body-md text-body-md text-on-surface-variant dark:dark-secondary-text">Cuenta Corriente •••• 4532</p>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md text-on-surface dark:dark-primary-text block balance-value">RD$ 125,000</span>
+</div>
+</div>
+<!-- Account Card 2 -->
+<div class="bg-surface-container-low dark:dark-surface p-md rounded-xl border border-outline-variant dark:dark-border cursor-pointer hover:border-primary transition-colors flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary-container dark:bg-primary-fixed-dim flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-container dark:text-primary-container">savings</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-surface dark:text-inverse-on-surface">Asociación Cibao</h4>
+<p class="font-body-md text-body-md text-on-surface-variant dark:dark-secondary-text">Ahorros •••• 9921</p>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md text-on-surface dark:dark-primary-text block balance-value">RD$ 85,500</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Tarjetas de Crédito y Préstamos -->
+<section>
+<h3 class="font-title-md text-title-md text-on-surface-variant dark:dark-secondary-text mb-md flex items-center gap-sm border-b border-outline-variant dark:dark-border pb-xs">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+                        Tarjetas y Deudas
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Attention State Card -->
+<div class="bg-error-container dark:dark-error-bg p-md rounded-xl border border-error dark:border-error-container cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-error dark:bg-error-container text-on-error dark:text-on-error-container px-sm py-xs rounded-bl-lg font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                Pago próximo
+                            </div>
+<div class="flex items-center gap-md mt-sm">
+<div class="w-12 h-12 rounded-full bg-surface dark:dark-surface-low flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-error dark:text-error-container">credit_card</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-error-container dark:dark-error-text">Visa Platinum BHD</h4>
+<p class="font-body-md text-body-md text-on-error-container dark:dark-error-text opacity-80">Corte: 15 Oct</p>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md text-on-error-container dark:dark-error-text block balance-value">RD$ -45,200</span>
+</div>
+</div>
+</div>
+<!-- Regular Debt Card -->
+<div class="bg-surface-container-low dark:dark-surface p-md rounded-xl border border-outline-variant dark:dark-border cursor-pointer hover:border-primary transition-colors flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant dark:dark-surface-low flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant dark:dark-secondary-text">directions_car</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-surface dark:text-inverse-on-surface">Préstamo Vehículo</h4>
+<p class="font-body-md text-body-md text-on-surface-variant dark:dark-secondary-text">Cuota: RD$ 15,000/mes</p>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md text-on-surface-variant dark:dark-secondary-text block balance-value">RD$ -604,800</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Right Drawer (Account Details) -->
+<aside class="w-96 bg-surface-container dark:dark-surface border-l border-outline-variant dark:dark-border shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out absolute right-0 top-0 h-full z-30 flex flex-col" id="details-drawer">
+<div class="p-lg border-b border-outline-variant dark:dark-border flex justify-between items-center">
+<h3 class="font-title-lg text-title-lg text-on-surface dark:dark-primary-text">Detalles de Cuenta</h3>
+<button class="p-xs rounded-full hover:bg-surface-variant dark:hover:dark-surface-low text-on-surface-variant dark:dark-secondary-text" onclick="closeDrawer()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-lg flex-1 overflow-y-auto no-scrollbar">
+<div class="flex flex-col items-center mb-xl">
+<div class="w-20 h-20 rounded-full bg-primary-container dark:bg-primary-fixed-dim flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-on-primary-container dark:text-primary-container">account_balance</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface dark:text-inverse-on-surface">Banco Popular</h2>
+<p class="font-body-md text-body-md text-on-surface-variant dark:dark-secondary-text">Cuenta Corriente •••• 4532</p>
+<div class="mt-md font-display-lg text-[40px] text-primary dark:dark-primary-text balance-value">RD$ 125,000</div>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-lg text-label-lg text-on-surface-variant dark:dark-secondary-text uppercase tracking-wider">Últimas Transacciones</h4>
+<!-- Transaction Item -->
+<div class="flex items-center gap-md py-sm border-b border-outline-variant dark:dark-border">
+<div class="w-10 h-10 rounded-full bg-surface-variant dark:dark-surface-low flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant dark:dark-secondary-text">shopping_cart</span>
+</div>
+<div class="flex-1">
+<div class="font-body-lg text-body-lg text-on-surface dark:text-inverse-on-surface">Supermercado Nacional</div>
+<div class="font-body-md text-body-md text-on-surface-variant dark:dark-secondary-text">Hoy, 14:30</div>
+</div>
+<div class="font-title-md text-title-md text-on-surface dark:text-inverse-on-surface balance-value">-RD$ 4,500</div>
+</div>
+<!-- Transaction Item -->
+<div class="flex items-center gap-md py-sm border-b border-outline-variant dark:dark-border">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px] text-on-tertiary-fixed-variant">payments</span>
+</div>
+<div class="flex-1">
+<div class="font-body-lg text-body-lg text-on-surface dark:text-inverse-on-surface">Nómina Quincenal</div>
+<div class="font-body-md text-body-md text-on-surface-variant dark:dark-secondary-text">Ayer</div>
+</div>
+<div class="font-title-md text-title-md text-tertiary-fixed-dim balance-value">+RD$ 45,000</div>
+</div>
+</div>
+</div>
+<div class="p-lg border-t border-outline-variant dark:dark-border">
+<button class="w-full flex items-center justify-center gap-sm border border-outline-variant dark:dark-border text-on-surface dark:dark-primary-text py-md rounded-full font-label-lg text-label-lg hover:bg-surface-variant dark:hover:dark-surface-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                    Editar Cuenta
+                </button>
+</div>
+</aside>
+</main>
+<script>
+        // Privacy Mode Logic
+        const togglePrivacyBtn = document.getElementById('toggle-privacy');
+        const privacyIcon = document.getElementById('privacy-icon');
+        const balanceElements = document.querySelectorAll('.balance-value');
+        let isPrivacyMode = true; // Start in privacy mode based on prompt requirement "Privacy mode active in one variant"
+
+        // Store original values
+        balanceElements.forEach(el => {
+            el.dataset.original = el.innerText;
+        });
+
+        function updatePrivacyState() {
+            if (isPrivacyMode) {
+                privacyIcon.innerText = 'visibility_off';
+                balanceElements.forEach(el => {
+                    // Simple mask keeping the sign and currency if present
+                    const text = el.dataset.original;
+                    if(text.includes('RD$')) {
+                        const isNegative = text.includes('-');
+                        el.innerText = (isNegative ? '-' : '') + 'RD$ ••••••';
+                    } else {
+                        el.innerText = '••••••';
+                    }
+                });
+            } else {
+                privacyIcon.innerText = 'visibility';
+                balanceElements.forEach(el => {
+                    el.innerText = el.dataset.original;
+                });
+            }
+        }
+
+        togglePrivacyBtn.addEventListener('click', () => {
+            isPrivacyMode = !isPrivacyMode;
+            updatePrivacyState();
+        });
+
+        // Initialize
+        updatePrivacyState();
+
+        // Drawer Logic
+        const drawer = document.getElementById('details-drawer');
+        function openDrawer() {
+            drawer.classList.remove('translate-x-full');
+        }
+        function closeDrawer() {
+            drawer.classList.add('translate-x-full');
+        }
+    </script>
+</body></html>

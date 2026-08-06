@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nueva Transacción - PagaTo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "on-tertiary-fixed": "#00210e",
+                            "tertiary-fixed-dim": "#94d5a6",
+                            "tertiary-fixed": "#b0f2c0",
+                            "on-surface-variant": "#43474e",
+                            "on-tertiary-container": "#559469",
+                            "surface-dim": "#dbdad9",
+                            "surface-container-high": "#e9e8e7",
+                            "inverse-primary": "#afc8f0",
+                            "surface-variant": "#e4e2e2",
+                            "on-error": "#ffffff",
+                            "error": "#ba1a1a",
+                            "primary-fixed-dim": "#afc8f0",
+                            "primary-container": "#001f3f",
+                            "surface-container-highest": "#e4e2e2",
+                            "on-secondary-fixed-variant": "#3e4758",
+                            "secondary-fixed-dim": "#bec7db",
+                            "secondary-fixed": "#dae3f8",
+                            "outline": "#74777f",
+                            "surface-bright": "#fbf9f8",
+                            "surface-tint": "#476083",
+                            "surface-container-low": "#f5f3f3",
+                            "outline-variant": "#c4c6cf",
+                            "on-primary": "#ffffff",
+                            "primary-fixed": "#d4e3ff",
+                            "on-primary-container": "#6f88ad",
+                            "on-tertiary-fixed-variant": "#0e512d",
+                            "surface": "#fbf9f8",
+                            "surface-container-lowest": "#ffffff",
+                            "inverse-on-surface": "#f2f0f0",
+                            "background": "#fbf9f8",
+                            "secondary": "#565f71",
+                            "on-primary-fixed-variant": "#2f486a",
+                            "inverse-surface": "#303031",
+                            "error-container": "#ffdad6",
+                            "on-tertiary": "#ffffff",
+                            "tertiary": "#000802",
+                            "primary": "#000613",
+                            "secondary-container": "#d7e0f5",
+                            "on-background": "#1b1c1c",
+                            "on-error-container": "#93000a",
+                            "on-secondary-container": "#5a6375",
+                            "surface-container": "#efeded",
+                            "on-primary-fixed": "#001c3a",
+                            "on-surface": "#1b1c1c",
+                            "tertiary-container": "#002510",
+                            "on-secondary-fixed": "#131c2b",
+                            "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "gutter": "16px",
+                            "column-margin": "24px",
+                            "md": "16px",
+                            "xl": "32px",
+                            "lg": "24px",
+                            "sm": "8px",
+                            "base": "8px",
+                            "xs": "4px"
+                    },
+                    "fontFamily": {
+                            "body-lg": [
+                                    "Inter"
+                            ],
+                            "title-lg": [
+                                    "Roboto Flex"
+                            ],
+                            "display-lg": [
+                                    "Roboto Flex"
+                            ],
+                            "headline-lg": [
+                                    "Roboto Flex"
+                            ],
+                            "label-sm": [
+                                    "Inter"
+                            ],
+                            "headline-lg-mobile": [
+                                    "Roboto Flex"
+                            ],
+                            "label-lg": [
+                                    "Inter"
+                            ],
+                            "body-md": [
+                                    "Inter"
+                            ],
+                            "title-md": [
+                                    "Roboto Flex"
+                            ]
+                    },
+                    "fontSize": {
+                            "body-lg": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "letterSpacing": "0.5px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "title-lg": [
+                                    "22px",
+                                    {
+                                            "lineHeight": "28px",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "display-lg": [
+                                    "57px",
+                                    {
+                                            "lineHeight": "64px",
+                                            "letterSpacing": "-0.25px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "headline-lg": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "label-sm": [
+                                    "11px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.5px",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "headline-lg-mobile": [
+                                    "28px",
+                                    {
+                                            "lineHeight": "36px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "label-lg": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "letterSpacing": "0.1px",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "body-md": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "letterSpacing": "0.25px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "title-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "letterSpacing": "0.15px",
+                                            "fontWeight": "500"
+                                    }
+                            ]
+                    }
+            },
+                },
+        }
+    </script>
+<style>
+        .material-symbols-rounded {
+          font-family: 'Material Symbols Rounded';
+          font-weight: normal;
+          font-style: normal;
+          font-size: 24px;
+          line-height: 1;
+          letter-spacing: normal;
+          text-transform: none;
+          display: inline-block;
+          white-space: nowrap;
+          word-wrap: normal;
+          direction: ltr;
+          -webkit-font-feature-settings: 'liga';
+          -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Interactive styles */
+        .input-active {
+            border-bottom-color: #000613;
+        }
+        .input-active + label {
+            color: #000613;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen antialiased">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container-low border-r border-outline-variant w-64 md:flex hidden">
+<div class="px-lg py-xl flex flex-col items-center gap-sm">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[32px]">account_balance</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary text-center">PagaTo</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Financial System</p>
+</div>
+<div class="flex-1 overflow-y-auto py-md flex flex-col gap-sm px-sm">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-lg text-label-lg">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-full mx-2 font-bold scale-95 duration-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-lg text-label-lg">Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-label-lg text-label-lg">Accounts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-lg text-label-lg">Budgets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-lg text-label-lg">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</div>
+<div class="p-lg mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-lg text-label-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+                Add Transaction
+            </button>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-0 md:ml-64 w-full">
+<!-- TopAppBar -->
+<header class="sticky top-0 right-0 w-full flex justify-between items-center px-lg h-16 z-30 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-on-surface-variant p-2 rounded-full hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="relative hidden sm:flex items-center w-64 bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant focus-within:border-primary">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant" placeholder="Search" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<img class="w-8 h-8 rounded-full object-cover ml-2 cursor-pointer border border-outline-variant" data-alt="A small circular avatar image showing a professional headshot of a business user in a modern office setting. The lighting is bright and clear, conveying a sense of professional reliability and clean modern aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh-ZnCEmZF0p1axtp2YqJcz8rwqqi25VxUwY0lP0gmePos-CQhd1weRMV6F7L9eTL9cmlVyeaIYWqye8YNat4GmK9pL_vZtlUDJaNa4H38-54P5rgHOv8SHwH1DcfDar-Oa8NTrmz3t2eCpaXQOLzpJMv7-DpC_dHGVcoR0I8sfmWYoW6MeuQvEnMcICx9pKAW9JqT_intTtp-W3JDrNVtBpDTGieC8Zt3enzRk_0DWcKhmA4jyp1m"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-lg md:p-xl max-w-7xl mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-xl flex flex-col sm:flex-row sm:items-end justify-between gap-md">
+<div>
+<nav aria-label="Breadcrumb" class="flex text-on-surface-variant font-label-sm text-label-sm mb-2">
+<ol class="inline-flex items-center space-x-1 md:space-x-2">
+<li class="inline-flex items-center">
+<a class="hover:text-primary transition-colors" href="#">Transacciones</a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[16px] mx-1">chevron_right</span>
+<span class="text-primary font-medium">Nueva transacción</span>
+</div>
+</li>
+</ol>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Nueva transacción</h2>
+</div>
+<div class="flex items-center gap-sm mt-4 sm:mt-0">
+<button class="px-6 py-2 rounded-full border border-outline-variant text-primary font-label-lg text-label-lg hover:bg-surface-container-low transition-colors">Cancelar</button>
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-label-lg text-label-lg hover:opacity-90 transition-opacity">Guardar transacción</button>
+</div>
+</div>
+<!-- Two Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Form (8 cols) -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- Segmented Control -->
+<div class="bg-surface-container-low p-1 rounded-full inline-flex border border-outline-variant mb-4">
+<button class="px-6 py-2 rounded-full bg-secondary-container text-on-secondary-container font-label-lg text-label-lg font-bold flex items-center gap-2 shadow-sm">
+<span class="material-symbols-rounded text-[20px]" style="font-variation-settings: 'FILL' 1;">arrow_downward</span>
+                            Gasto
+                        </button>
+<button class="px-6 py-2 rounded-full text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-rounded text-[20px]">arrow_upward</span>
+                            Ingreso
+                        </button>
+<button class="px-6 py-2 rounded-full text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-rounded text-[20px]">sync_alt</span>
+                            Transferencia
+                        </button>
+</div>
+<!-- Section 1: Main Details (Glassmorphism inspired card) -->
+<section class="bg-surface-container-low rounded-xl border border-outline-variant p-lg shadow-sm relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none"></div>
+<div class="relative z-10 space-y-lg">
+<div class="flex flex-col mb-6">
+<label class="font-label-sm text-label-sm text-on-surface-variant mb-1">Importe</label>
+<div class="flex items-end gap-2 border-b-2 border-primary pb-2 focus-within:border-primary transition-colors">
+<span class="font-headline-lg text-headline-lg text-primary">RD$</span>
+<input autofocus="" class="bg-transparent border-none outline-none w-full font-display-lg text-display-lg text-on-surface p-0 focus:ring-0 leading-none h-14" placeholder="0.00" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="relative">
+<input class="block w-full px-4 pt-6 pb-2 text-on-surface bg-surface-container-high border-b border-outline-variant rounded-t-DEFAULT focus:outline-none focus:border-b-2 focus:border-primary peer transition-colors font-body-lg text-body-lg" id="fecha" placeholder=" " type="text"/>
+<label class="absolute text-on-surface-variant duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 font-label-lg text-label-lg" for="fecha">Fecha</label>
+<div class="absolute right-4 top-4 text-on-surface-variant pointer-events-none">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div class="absolute bottom-2 left-4 text-primary font-label-sm text-label-sm">Hoy</div>
+</div>
+<div class="relative">
+<input class="block w-full px-4 pt-6 pb-2 text-on-surface bg-surface-container-high border-b border-outline-variant rounded-t-DEFAULT focus:outline-none focus:border-b-2 focus:border-primary peer transition-colors font-body-lg text-body-lg" id="descripcion" placeholder=" " type="text"/>
+<label class="absolute text-on-surface-variant duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 font-label-lg text-label-lg" for="descripcion">Descripción</label>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Sticky Summary (4 cols) -->
+<div class="lg:col-span-4">
+<div class="sticky top-24 bg-surface-container rounded-xl border border-outline-variant p-lg shadow-sm">
+<h3 class="font-title-md text-title-md text-on-surface mb-6 pb-4 border-b border-outline-variant">Resumen de Impacto</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Cuenta afectada</span>
+<span class="font-label-lg text-label-lg text-on-surface text-right truncate w-32">-</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Saldo actual</span>
+<span class="font-body-md text-body-md text-on-surface">RD$ 0.00</span>
+</div>
+<div class="flex justify-between items-center text-error">
+<span class="font-body-md text-body-md">Monto del gasto</span>
+<span class="font-label-lg text-label-lg">- RD$ 0.00</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant">
+<div class="flex justify-between items-center">
+<span class="font-title-md text-title-md text-on-surface">Saldo proyectado</span>
+<span class="font-title-lg text-title-lg text-on-surface">RD$ 0.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

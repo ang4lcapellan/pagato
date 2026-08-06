@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nueva Cuenta - PagaTo'</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;500;700;900&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#131c2b",
+                        "tertiary": "#000802",
+                        "surface-variant": "#e4e2e2",
+                        "inverse-on-surface": "#f2f0f0",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5a6375",
+                        "inverse-surface": "#303031",
+                        "primary-container": "#001f3f",
+                        "on-primary-fixed": "#001c3a",
+                        "on-primary-fixed-variant": "#2f486a",
+                        "tertiary-container": "#002510",
+                        "on-tertiary-fixed-variant": "#0e512d",
+                        "surface-tint": "#476083",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#3e4758",
+                        "on-background": "#1b1c1c",
+                        "outline-variant": "#c4c6cf",
+                        "primary-fixed": "#d4e3ff",
+                        "tertiary-fixed": "#b0f2c0",
+                        "surface-dim": "#dbdad9",
+                        "on-primary-container": "#6f88ad",
+                        "surface": "#fbf9f8",
+                        "on-surface-variant": "#43474e",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#afc8f0",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1b1c1c",
+                        "primary": "#000613",
+                        "secondary-container": "#d7e0f5",
+                        "background": "#fbf9f8",
+                        "outline": "#74777f",
+                        "surface-bright": "#fbf9f8",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e4e2e2",
+                        "secondary-fixed": "#dae3f8",
+                        "primary-fixed-dim": "#afc8f0",
+                        "secondary": "#565f71",
+                        "secondary-fixed-dim": "#bec7db",
+                        "on-tertiary-container": "#559469",
+                        "on-tertiary-fixed": "#00210e",
+                        "surface-container": "#efeded",
+                        "surface-container-high": "#e9e8e7",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f5f3f3",
+                        "tertiary-fixed-dim": "#94d5a6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "base": "8px",
+                        "column-margin": "24px",
+                        "sm": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Roboto Flex"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Roboto Flex"],
+                        "body-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Roboto Flex"],
+                        "display-lg": ["Roboto Flex"],
+                        "headline-lg": ["Roboto Flex"]
+                    },
+                    "fontSize": {
+                        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-lg antialiased min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface docked full-width top-0 sticky z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-gutter ml-64">
+<div class="flex items-center gap-md">
+<h1 class="font-title-lg text-title-lg font-black text-primary">PagaTo'</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden md:flex items-center bg-surface-container-high rounded-full px-4 py-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none outline-none text-body-md text-on-surface w-48 placeholder:text-on-surface-variant/70 focus:ring-0 p-0" placeholder="Buscar..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full focus:ring-2 focus:ring-primary-fixed duration-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full focus:ring-2 focus:ring-primary-fixed duration-200 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<button class="ml-4 rounded-full overflow-hidden w-8 h-8 focus:ring-2 focus:ring-primary-fixed duration-200">
+<img alt="User settings" class="w-full h-full object-cover" data-alt="Professional studio headshot of a person looking forward, modern lighting, clear background, high resolution, suitable for a professional user profile picture in a finance application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp9-VvBgB2PhMr2eCymn4aDKiU5ehdNcmIvI7ZJw5V7z4ZrAxKSYFo0pMQCBHXFiXr9aazZc9G6nYL6QwlPF68oF9UC3m-qF-O1uBshDh3DTrSyfgh_YfS2XJqFqRq6VkxpFqSGJDXY02s-cdZyDBvCVWXzvR05rHS3QC5wbXWSN8Xd24l4PkmRujcY31j5DMdo4u-cZjZcdRnUgut2o4hb4O9UtnCS78SiSDPQVJSe0CgGcB93Tue"/>
+</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="bg-surface h-screen w-64 fixed left-0 top-0 border-r border-outline-variant shadow-none flex flex-col h-full py-md overflow-y-auto z-50">
+<div class="px-lg mb-8">
+<h2 class="font-title-lg text-title-lg font-bold text-primary mb-1">PagaTo'</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Financial System</p>
+</div>
+<button class="mx-3 my-4 bg-primary text-on-primary rounded-full py-3 px-4 font-label-lg hover:opacity-90 active:scale-95 transition-all duration-100 ease-in-out flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+            New Transaction
+        </button>
+<div class="flex flex-col gap-1 mt-4">
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-3 my-1 px-4 py-3 transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-lg text-body-lg">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-3 my-1 px-4 py-3 transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-lg text-body-lg">Transactions</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container font-title-md rounded-full mx-3 my-1 px-4 py-3 active:scale-95 duration-100 ease-in-out flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span>Accounts</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-3 my-1 px-4 py-3 transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">savings</span>
+<span class="font-body-lg text-body-lg">Budgets</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-3 my-1 px-4 py-3 transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-body-lg text-body-lg">Reports</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-3 my-1 px-4 py-3 transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-lg text-body-lg">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="ml-64 p-lg md:p-xl pb-24 max-w-7xl mx-auto">
+<!-- Breadcrumb & Header -->
+<div class="mb-lg">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm mb-2">
+<a class="hover:text-primary transition-colors" href="#">Cuentas</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">Nueva cuenta</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Nueva cuenta</h2>
+</div>
+<!-- 2 Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-column-margin">
+<!-- Left Column: Form (8 cols) -->
+<div class="lg:col-span-8 space-y-xl">
+<!-- Step 1: Account Type Selector -->
+<section class="bg-surface-container-lowest rounded-xl p-lg shadow-sm border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg text-on-surface mb-md">1. Tipo de cuenta</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Selecciona el tipo de activo o pasivo que deseas registrar.</p>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-md">
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="account_type" type="radio" value="cash"/>
+<div class="h-full border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-3 hover:bg-surface-container-low transition-colors peer-checked:bg-primary-container peer-checked:border-primary-container peer-checked:text-on-primary-container">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant peer-checked:text-on-primary-container">payments</span>
+<span class="font-label-lg text-label-lg text-center">Efectivo</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input checked="" class="peer sr-only" name="account_type" type="radio" value="bank"/>
+<div class="h-full border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-3 hover:bg-surface-container-low transition-colors peer-checked:bg-primary-fixed peer-checked:border-primary peer-checked:text-on-primary-fixed ring-2 ring-transparent peer-checked:ring-primary shadow-sm peer-checked:shadow-md">
+<span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<span class="font-label-lg text-label-lg text-center font-bold">Cuenta bancaria</span>
+<div class="absolute top-2 right-2 bg-primary text-on-primary rounded-full w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="account_type" type="radio" value="savings"/>
+<div class="h-full border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-3 hover:bg-surface-container-low transition-colors peer-checked:bg-primary-container peer-checked:border-primary-container peer-checked:text-on-primary-container">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant peer-checked:text-on-primary-container">savings</span>
+<span class="font-label-lg text-label-lg text-center">Cuenta de ahorros</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="account_type" type="radio" value="credit"/>
+<div class="h-full border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-3 hover:bg-surface-container-low transition-colors peer-checked:bg-primary-container peer-checked:border-primary-container peer-checked:text-on-primary-container">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant peer-checked:text-on-primary-container">credit_card</span>
+<span class="font-label-lg text-label-lg text-center">Tarjeta de crédito</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="account_type" type="radio" value="wallet"/>
+<div class="h-full border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-3 hover:bg-surface-container-low transition-colors peer-checked:bg-primary-container peer-checked:border-primary-container peer-checked:text-on-primary-container">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant peer-checked:text-on-primary-container">phone_iphone</span>
+<span class="font-label-lg text-label-lg text-center">Billetera digital</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="account_type" type="radio" value="investment"/>
+<div class="h-full border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-3 hover:bg-surface-container-low transition-colors peer-checked:bg-primary-container peer-checked:border-primary-container peer-checked:text-on-primary-container">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant peer-checked:text-on-primary-container">trending_up</span>
+<span class="font-label-lg text-label-lg text-center">Inversión</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Step 2: Account Details Form -->
+<section class="bg-surface-container-lowest rounded-xl p-lg shadow-sm border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg text-on-surface mb-md">2. Detalles de la cuenta</h3>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Nombre -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="account_name">Nombre de la cuenta</label>
+<input class="bg-surface-container-low border-b-2 border-outline-variant hover:border-on-surface focus:border-primary focus:ring-0 px-4 py-3 rounded-t-md text-body-lg text-on-surface transition-colors" id="account_name" placeholder="Ej. Ahorros Viaje" type="text" value="Cuenta Nómina Principal"/>
+</div>
+<!-- Moneda -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="currency">Moneda</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low border-b-2 border-outline-variant hover:border-on-surface focus:border-primary focus:ring-0 px-4 py-3 pr-10 rounded-t-md text-body-lg text-on-surface transition-colors" id="currency">
+<option selected="" value="DOP">DOP - Peso Dominicano</option>
+<option value="USD">USD - Dólar Estadounidense</option>
+<option value="EUR">EUR - Euro</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Institución -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="institution">Institución financiera</label>
+<input class="bg-surface-container-low border-b-2 border-outline-variant hover:border-on-surface focus:border-primary focus:ring-0 px-4 py-3 rounded-t-md text-body-lg text-on-surface transition-colors" id="institution" placeholder="Ej. Banco Popular" type="text" value="Banco Popular"/>
+</div>
+<!-- Últimos 4 dígitos -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="digits">Últimos 4 dígitos (Opcional)</label>
+<input class="bg-surface-container-low border-b-2 border-outline-variant hover:border-on-surface focus:border-primary focus:ring-0 px-4 py-3 rounded-t-md text-body-lg text-on-surface transition-colors tracking-widest" id="digits" maxlength="4" placeholder="••••" type="text" value="8492"/>
+</div>
+</div>
+<!-- Saldo Inicial -->
+<div class="flex flex-col gap-1 w-full md:w-1/2">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="balance">Saldo inicial</label>
+<div class="relative">
+<span class="absolute left-4 top-3 text-on-surface-variant font-body-lg">RD$</span>
+<input class="w-full bg-surface-container-low border-b-2 border-outline-variant hover:border-on-surface focus:border-primary focus:ring-0 pl-14 pr-4 py-3 rounded-t-md text-body-lg text-on-surface transition-colors text-right font-title-md" id="balance" step="0.01" type="number" value="45000.00"/>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Este valor se registrará como el balance de apertura.</p>
+</div>
+</form>
+</section>
+<!-- Actions -->
+<div class="flex justify-end gap-md">
+<button class="px-6 py-2.5 rounded-full font-label-lg text-primary border border-outline-variant hover:bg-surface-container-low transition-colors">
+                        Cancelar
+                    </button>
+<button class="px-6 py-2.5 rounded-full font-label-lg text-on-primary bg-primary hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                        Crear cuenta
+                    </button>
+</div>
+</div>
+<!-- Right Column: Dynamic Preview (4 cols) -->
+<div class="lg:col-span-4">
+<div class="sticky top-24 space-y-lg">
+<h3 class="font-title-md text-title-md text-on-surface-variant">Vista Previa</h3>
+<!-- Preview Card -->
+<div class="bg-surface-container-low rounded-xl p-lg shadow-sm border border-outline-variant/20 relative overflow-hidden group">
+<!-- Decorative background element for bank account -->
+<div class="absolute -right-12 -top-12 w-32 h-32 bg-primary-fixed rounded-full opacity-50 blur-2xl group-hover:scale-110 transition-transform duration-500"></div>
+<div class="relative z-10 flex justify-between items-start mb-8">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Cuenta Bancaria</p>
+<h4 class="font-title-lg text-title-lg text-on-surface" id="preview_name">Cuenta Nómina</h4>
+</div>
+</div>
+</div>
+<div class="relative z-10 mb-6">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Balance Actual</p>
+<div class="flex items-baseline gap-1">
+<span class="font-title-md text-title-md text-on-surface-variant" id="preview_currency">RD$</span>
+<span class="font-display-lg text-display-lg text-on-surface tracking-tight" id="preview_balance">45,000.00</span>
+</div>
+</div>
+<div class="relative z-10 flex justify-between items-center pt-4 border-t border-outline-variant/30">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Institución</p>
+<p class="font-body-md text-body-md text-on-surface" id="preview_inst">Banco Popular</p>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Termina en</p>
+<p class="font-title-md text-title-md text-on-surface font-mono" id="preview_digits">•8492</p>
+</div>
+</div>
+</div>
+<!-- Impact Summary -->
+<div class="bg-tertiary-container/10 rounded-xl p-md border border-tertiary-fixed/30 flex items-start gap-md">
+<span class="material-symbols-outlined text-tertiary mt-0.5">info</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Impacto en Patrimonio</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Al crear esta cuenta, tu patrimonio neto total aumentará en <strong class="text-tertiary">RD$ 45,000.00</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple script to update preview dynamically based on inputs
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameInput = document.getElementById('account_name');
+            const instInput = document.getElementById('institution');
+            const digitsInput = document.getElementById('digits');
+            const balanceInput = document.getElementById('balance');
+            const currencySelect = document.getElementById('currency');
+
+            const prevName = document.getElementById('preview_name');
+            const prevInst = document.getElementById('preview_inst');
+            const prevDigits = document.getElementById('preview_digits');
+            const prevBalance = document.getElementById('preview_balance');
+            const prevCurrency = document.getElementById('preview_currency');
+
+            const formatCurrency = (value) => {
+                const num = parseFloat(value) || 0;
+                return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            };
+
+            nameInput.addEventListener('input', (e) => {
+                prevName.textContent = e.target.value || 'Nueva Cuenta';
+            });
+
+            instInput.addEventListener('input', (e) => {
+                prevInst.textContent = e.target.value || '-';
+            });
+
+            digitsInput.addEventListener('input', (e) => {
+                prevDigits.textContent = e.target.value ? `•${e.target.value}` : '••••';
+            });
+
+            balanceInput.addEventListener('input', (e) => {
+                prevBalance.textContent = formatCurrency(e.target.value);
+            });
+
+            currencySelect.addEventListener('change', (e) => {
+                let symbol = 'RD$';
+                if(e.target.value === 'USD') symbol = 'US$';
+                if(e.target.value === 'EUR') symbol = '€';
+                prevCurrency.textContent = symbol;
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PagaTo - Cuentas</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,700;8..144,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Guidance -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#476083",
+                      "surface-variant": "#e4e2e2",
+                      "tertiary-fixed": "#b0f2c0",
+                      "background": "#fbf9f8",
+                      "on-background": "#1b1c1c",
+                      "surface-container-low": "#f5f3f3",
+                      "surface": "#fbf9f8",
+                      "surface-container-highest": "#e4e2e2",
+                      "primary-fixed": "#d4e3ff",
+                      "outline-variant": "#c4c6cf",
+                      "surface-dim": "#dbdad9",
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#131c2b",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#6f88ad",
+                      "tertiary-container": "#002510",
+                      "on-primary-fixed-variant": "#2f486a",
+                      "secondary-fixed-dim": "#bec7db",
+                      "primary-fixed-dim": "#afc8f0",
+                      "on-secondary-fixed-variant": "#3e4758",
+                      "tertiary-fixed-dim": "#94d5a6",
+                      "inverse-on-surface": "#f2f0f0",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#303031",
+                      "outline": "#74777f",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#dae3f8",
+                      "primary": "#000613",
+                      "on-secondary-container": "#5a6375",
+                      "surface-bright": "#fbf9f8",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#e9e8e7",
+                      "inverse-primary": "#afc8f0",
+                      "tertiary": "#000802",
+                      "secondary-container": "#d7e0f5",
+                      "secondary": "#565f71",
+                      "surface-container": "#efeded",
+                      "on-tertiary-fixed-variant": "#0e512d",
+                      "on-primary-fixed": "#001c3a",
+                      "on-error-container": "#93000a",
+                      "on-surface": "#1b1c1c",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#559469",
+                      "on-tertiary-fixed": "#00210e",
+                      "on-surface-variant": "#43474e",
+                      "primary-container": "#001f3f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "32px",
+                      "xs": "4px",
+                      "gutter": "16px",
+                      "md": "16px",
+                      "base": "8px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "column-margin": "24px"
+              },
+              "fontFamily": {
+                      "label-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "title-lg": ["Roboto Flex"],
+                      "headline-lg-mobile": ["Roboto Flex"],
+                      "title-md": ["Roboto Flex"],
+                      "display-lg": ["Roboto Flex"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Roboto Flex"],
+                      "label-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                      "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                      "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex h-screen overflow-hidden antialiased font-body-md">
+<!-- 
+      SIDENAVBAR (Desktop/Tablet) 
+      Active Tab Logic: "Accounts" corresponds to index 2 in tab_labels.
+    -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 z-40 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant flex-col p-md">
+<!-- Header -->
+<div class="flex items-center gap-md mb-xl px-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-title-lg overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a user in a well-lit, modern studio environment, soft neutral background, high resolution, corporate lifestyle photography, minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKCklb5OMZxYZWnOy-wjkEMmi3EZ2U9bhRnsUdr9Nj4TIdAMkKhlna1m-CQmqew5LOXUyZdNHoBLI95VFGP4jw9M8thf6A7ifyJes_0kEkvPGjgQPf-7puQrxhbJiLBS5h011exO4HzvljYpwkRR2fS5h2sfMg0fE8-41mKBWTsIB2nyoFUlmR271JKYMWtFAVBjwSRf4zxX7gqMfaCzgwv1R0bcMkKpfmTsO6BkzbmfvK60gEP3-v"/>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-black text-primary dark:text-inverse-primary tracking-tight">PagaTo</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Personal Finance</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<ul class="flex flex-col gap-sm flex-1">
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest rounded-full px-lg py-md font-label-lg text-label-lg hover:bg-surface-container-highest transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest rounded-full px-lg py-md font-label-lg text-label-lg hover:bg-surface-container-highest transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+                    Transactions
+                </a>
+</li>
+<!-- ACTIVE TAB -->
+<li>
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-full px-lg py-md font-label-lg text-label-lg hover:bg-surface-container-highest transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined icon-filled" data-icon="account_balance_wallet" data-weight="fill">account_balance_wallet</span>
+                    Accounts
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest rounded-full px-lg py-md font-label-lg text-label-lg hover:bg-surface-container-highest transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                    Budgets
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest rounded-full px-lg py-md font-label-lg text-label-lg hover:bg-surface-container-highest transition-all active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<!-- CTA -->
+<button class="mt-auto bg-primary text-on-primary rounded-full py-md px-lg font-label-lg text-label-lg flex items-center justify-center gap-sm hover:opacity-90 transition-opacity w-full shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+            Add Transaction
+        </button>
+</nav>
+<!-- MAIN CONTENT AREA -->
+<main class="flex-1 flex flex-col md:ml-64 h-screen overflow-y-auto bg-background relative">
+<!-- TOPNAVBAR (Mobile Only) -->
+<header class="md:hidden w-full sticky top-0 z-50 bg-surface dark:bg-surface-dim shadow-sm flex justify-between items-center px-gutter py-sm w-full bg-surface-container-low dark:bg-surface-container-high">
+<div class="flex items-center gap-sm">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-inverse-primary tracking-tight">PagaTo</span>
+</div>
+<div class="flex items-center gap-sm text-primary dark:text-inverse-primary font-title-md text-title-md">
+<button class="p-sm hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-sm hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- PAGE CONTENT CONTAINER -->
+<div class="p-gutter md:p-xl max-w-7xl mx-auto w-full flex flex-col gap-xl">
+<!-- Page Header & Global Summary -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Cuentas</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestiona tus balances e instituciones financieras.</p>
+</div>
+<div class="flex items-center gap-md bg-surface-container-low p-md rounded-xl border border-outline-variant shadow-sm w-full lg:w-auto">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Patrimonio Neto</span>
+<span class="font-title-lg text-title-lg text-primary font-medium">$42,500.00 USD</span>
+</div>
+<div class="h-10 w-px bg-outline-variant mx-sm hidden sm:block"></div>
+<div class="flex flex-col hidden sm:flex">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rendimiento (30d)</span>
+<span class="font-title-md text-title-md text-on-tertiary-container flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-xs">arrow_upward</span>
+                            +2.4%
+                        </span>
+</div>
+<button class="ml-auto lg:ml-md bg-primary text-on-primary rounded-full px-lg py-sm font-label-lg text-label-lg shadow-sm hover:bg-surface-tint transition-colors">
+                        Nueva Cuenta
+                    </button>
+</div>
+</div>
+<!-- 
+              VARIANT 1 & 2: Responsive Accounts View 
+              Shows Single Column Cards on Tablet (<1280px) and Table on Desktop (>=1280px)
+            -->
+<section class="flex flex-col gap-md">
+<h3 class="font-title-md text-title-md text-on-surface-variant border-b border-outline-variant pb-sm">Cuentas Activas (Responsive: Tarjetas en Tablet, Tabla en Desktop)</h3>
+<!-- Desktop Table View (xl and up) -->
+<div class="hidden xl:block bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-lg font-medium">Cuenta</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-lg font-medium">Tipo</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-lg font-medium">Institución</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-lg font-medium text-right">Balance</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-lg font-medium text-right">Cambio (7d)</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-lg font-medium text-center">Estado</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-lg font-medium text-center">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Banamex Perfiles</span>
+</div>
+</td>
+<td class="py-md px-lg font-body-md text-body-md text-on-surface-variant">Débito</td>
+<td class="py-md px-lg font-body-md text-body-md text-on-surface-variant">Citibanamex</td>
+<td class="py-md px-lg font-title-md text-title-md text-on-surface text-right">$12,450.00</td>
+<td class="py-md px-lg font-body-md text-body-md text-on-tertiary-container text-right">+ $320.00</td>
+<td class="py-md px-lg text-center">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">Sincronizado</span>
+</td>
+<td class="py-md px-lg text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Nu Crédito</span>
+</div>
+</td>
+<td class="py-md px-lg font-body-md text-body-md text-on-surface-variant">Crédito</td>
+<td class="py-md px-lg font-body-md text-body-md text-on-surface-variant">Nu México</td>
+<td class="py-md px-lg font-title-md text-title-md text-on-surface text-right">-$1,240.00</td>
+<td class="py-md px-lg font-body-md text-body-md text-on-error-container text-right">- $50.00</td>
+<td class="py-md px-lg text-center">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">Sincronizado</span>
+</td>
+<td class="py-md px-lg text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Tablet/Mobile Card View (hidden on xl) -->
+<div class="xl:hidden flex flex-col gap-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Banamex Perfiles</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Débito • Citibanamex</p>
+</div>
+</div>
+<button class="text-on-surface-variant p-sm rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="flex justify-between items-end border-t border-outline-variant pt-md mt-sm">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">Balance</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">$12,450.00</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm mb-sm">Sincronizado</span>
+<span class="font-body-md text-body-md text-on-tertiary-container">+ $320.00 (7d)</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Nu Crédito</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Crédito • Nu México</p>
+</div>
+</div>
+<button class="text-on-surface-variant p-sm rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="flex justify-between items-end border-t border-outline-variant pt-md mt-sm">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">Balance (Deuda)</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">-$1,240.00</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm mb-sm">Sincronizado</span>
+<span class="font-body-md text-body-md text-on-error-container">- $50.00 (7d)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- VARIANT 3: Empty State -->
+<section class="flex flex-col gap-md mt-xl">
+<h3 class="font-title-md text-title-md text-on-surface-variant border-b border-outline-variant pb-sm">Estado Vacío (Empty State)</h3>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant border-dashed p-xl flex flex-col items-center justify-center text-center min-h-[320px]">
+<div class="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center mb-lg">
+<span class="material-symbols-outlined text-[40px] text-on-secondary-container" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface mb-sm">Agrega tu primera cuenta</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-lg">Comienza a rastrear tu patrimonio conectando tu banco automáticamente o agregando una cuenta manual para mantener el control total de tus finanzas.</p>
+<div class="flex flex-wrap justify-center gap-sm mb-lg">
+<span class="px-md py-sm bg-surface-container-highest border border-outline-variant rounded-lg font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="payments">payments</span> Efectivo
+                        </span>
+<span class="px-md py-sm bg-surface-container-highest border border-outline-variant rounded-lg font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="account_balance">account_balance</span> Banco
+                        </span>
+<span class="px-md py-sm bg-surface-container-highest border border-outline-variant rounded-lg font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span> Inversión
+                        </span>
+</div>
+<button class="bg-primary text-on-primary rounded-full px-xl py-md font-label-lg text-label-lg shadow-sm hover:bg-surface-tint transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                        Agregar Cuenta
+                    </button>
+</div>
+</section>
+<!-- VARIANT 4: Error States -->
+<section class="flex flex-col gap-md mt-xl mb-xl">
+<h3 class="font-title-md text-title-md text-on-surface-variant border-b border-outline-variant pb-sm">Estados de Error (Error States)</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Partial Error (Summary Banner) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-md">
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Error Parcial en Resumen</h4>
+<div class="bg-error-container text-on-error-container p-md rounded-lg flex items-start gap-sm">
+<span class="material-symbols-outlined mt-xs text-[20px]" data-icon="warning">warning</span>
+<div class="flex-1">
+<p class="font-body-md text-body-md font-medium">No se pudieron actualizar 2 cuentas.</p>
+<p class="font-body-md text-body-md text-sm opacity-90 mt-xs">El balance total puede no estar actualizado. Revisaremos la conexión en breve.</p>
+</div>
+<button class="text-on-error-container font-label-sm text-label-sm uppercase hover:underline p-xs">Detalles</button>
+</div>
+</div>
+<!-- Full Error State -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 bg-error-container rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-on-error-container" data-icon="cloud_off">cloud_off</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-sm">Error de Conexión</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">No pudimos cargar la lista de cuentas en este momento. Por favor verifica tu conexión a internet.</p>
+<button class="border border-outline text-primary rounded-full px-lg py-sm font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                            Reintentar
+                        </button>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="w-full mt-auto border-t border-outline-variant flex flex-col md:flex-row justify-between items-center p-xl gap-md bg-surface-container dark:bg-surface-container-highest rounded-t-2xl">
+<div class="font-title-md text-title-md text-primary">
+                    PagaTo
+                </div>
+<div class="flex gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer font-body-md text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer font-body-md text-body-md" href="#">Help Center</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface">
+                    © 2024 PagaTo Finance. All rights reserved.
+                </div>
+</footer>
+</div>
+</main>
+</body></html>

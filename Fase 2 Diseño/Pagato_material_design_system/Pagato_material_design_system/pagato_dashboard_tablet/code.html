@@ -1,0 +1,308 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PagaTo Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;500;700;900&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d4e3ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#b0f2c0",
+                        "tertiary": "#000802",
+                        "on-primary-container": "#6f88ad",
+                        "surface-tint": "#476083",
+                        "secondary": "#565f71",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2f486a",
+                        "background": "#fbf9f8",
+                        "on-tertiary-fixed-variant": "#0e512d",
+                        "secondary-fixed": "#dae3f8",
+                        "primary": "#000613",
+                        "surface-container-low": "#f5f3f3",
+                        "on-tertiary-container": "#559469",
+                        "on-secondary-fixed": "#131c2b",
+                        "primary-fixed-dim": "#afc8f0",
+                        "secondary-container": "#d7e0f5",
+                        "surface-bright": "#fbf9f8",
+                        "outline": "#74777f",
+                        "primary-container": "#001f3f",
+                        "tertiary-container": "#002510",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1b1c1c",
+                        "surface-container": "#efeded",
+                        "on-secondary-container": "#5a6375",
+                        "surface-container-highest": "#e4e2e2",
+                        "secondary-fixed-dim": "#bec7db",
+                        "surface": "#fbf9f8",
+                        "inverse-primary": "#afc8f0",
+                        "on-surface-variant": "#43474e",
+                        "on-primary-fixed": "#001c3a",
+                        "outline-variant": "#c4c6cf",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f2f0f0",
+                        "tertiary-fixed-dim": "#94d5a6",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303031",
+                        "surface-container-high": "#e9e8e7",
+                        "on-tertiary-fixed": "#00210e",
+                        "surface-dim": "#dbdad9",
+                        "on-secondary-fixed-variant": "#3e4758",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1b1c1c",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e4e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "column-margin": "24px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Roboto Flex"],
+                        "label-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Roboto Flex"],
+                        "display-lg": ["Roboto Flex"],
+                        "headline-lg": ["Roboto Flex"],
+                        "title-md": ["Roboto Flex"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- Navigation Rail (Tablet/Desktop) -->
+<nav class="hidden md:flex flex-col w-20 fixed left-0 top-0 h-screen z-40 bg-surface-container-low border-r border-outline-variant pt-lg pb-md items-center shadow-sm">
+<div class="mb-xl flex items-center justify-center w-12 h-12 rounded-full bg-primary-container text-on-primary-container">
+<span class="font-title-lg font-black tracking-tighter">P</span>
+</div>
+<div class="flex flex-col gap-sm items-center w-full">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-secondary-container text-on-secondary-container hover:bg-surface-container-highest transition-all group relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="absolute left-16 bg-surface-container-highest text-on-surface px-2 py-1 rounded-sm text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">Dashboard</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-all group relative">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="absolute left-16 bg-surface-container-highest text-on-surface px-2 py-1 rounded-sm text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">Transactions</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-all group relative">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="absolute left-16 bg-surface-container-highest text-on-surface px-2 py-1 rounded-sm text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">Accounts</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-all group relative">
+<span class="material-symbols-outlined">payments</span>
+<span class="absolute left-16 bg-surface-container-highest text-on-surface px-2 py-1 rounded-sm text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">Budgets</span>
+</button>
+</div>
+<div class="mt-auto flex flex-col gap-md items-center w-full">
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-all group relative">
+<span class="material-symbols-outlined">settings</span>
+<span class="absolute left-16 bg-surface-container-highest text-on-surface px-2 py-1 rounded-sm text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">Settings</span>
+</button>
+<img class="w-10 h-10 rounded-full object-cover border-2 border-surface cursor-pointer hover:opacity-80 transition-opacity" data-alt="A small circular user avatar showing a professional looking person in a modern light-mode setting, clean and crisp portrait photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_wjBU4Nnh1Kl9l2dCRIefZ-YoflPaO-0JI2IKscDZyK0Tlj2SIMX6CpsjJtlQld0bgOi6qanaFyyoYoa2UmyEtxkyx4jV7jMQvqgXs_1PfVQcM8giDH7N5A2Xgf6kCs_3xKpKCY1LT4ksDiTcppQKY0IGgPXevwjAzWXTFouPi7k8ylsCXZQf2lmbpaiOgHmIijX3BbRfbfPQoGFz-tl5hhPbFmlTANHrt4L6J_EAI07jWDLHlgLk">
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-20 flex flex-col min-h-screen">
+<!-- Top App Bar (Mobile & Supplemental Desktop) -->
+<header class="w-full sticky top-0 z-30 bg-surface flex justify-between items-center px-gutter md:px-lg py-sm shadow-sm md:shadow-none bg-opacity-95 backdrop-blur-sm">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-2 -ml-2 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile md:font-headline-lg font-bold text-primary tracking-tight">Dashboard</h1>
+</div>
+<div class="flex items-center gap-sm">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low rounded-full border-none text-body-md focus:ring-2 focus:ring-primary w-64" placeholder="Search transactions..." type="text">
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<!-- Dashboard Content Grid -->
+<div class="flex-1 p-gutter md:p-lg lg:p-xl space-y-lg">
+<!-- Metrics Row -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md md:gap-lg">
+<!-- Total Balance -->
+<div class="bg-surface-container-low rounded-xl p-md md:p-lg flex flex-col justify-between h-32 md:h-40 border border-outline-variant/30 hover:shadow-sm transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-title-md text-on-surface-variant">Total Balance</span>
+<span class="material-symbols-outlined text-primary p-2 bg-primary-container/20 rounded-full">account_balance</span>
+</div>
+<div>
+<h2 class="font-display-lg text-on-surface tracking-tight">$45,231</h2>
+<p class="font-label-sm text-tertiary-container flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-xs">trending_up</span> +2.4% this month
+                        </p>
+</div>
+</div>
+<!-- Monthly Spending -->
+<div class="bg-surface-container-low rounded-xl p-md md:p-lg flex flex-col justify-between h-32 md:h-40 border border-outline-variant/30 hover:shadow-sm transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-title-md text-on-surface-variant">Monthly Spending</span>
+<span class="material-symbols-outlined text-secondary p-2 bg-secondary-container/30 rounded-full">credit_card</span>
+</div>
+<div>
+<h2 class="font-title-lg md:font-headline-lg text-on-surface">$3,142</h2>
+<p class="font-label-sm text-on-surface-variant mt-xs">
+                            65% of $4,800 budget
+                        </p>
+</div>
+</div>
+<!-- Savings Goal -->
+<div class="bg-surface-container-low rounded-xl p-md md:p-lg flex flex-col justify-between h-32 md:h-40 border border-outline-variant/30 hover:shadow-sm transition-shadow sm:col-span-2 lg:col-span-2 relative overflow-hidden group">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div class="flex justify-between items-start">
+<span class="font-title-md text-on-surface-variant">Savings Goal: Vacation</span>
+<span class="material-symbols-outlined text-primary p-2 bg-primary-container/20 rounded-full">flight_takeoff</span>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<h2 class="font-title-lg md:font-headline-lg text-on-surface">$8,500 <span class="font-body-md text-on-surface-variant">/ $10k</span></h2>
+<span class="font-label-lg text-primary">85%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Split Content -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md md:gap-lg">
+<!-- Chart Area -->
+<section class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl p-md md:p-lg flex flex-col min-h-[400px]">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-title-lg text-on-surface">Cash Flow</h3>
+<select class="bg-surface-container-low border-none rounded-lg font-label-lg text-on-surface-variant py-1 pl-3 pr-8 focus:ring-1 focus:ring-primary">
+<option>Last 6 Months</option>
+<option>This Year</option>
+<option>All Time</option>
+</select>
+</div>
+<!-- Minimalist Chart Representation -->
+<div class="flex-1 relative w-full h-full border-b border-l border-outline-variant/50 flex items-end justify-between px-4 pb-2 pt-8">
+<!-- Y-Axis Labels (Simulated) -->
+<div class="absolute left-0 bottom-0 h-full w-full flex flex-col justify-between text-label-sm text-on-surface-variant/70 pointer-events-none">
+<div class="border-b border-outline-variant/20 w-full relative"><span class="absolute -left-8 -top-2">10k</span></div>
+<div class="border-b border-outline-variant/20 w-full relative"><span class="absolute -left-6 -top-2">5k</span></div>
+<div class="w-full relative"><span class="absolute -left-4 -top-2">0</span></div>
+</div>
+<!-- Bars -->
+<div class="w-1/12 bg-primary/80 rounded-t-sm h-[40%] hover:bg-primary transition-colors cursor-pointer group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 pointer-events-none">$4k</div>
+</div>
+<div class="w-1/12 bg-primary/80 rounded-t-sm h-[55%] hover:bg-primary transition-colors cursor-pointer"></div>
+<div class="w-1/12 bg-primary/80 rounded-t-sm h-[30%] hover:bg-primary transition-colors cursor-pointer"></div>
+<div class="w-1/12 bg-primary/80 rounded-t-sm h-[70%] hover:bg-primary transition-colors cursor-pointer"></div>
+<div class="w-1/12 bg-primary/80 rounded-t-sm h-[65%] hover:bg-primary transition-colors cursor-pointer"></div>
+<div class="w-1/12 bg-primary rounded-t-sm h-[85%] hover:bg-primary transition-colors cursor-pointer shadow-md"></div>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex justify-between w-full px-4 mt-2 font-label-sm text-on-surface-variant">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+</div>
+</section>
+<!-- Side Panel (Transactions) -->
+<section class="bg-surface-container-low rounded-xl p-md flex flex-col h-[400px]">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-title-md text-on-surface">Recent Movements</h3>
+<button class="text-primary font-label-lg hover:underline">View All</button>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-2">
+<!-- Transaction Row -->
+<div class="flex items-center gap-3 p-2 hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md font-medium text-on-surface truncate">Whole Foods Market</p>
+<p class="font-label-sm text-on-surface-variant">Groceries • Today</p>
+</div>
+<div class="text-right">
+<p class="font-title-md text-on-surface">-$142.50</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2 hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">payments</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md font-medium text-on-surface truncate">Salary Deposit</p>
+<p class="font-label-sm text-on-surface-variant">Income • Yesterday</p>
+</div>
+<div class="text-right">
+<p class="font-title-md text-tertiary-container font-bold">+$4,250.00</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2 hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
+<span class="material-symbols-outlined text-sm">local_gas_station</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md font-medium text-on-surface truncate">Shell Station</p>
+<p class="font-label-sm text-on-surface-variant">Transport • Oct 12</p>
+</div>
+<div class="text-right">
+<p class="font-title-md text-on-surface">-$45.00</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container border-t border-outline-variant flex flex-col md:flex-row justify-between items-center p-xl gap-md">
+<div class="font-title-md text-primary">PagaTo</div>
+<div class="flex gap-lg font-body-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors cursor-pointer" href="#">Help Center</a>
+</div>
+<div class="font-body-md text-on-surface-variant text-sm">
+                © 2024 PagaTo Finance. All rights reserved.
+            </div>
+</footer>
+</main>
+<!-- Floating Action Button (Mobile Only) -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-xl shadow-lg flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container transition-all z-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+</body></html>

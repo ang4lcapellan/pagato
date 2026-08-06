@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configuración - Perfil | PagaTo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#191c1e",
+                        "tertiary-fixed": "#ffdad7",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-container": "#6f88ad",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-fixed": "#111c2c",
+                        "inverse-primary": "#afc8f0",
+                        "tertiary": "#170001",
+                        "on-primary-fixed-variant": "#2f486a",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d5e0f7",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "secondary-fixed-dim": "#bcc7dd",
+                        "on-tertiary-container": "#f24846",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "inverse-surface": "#2d3133",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#545f72",
+                        "on-surface-variant": "#43474e",
+                        "surface-container-high": "#e6e8ea",
+                        "background": "#f7f9fb",
+                        "surface": "#f7f9fb",
+                        "surface-tint": "#476083",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1e",
+                        "on-secondary-container": "#586377",
+                        "error": "#ba1a1a",
+                        "primary": "#000613",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#470004",
+                        "primary-fixed": "#d4e3ff",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-tertiary-fixed": "#410004",
+                        "surface-container": "#eceef0",
+                        "secondary-fixed": "#d8e3fa",
+                        "primary-fixed-dim": "#afc8f0",
+                        "outline": "#74777f",
+                        "primary-container": "#001f3f",
+                        "on-primary-fixed": "#001c3a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "input-padding": "12px 16px",
+                        "stack-md": "16px",
+                        "section-gap": "48px",
+                        "nav-width": "240px",
+                        "stack-lg": "24px",
+                        "stack-xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Roboto Flex"],
+                        "display-lg": ["Roboto Flex"],
+                        "headline-md": ["Roboto Flex"],
+                        "nav-item": ["Roboto Flex"],
+                        "body-md": ["Roboto Flex"],
+                        "title-sm": ["Roboto Flex"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "nav-item": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Roboto Flex', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface text-primary font-headline-md text-headline-md border-b border-surface-container-high docked full-width top-0 flat no shadows flex justify-between items-center px-8 h-16 w-full max-w-7xl mx-auto z-50 sticky">
+<div class="flex items-center gap-6">
+<div class="font-display-lg text-display-lg font-bold text-primary">PagaTo</div>
+<nav class="hidden md:flex gap-6 items-center pt-1 font-label-caps text-label-caps">
+<a class="text-secondary hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Dashboard</a>
+<a class="text-secondary hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Payments</a>
+<a class="text-secondary hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Reports</a>
+<a class="text-primary border-b-2 border-primary pb-1 cursor-pointer active:opacity-80 hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary hover:bg-surface-container-low p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-primary hover:bg-surface-container-low p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-surface-container-high object-cover" data-alt="A small circular user avatar showing a professional headshot of a person in a brightly lit modern office environment, maintaining the light mode aesthetic with soft shadows and sharp focus, suitable for a financial dashboard profile image." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu-TNs4_YWPy26FHQjBB2v_3fNNhxNYgRQ0_aamPbk_bnI58gPnGiS5sOohjPry9udYGGsw_8G-k_39KYzwn92KKcr5x2-Js6163P15Sw9BNFxd8syHAt7sTEdduA5s88Wz02RyzH6x_SWisr3Gyq9U3KINDxrOa-PZSNjNTTvGYaQK7PAKznqnfLkhKp2fGDqwdXX8VF5M6hqAvj_5l91zWn_IRlx8VHH3Z_pia4ZMTZ6yp7nJ_Yt"/>
+</div>
+</header>
+<!-- Main Content Area with SideNav -->
+<div class="flex flex-1 w-full max-w-7xl mx-auto">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col pt-6 w-nav-width h-[calc(100vh-4rem)] border-r border-surface-container-high sticky left-0 top-16 bg-background">
+<div class="px-4 mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">Settings</h2>
+<p class="font-body-md text-body-md text-secondary mt-1">Manage your account</p>
+</div>
+<nav class="flex flex-col gap-1 font-nav-item text-nav-item">
+<a class="text-primary bg-surface-container border-l-4 border-primary flex items-center gap-3 px-4 py-3 hover:bg-surface-container-low transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+                    Profile
+                </a>
+<a class="text-secondary flex items-center gap-3 px-4 py-3 hover:bg-surface-container-low transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">tune</span>
+                    Preferences
+                </a>
+<a class="text-secondary flex items-center gap-3 px-4 py-3 hover:bg-surface-container-low transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">palette</span>
+                    Appearance
+                </a>
+<a class="text-secondary flex items-center gap-3 px-4 py-3 hover:bg-surface-container-low transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">shield</span>
+                    Security
+                </a>
+<a class="text-secondary flex items-center gap-3 px-4 py-3 hover:bg-surface-container-low transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">manage_accounts</span>
+                    Account
+                </a>
+</nav>
+</aside>
+<!-- Profile Content Canvas -->
+<main class="flex-1 w-full max-w-[800px] px-8 py-10 mx-auto">
+<!-- Header -->
+<div class="mb-10 sticky top-16 bg-background/95 backdrop-blur-sm py-4 z-10 border-b border-surface-container-high">
+<h1 class="font-display-lg text-display-lg text-primary">Perfil Público</h1>
+<p class="font-body-md text-body-md text-secondary mt-2">Esta información será mostrada públicamente a otros usuarios.</p>
+</div>
+<div class="flex flex-col gap-section-gap">
+<!-- Avatar Section -->
+<section>
+<h3 class="font-title-sm text-title-sm text-primary mb-stack-md">Foto de Perfil</h3>
+<div class="bg-surface border border-surface-container-high rounded-xl p-6 flex flex-col sm:flex-row items-center gap-6">
+<div class="relative group cursor-pointer">
+<div class="w-24 h-24 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md text-headline-md overflow-hidden border-2 border-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A high quality headshot portrait of a professional individual against a clean, bright white background. The lighting is soft and even, perfect for a modern web application profile picture, conveying trust and approachability in a corporate setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp1JdCPZ5Ec7-7gopUntMSg5OAm1Kr0Qgw9nSb84rSnznLDcdtI0aiQqJLPVKdrvIYBhS04bpsSthgoMhr5sGHfrzlP2Tjj9EovJ1IXe5ehcDxBZmpG9mvXer8e3IW6c5rkjZonYyitj7J6qXICconW7Pdo9vE6Uu5rZRj-TV66kX5N41YpxPg-yRlcwu69OfZFaijqDjueycuT0atVthFtkSY4vDRDeHQ5GVX8vvKoAOkg057DzA6"/>
+</div>
+<div class="absolute inset-0 bg-primary/40 rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex gap-3">
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-nav-item text-nav-item hover:bg-on-surface-variant transition-colors">Subir nueva foto</button>
+<button class="border border-surface-container-high text-secondary px-4 py-2 rounded font-nav-item text-nav-item hover:bg-surface-container-low transition-colors">Eliminar</button>
+</div>
+<p class="font-body-md text-body-md text-secondary text-sm">JPG, GIF o PNG. Tamaño máximo 5MB.</p>
+</div>
+</div>
+</section>
+<!-- Personal Info Form -->
+<section>
+<h3 class="font-title-sm text-title-sm text-primary mb-stack-md">Información Personal</h3>
+<div class="bg-surface border border-surface-container-high rounded-xl">
+<div class="p-6 border-b border-surface-container-high">
+<label class="block font-nav-item text-nav-item text-primary mb-stack-xs">Nombre Completo</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-0 transition-colors" type="text" value="Elena Martínez"/>
+<p class="font-body-md text-body-md text-secondary mt-1 text-xs">Aparecerá en los recibos y documentos formales.</p>
+</div>
+<div class="p-6 border-b border-surface-container-high">
+<label class="block font-nav-item text-nav-item text-primary mb-stack-xs">Nombre para Mostrar</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-0 transition-colors" type="text" value="Elena M."/>
+</div>
+<div class="p-6">
+<label class="block font-nav-item text-nav-item text-primary mb-stack-xs">Correo Electrónico</label>
+<div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+<input class="flex-1 w-full bg-surface-container-low border border-surface-container-high text-secondary rounded px-4 py-3 font-body-md text-body-md cursor-not-allowed" disabled="" type="email" value="elena.m@empresa.com"/>
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1 bg-surface-container-low text-primary px-3 py-1 rounded-full font-label-caps text-label-caps border border-surface-container-high">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                        Verificado
+                                    </span>
+<button class="text-primary font-nav-item text-nav-item hover:underline">Cambiar</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Location & Preferences -->
+<section>
+<h3 class="font-title-sm text-title-sm text-primary mb-stack-md">Ubicación y Preferencias</h3>
+<div class="bg-surface border border-surface-container-high rounded-xl p-6 flex flex-col gap-6">
+<div>
+<label class="block font-nav-item text-nav-item text-primary mb-stack-xs">País o Región</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-0 appearance-none">
+<option value="ES">España</option>
+<option selected="" value="MX">México</option>
+<option value="CO">Colombia</option>
+<option value="AR">Argentina</option>
+</select>
+</div>
+<div>
+<label class="block font-nav-item text-nav-item text-primary mb-stack-xs">Zona Horaria</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-0 appearance-none">
+<option value="america_mexico_city">(GMT-06:00) Ciudad de México</option>
+<option value="america_bogota">(GMT-05:00) Bogotá</option>
+<option value="europe_madrid">(GMT+01:00) Madrid</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex justify-end gap-4 pt-4">
+<button class="border border-surface-container-high text-primary px-6 py-2 rounded font-nav-item text-nav-item hover:bg-surface-container-low transition-colors">Cancelar</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded font-nav-item text-nav-item hover:bg-on-surface-variant transition-colors shadow-sm">Guardar Cambios</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

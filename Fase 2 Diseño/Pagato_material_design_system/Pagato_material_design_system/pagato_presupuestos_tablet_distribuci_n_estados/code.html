@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PagaTo' - Presupuestos (Tablet &amp; States)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700;8..144,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#000613",
+                        error: "#ba1a1a",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-container-lowest": "#ffffff",
+                        background: "#fbf9f8",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-container": "#efeded",
+                        "on-error-container": "#93000a",
+                        tertiary: "#000802",
+                        "inverse-surface": "#303031",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#b0f2c0",
+                        "secondary-fixed": "#dae3f8",
+                        "on-tertiary-fixed": "#00210e",
+                        "on-background": "#1b1c1c",
+                        "on-secondary-container": "#5a6375",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#94d5a6",
+                        "on-surface-variant": "#43474e",
+                        "primary-fixed-dim": "#afc8f0",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e4e2e2",
+                        "on-primary-container": "#6f88ad",
+                        "surface-tint": "#476083",
+                        "secondary-container": "#d7e0f5",
+                        "primary-container": "#001f3f",
+                        "surface-bright": "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "on-secondary-fixed-variant": "#3e4758",
+                        surface: "#fbf9f8",
+                        secondary: "#565f71",
+                        "surface-container-high": "#e9e8e7",
+                        "tertiary-container": "#002510",
+                        "on-tertiary-fixed-variant": "#0e512d",
+                        "on-secondary-fixed": "#131c2b",
+                        "inverse-primary": "#afc8f0",
+                        "surface-container-low": "#f5f3f3",
+                        "outline-variant": "#c4c6cf",
+                        "secondary-fixed-dim": "#bec7db",
+                        "on-primary-fixed-variant": "#2f486a",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#559469",
+                        outline: "#74777f",
+                        "primary-fixed": "#d4e3ff",
+                        "surface-container-highest": "#e4e2e2",
+                        "surface-dim": "#dbdad9"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "column-margin": "24px",
+                        xl: "32px",
+                        sm: "8px",
+                        base: "8px",
+                        lg: "24px",
+                        gutter: "16px",
+                        xs: "4px",
+                        md: "16px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Roboto Flex"],
+                        "label-sm": ["Inter"],
+                        "title-md": ["Roboto Flex"],
+                        "label-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Roboto Flex"],
+                        "display-lg": ["Roboto Flex"],
+                        "headline-lg-mobile": ["Roboto Flex"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "400" }],
+                        "label-sm": ["11px", { lineHeight: "16px", letterSpacing: "0.5px", fontWeight: "500" }],
+                        "title-md": ["16px", { lineHeight: "24px", letterSpacing: "0.15px", fontWeight: "500" }],
+                        "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.1px", fontWeight: "500" }],
+                        "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0.25px", fontWeight: "400" }],
+                        "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0.5px", fontWeight: "400" }],
+                        "title-lg": ["22px", { lineHeight: "28px", fontWeight: "500" }],
+                        "display-lg": ["57px", { lineHeight: "64px", letterSpacing: "-0.25px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .skeleton {
+            background: linear-gradient(90deg, var(--tw-colors-surface-container-high) 25%, var(--tw-colors-surface-variant) 50%, var(--tw-colors-surface-container-high) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full overflow-hidden flex">
+<!-- Navigation Rail (Tablet Default, expands to Drawer on larger screens if needed, but per prompt we focus on Tablet Rail) -->
+<nav class="hidden md:flex flex-col h-full w-[80px] bg-surface-container-low border-r border-outline-variant transition-all duration-200 ease-in-out py-md px-sm items-center shrink-0 z-10">
+<div class="mb-lg font-headline-lg text-headline-lg font-black text-primary">P'</div>
+<div class="flex flex-col gap-sm w-full mt-lg flex-grow">
+<!-- Dashboard -->
+<a class="flex flex-col items-center justify-center p-sm rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors" href="#" title="Dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm mt-xs text-center hidden xl:block">Dashboard</span>
+</a>
+<!-- Transactions -->
+<a class="flex flex-col items-center justify-center p-sm rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors" href="#" title="Transactions">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm mt-xs text-center hidden xl:block">Transactions</span>
+</a>
+<!-- Accounts -->
+<a class="flex flex-col items-center justify-center p-sm rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors" href="#" title="Accounts">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span class="font-label-sm text-label-sm mt-xs text-center hidden xl:block">Accounts</span>
+</a>
+<!-- Budgets (Active) -->
+<a class="flex flex-col items-center justify-center p-sm rounded-full bg-secondary-container text-on-secondary-container font-bold" href="#" title="Budgets">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm mt-xs text-center hidden xl:block">Budgets</span>
+</a>
+<!-- Reports -->
+<a class="flex flex-col items-center justify-center p-sm rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors" href="#" title="Reports">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-label-sm text-label-sm mt-xs text-center hidden xl:block">Reports</span>
+</a>
+</div>
+<div class="flex flex-col gap-sm w-full mt-auto">
+<a class="flex flex-col items-center justify-center p-sm rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors" href="#" title="Help">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</a>
+<a class="flex flex-col items-center justify-center p-sm rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors" href="#" title="Settings">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-lg w-full z-40 bg-surface shadow-sm h-16 sticky top-0 shrink-0">
+<div class="flex items-center gap-md">
+<h1 class="font-title-lg text-title-lg text-primary font-bold">Budgets</h1>
+</div>
+<div class="flex items-center gap-md">
+<!-- Compact Period Selector -->
+<div class="hidden sm:flex items-center gap-xs bg-surface-container-low rounded-full px-md py-sm border border-outline-variant cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="font-label-lg text-label-lg font-medium text-on-surface">Oct 2023</span>
+<span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</div>
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors active:scale-95" id="toggle-privacy">
+<span class="material-symbols-outlined" id="privacy-icon">visibility</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-title-md ml-sm cursor-pointer border border-outline-variant">
+                    JD
+                </div>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<div class="flex-1 overflow-y-auto p-lg bg-surface">
+<!-- Controls Row -->
+<div class="flex justify-between items-center mb-lg">
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-sm bg-primary text-on-primary rounded-full font-label-lg text-label-lg hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        New Budget
+                    </button>
+</div>
+<!-- View Toggles -->
+<div class="flex bg-surface-container-low rounded-lg p-xs border border-outline-variant">
+<button class="p-xs rounded-md bg-surface shadow-sm text-primary flex items-center justify-center" onclick="switchView('card')" title="Card View">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</button>
+<button class="p-xs rounded-md text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" onclick="switchView('list')" title="List View">
+<span class="material-symbols-outlined text-[20px]">view_list</span>
+</button>
+<button class="p-xs rounded-md text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" onclick="switchView('distribution')" title="Distribution View">
+<span class="material-symbols-outlined text-[20px]">pie_chart</span>
+</button>
+</div>
+</div>
+<!-- Dashboard Layout (1 col summary, 2 col content) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg h-full pb-xl">
+<!-- SUMMARY COLUMN -->
+<div class="col-span-1 flex flex-col gap-md">
+<!-- Total Budget Card -->
+<div class="bg-surface-container-low rounded-xl p-lg border border-outline-variant shadow-[0_1px_2px_rgba(0,6,19,0.05)]">
+<h2 class="font-title-md text-title-md text-on-surface-variant mb-md">Total Budget (Oct)</h2>
+<div class="font-display-lg text-display-lg text-on-surface mb-sm tracking-tight privacy-text" data-amount="RD$ 45,000.00">RD$ 45,000.00</div>
+<div class="flex items-center justify-between text-sm mt-md">
+<span class="font-body-md text-body-md text-on-surface-variant">Spent</span>
+<span class="font-title-md text-title-md text-on-surface privacy-text" data-amount="RD$ 28,450.00">RD$ 28,450.00</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full mt-xs overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 63%"></div>
+</div>
+<div class="flex items-center justify-between text-sm mt-sm">
+<span class="font-body-md text-body-md text-on-surface-variant">Remaining</span>
+<span class="font-title-md text-title-md text-tertiary-container privacy-text" data-amount="RD$ 16,550.00">RD$ 16,550.00</span>
+</div>
+</div>
+<!-- Alerts/Insights Bento Box -->
+<div class="bg-error-container/20 rounded-xl p-md border border-error-container/50 flex items-start gap-md">
+<div class="p-sm bg-error-container text-on-error-container rounded-full shrink-0">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-error-container">Approaching Limit</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">You have spent 85% of your 'Groceries' budget for this month.</p>
+</div>
+</div>
+</div>
+<!-- CONTENT COLUMNS (Card View Default) -->
+<div class="col-span-1 lg:col-span-2 relative min-h-[500px]" id="content-area">
+<!-- View: Cards (Active by default) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md absolute inset-0" id="view-cards">
+<!-- Budget Card 1 -->
+<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant flex flex-col hover:shadow-md transition-shadow cursor-pointer h-[160px]">
+<div class="flex justify-between items-start mb-auto">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Groceries</h3>
+</div>
+<span class="font-label-sm text-label-sm px-xs py-[2px] bg-error-container text-on-error-container rounded-sm">85%</span>
+</div>
+<div class="mt-md">
+<div class="flex justify-between items-baseline mb-xs">
+<span class="font-title-lg text-title-lg text-on-surface privacy-text" data-amount="RD$ 12,750">RD$ 12,750</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant privacy-text" data-amount="/ RD$ 15,000">/ RD$ 15,000</span>
+</div>
+<div class="w-full bg-surface-variant h-[6px] rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 85%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs text-right privacy-text" data-amount="RD$ 2,250 left">RD$ 2,250 left</p>
+</div>
+</div>
+<!-- Budget Card 2 -->
+<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant flex flex-col hover:shadow-md transition-shadow cursor-pointer h-[160px]">
+<div class="flex justify-between items-start mb-auto">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">directions_car</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Transport</h3>
+</div>
+<span class="font-label-sm text-label-sm px-xs py-[2px] bg-surface-variant text-on-surface-variant rounded-sm">45%</span>
+</div>
+<div class="mt-md">
+<div class="flex justify-between items-baseline mb-xs">
+<span class="font-title-lg text-title-lg text-on-surface privacy-text" data-amount="RD$ 3,600">RD$ 3,600</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant privacy-text" data-amount="/ RD$ 8,000">/ RD$ 8,000</span>
+</div>
+<div class="w-full bg-surface-variant h-[6px] rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs text-right privacy-text" data-amount="RD$ 4,400 left">RD$ 4,400 left</p>
+</div>
+</div>
+<!-- Budget Card 3 -->
+<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant flex flex-col hover:shadow-md transition-shadow cursor-pointer h-[160px]">
+<div class="flex justify-between items-start mb-auto">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">home</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Housing</h3>
+</div>
+<span class="font-label-sm text-label-sm px-xs py-[2px] bg-tertiary-container/20 text-tertiary-container rounded-sm">100%</span>
+</div>
+<div class="mt-md">
+<div class="flex justify-between items-baseline mb-xs">
+<span class="font-title-lg text-title-lg text-on-surface privacy-text" data-amount="RD$ 20,000">RD$ 20,000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant privacy-text" data-amount="/ RD$ 20,000">/ RD$ 20,000</span>
+</div>
+<div class="w-full bg-surface-variant h-[6px] rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 100%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs text-right privacy-text" data-amount="RD$ 0 left">RD$ 0 left</p>
+</div>
+</div>
+</div>
+<!-- View: List (Hidden by default) -->
+<div class="hidden absolute inset-0 bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden" id="view-list">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface">
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-md font-medium">Category</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-md font-medium text-right">Spent</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-md font-medium text-right hidden sm:table-cell">Total</th>
+<th class="font-label-lg text-label-lg text-on-surface-variant py-md px-md font-medium w-[120px]">Progress</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-variant/50 transition-colors">
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">shopping_cart</span>
+                                            Groceries
+                                        </div>
+</td>
+<td class="py-md px-md text-right privacy-text" data-amount="RD$ 12,750">RD$ 12,750</td>
+<td class="py-md px-md text-right text-on-surface-variant hidden sm:table-cell privacy-text" data-amount="RD$ 15,000">RD$ 15,000</td>
+<td class="py-md px-md">
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 85%"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/50 transition-colors">
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">directions_car</span>
+                                            Transport
+                                        </div>
+</td>
+<td class="py-md px-md text-right privacy-text" data-amount="RD$ 3,600">RD$ 3,600</td>
+<td class="py-md px-md text-right text-on-surface-variant hidden sm:table-cell privacy-text" data-amount="RD$ 8,000">RD$ 8,000</td>
+<td class="py-md px-md">
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/50 transition-colors">
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">home</span>
+                                            Housing
+                                        </div>
+</td>
+<td class="py-md px-md text-right privacy-text" data-amount="RD$ 20,000">RD$ 20,000</td>
+<td class="py-md px-md text-right text-on-surface-variant hidden sm:table-cell privacy-text" data-amount="RD$ 20,000">RD$ 20,000</td>
+<td class="py-md px-md">
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 100%"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- View: Distribution (Hidden by default) -->
+<div class="hidden absolute inset-0 bg-surface-container-low rounded-xl border border-outline-variant flex items-center justify-center p-xl" id="view-distribution">
+<div class="flex flex-col md:flex-row items-center gap-xl w-full max-w-2xl">
+<!-- CSS Donut Chart representation -->
+<div class="relative w-48 h-48 rounded-full border-[16px] border-surface-variant shrink-0" style="border-top-color: var(--tw-colors-primary); border-right-color: var(--tw-colors-secondary); border-bottom-color: var(--tw-colors-tertiary-container); border-left-color: var(--tw-colors-error);">
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total</span>
+<span class="font-title-lg text-title-lg text-on-surface font-bold privacy-text" data-amount="45k">45k</span>
+</div>
+</div>
+<div class="flex flex-col gap-sm w-full">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-tertiary-container"></div>
+<span class="font-body-md text-body-md text-on-surface">Housing</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface privacy-text" data-amount="44%">44%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-body-md text-body-md text-on-surface">Groceries</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface privacy-text" data-amount="33%">33%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="font-body-md text-body-md text-on-surface">Transport</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface privacy-text" data-amount="18%">18%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<span class="font-body-md text-body-md text-on-surface">Misc</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface privacy-text" data-amount="5%">5%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- States Gallery (Hidden by default, used for demonstration via JS if needed, but structured here) -->
+<!-- State: Empty -->
+<div class="hidden absolute inset-0 bg-surface rounded-xl border border-dashed border-outline-variant flex flex-col items-center justify-center p-xl text-center" id="state-empty">
+<div class="w-32 h-32 mb-md bg-surface-variant rounded-full flex items-center justify-center">
+<!-- Placeholder for illustration -->
+<span class="material-symbols-outlined text-[48px] text-outline">account_balance_wallet</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Crea tu primer presupuesto</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg max-w-sm">Define tus límites de gasto para mantener tus finanzas bajo control este mes.</p>
+<button class="px-xl py-sm bg-primary text-on-primary rounded-full font-label-lg text-label-lg hover:bg-primary/90 transition-colors">
+                            Crear primer presupuesto
+                        </button>
+</div>
+<!-- State: Loading (Skeleton) -->
+<div class="hidden absolute inset-0 grid grid-cols-1 md:grid-cols-2 gap-md" id="state-loading">
+<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant h-[160px] flex flex-col">
+<div class="flex justify-between items-start mb-auto">
+<div class="w-10 h-10 rounded-full skeleton"></div>
+<div class="w-12 h-6 rounded-sm skeleton"></div>
+</div>
+<div class="mt-md">
+<div class="w-1/2 h-8 rounded-sm skeleton mb-xs"></div>
+<div class="w-full h-[6px] rounded-full skeleton"></div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant h-[160px] flex flex-col">
+<div class="flex justify-between items-start mb-auto">
+<div class="w-10 h-10 rounded-full skeleton"></div>
+<div class="w-12 h-6 rounded-sm skeleton"></div>
+</div>
+<div class="mt-md">
+<div class="w-1/2 h-8 rounded-sm skeleton mb-xs"></div>
+<div class="w-full h-[6px] rounded-full skeleton"></div>
+</div>
+</div>
+</div>
+<!-- State: Error -->
+<div class="hidden absolute inset-0 bg-surface rounded-xl border border-error-container flex flex-col items-center justify-center p-xl text-center" id="state-error">
+<span class="material-symbols-outlined text-[48px] text-error mb-md">cloud_off</span>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">No pudimos cargar tus presupuestos</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Ocurrió un problema de conexión. Por favor, intenta de nuevo.</p>
+<button class="px-xl py-sm border border-outline text-primary rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-colors">
+                            Reintentar
+                        </button>
+</div>
+</div>
+</div>
+<!-- State Demo Controls (Only for demonstration purposes within this UI output) -->
+<div class="fixed bottom-4 right-4 bg-inverse-surface text-inverse-on-surface p-sm rounded-lg shadow-lg flex gap-2 z-50 text-xs">
+<button class="px-2 py-1 rounded hover:bg-surface-variant/20" onclick="showState('normal')">Normal</button>
+<button class="px-2 py-1 rounded hover:bg-surface-variant/20" onclick="showState('empty')">Empty</button>
+<button class="px-2 py-1 rounded hover:bg-surface-variant/20" onclick="showState('loading')">Loading</button>
+<button class="px-2 py-1 rounded hover:bg-surface-variant/20" onclick="showState('error')">Error</button>
+</div>
+</div>
+</main>
+<script>
+        // Privacy Toggle Logic
+        let privacyMode = false;
+        const privacyToggleBtn = document.getElementById('toggle-privacy');
+        const privacyIcon = document.getElementById('privacy-icon');
+        const privacyElements = document.querySelectorAll('.privacy-text');
+
+        privacyToggleBtn.addEventListener('click', () => {
+            privacyMode = !privacyMode;
+            privacyIcon.textContent = privacyMode ? 'visibility_off' : 'visibility';
+            
+            privacyElements.forEach(el => {
+                if (privacyMode) {
+                    el.textContent = 'RD$ ••••••';
+                    // Minor stylistic adjustment for blurred effect if desired, but replacing text is cleaner
+                } else {
+                    el.textContent = el.getAttribute('data-amount');
+                }
+            });
+        });
+
+        // View Switcher Logic
+        const views = {
+            card: document.getElementById('view-cards'),
+            list: document.getElementById('view-list'),
+            distribution: document.getElementById('view-distribution')
+        };
+        const viewButtons = document.querySelectorAll('[onclick^="switchView"]');
+
+        function switchView(viewName) {
+            // Hide all standard views
+            Object.values(views).forEach(el => el.classList.add('hidden'));
+            // Reset state views just in case
+            hideAllStates();
+            
+            // Show selected view
+            if(views[viewName]) {
+                views[viewName].classList.remove('hidden');
+            }
+
+            // Update button styles (basic implementation)
+            viewButtons.forEach(btn => {
+                if(btn.getAttribute('onclick').includes(viewName)) {
+                    btn.classList.add('bg-surface', 'shadow-sm', 'text-primary');
+                    btn.classList.remove('text-on-surface-variant');
+                } else {
+                    btn.classList.remove('bg-surface', 'shadow-sm', 'text-primary');
+                    btn.classList.add('text-on-surface-variant');
+                }
+            });
+        }
+
+        // State Gallery Logic (For Demo)
+        const states = {
+            empty: document.getElementById('state-empty'),
+            loading: document.getElementById('state-loading'),
+            error: document.getElementById('state-error')
+        };
+
+        function hideAllStates() {
+             Object.values(states).forEach(el => el.classList.add('hidden'));
+        }
+
+        function showState(stateName) {
+            // Hide all content views
+            Object.values(views).forEach(el => el.classList.add('hidden'));
+            hideAllStates();
+
+            if (stateName === 'normal') {
+                // Default back to card view
+                views.card.classList.remove('hidden');
+            } else if (states[stateName]) {
+                states[stateName].classList.remove('hidden');
+            }
+        }
+    </script>
+</body></html>

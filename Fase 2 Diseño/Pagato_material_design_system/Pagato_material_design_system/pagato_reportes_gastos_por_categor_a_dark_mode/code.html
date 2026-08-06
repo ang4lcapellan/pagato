@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reportes - Gastos por Categoría - PagaTo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#001f3f",
+                      "surface-container-highest": "#e4e2e2",
+                      "background": "#fbf9f8",
+                      "on-tertiary-fixed": "#00210e",
+                      "secondary": "#565f71",
+                      "surface-container": "#efeded",
+                      "surface-bright": "#fbf9f8",
+                      "surface-dim": "#dbdad9",
+                      "primary-fixed": "#d4e3ff",
+                      "on-secondary-fixed-variant": "#3e4758",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#b0f2c0",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#d7e0f5",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#000802",
+                      "tertiary-fixed-dim": "#94d5a6",
+                      "inverse-on-surface": "#f2f0f0",
+                      "surface-variant": "#e4e2e2",
+                      "surface-container-high": "#e9e8e7",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#476083",
+                      "primary": "#000613",
+                      "secondary-fixed": "#dae3f8",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f5f3f3",
+                      "inverse-primary": "#afc8f0",
+                      "secondary-fixed-dim": "#bec7db",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed-variant": "#2f486a",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#74777f",
+                      "on-surface-variant": "#43474e",
+                      "outline-variant": "#c4c6cf",
+                      "inverse-surface": "#303031",
+                      "on-background": "#1b1c1c",
+                      "tertiary-container": "#002510",
+                      "surface": "#fbf9f8",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed-dim": "#afc8f0",
+                      "on-surface": "#1b1c1c",
+                      "on-secondary-fixed": "#131c2b",
+                      "on-tertiary-container": "#559469",
+                      "on-tertiary-fixed-variant": "#0e512d",
+                      "on-primary-container": "#6f88ad",
+                      "on-primary-fixed": "#001c3a",
+                      "on-secondary-container": "#5a6375",
+                      
+                      // Semantic Chart Colors for Dark Mode (Desaturated as requested)
+                      "chart-1": "#8ab4f8", // Light Blue
+                      "chart-2": "#f28b82", // Light Red
+                      "chart-3": "#81c995", // Light Green
+                      "chart-4": "#fcd663", // Light Yellow
+                      "chart-5": "#c58af9"  // Light Purple
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "sm": "8px",
+                      "gutter": "16px",
+                      "xs": "4px",
+                      "column-margin": "24px",
+                      "md": "16px",
+                      "xl": "32px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Roboto Flex"
+                      ],
+                      "title-md": [
+                              "Roboto Flex"
+                      ],
+                      "title-lg": [
+                              "Roboto Flex"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Roboto Flex"
+                      ],
+                      "headline-lg-mobile": [
+                              "Roboto Flex"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.25px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "57px",
+                              {
+                                      "lineHeight": "64px",
+                                      "letterSpacing": "-0.25px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0.15px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-lg": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0.5px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.5px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.1px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Custom overrides for forced Dark Mode appearance per prompt */
+        .dark body {
+            background-color: #1a1c1e !important;
+            color: #e3e2e6 !important;
+        }
+        .dark .bg-surface { background-color: #1a1c1e !important; }
+        .dark .bg-surface-container-low { background-color: #1a1c1e !important; }
+        .dark .bg-surface-container { background-color: #2d2f31 !important; }
+        .dark .bg-surface-container-high { background-color: #2d2f31 !important; }
+        .dark .text-on-surface { color: #e3e2e6 !important; }
+        .dark .text-on-surface-variant { color: #c4c6cf !important; }
+        .dark .border-outline-variant { border-color: #44474e !important; }
+        
+        .donut-segment {
+            transition: stroke-width 0.2s, opacity 0.2s;
+            cursor: pointer;
+        }
+        .donut-segment:hover {
+            stroke-width: 44;
+            opacity: 0.9;
+        }
+        .donut-segment.active {
+            stroke-width: 48;
+            filter: drop-shadow(0 0 4px rgba(255,255,255,0.2));
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md bg-background dark:bg-background text-on-background dark:text-on-background antialiased flex h-screen overflow-hidden">
+<!-- JSON SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant h-screen w-64">
+<div class="flex items-center gap-4 p-6">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">P</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed !text-[24px] !leading-tight">PagaTo</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Financial System</p>
+</div>
+</div>
+<div class="px-4 pb-4">
+<button class="w-full flex items-center justify-center gap-2 bg-primary dark:bg-primary-fixed text-on-primary dark:text-primary-container px-4 py-3 rounded-full font-label-lg text-label-lg font-bold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                Add Transaction
+            </button>
+</div>
+<ul class="flex-1 overflow-y-auto py-2">
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 font-label-lg text-label-lg transition-colors" href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 font-label-lg text-label-lg transition-colors" href="#"><span class="material-symbols-outlined">receipt_long</span>Transactions</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 font-label-lg text-label-lg transition-colors" href="#"><span class="material-symbols-outlined">account_balance</span>Accounts</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 font-label-lg text-label-lg transition-colors" href="#"><span class="material-symbols-outlined">account_balance_wallet</span>Budgets</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container rounded-full mx-2 font-bold font-label-lg text-label-lg" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bar_chart</span>Reports</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 font-label-lg text-label-lg transition-colors" href="#"><span class="material-symbols-outlined">settings</span>Settings</a></li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col ml-64 min-w-0">
+<!-- JSON TopAppBar -->
+<header class="sticky top-0 right-0 w-full flex justify-between items-center px-lg z-30 h-16 bg-surface dark:bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hidden">menu</span>
+<div class="relative bg-surface-container-low dark:bg-surface-container rounded-full px-4 py-2 flex items-center gap-2 border border-outline-variant w-64">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none outline-none text-body-md w-full focus:ring-0 p-0 text-on-surface" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container dark:hover:bg-surface-container-high transition-all text-on-surface-variant"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 rounded-full hover:bg-surface-container dark:hover:bg-surface-container-high transition-all text-on-surface-variant"><span class="material-symbols-outlined">dark_mode</span></button>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-2 border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small circular avatar image showing a professional minimalist 3D rendering of a generic user profile icon in soft neutral tones, suitable for a dark mode financial dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzSRFOVeFQSYrlKTAxbgWc-pqM_AuwN80EzwTUudBC2tF0-K45iw61kpDRSzv6WocyyaRzuHev8GGy6pXJOOXzPBEa83k-4JAqadxToqwvigDvgPBvVwmCYm63YpcBQ7K9loHAtkNo7rDy1R1gIQ7rkywpKV-_eMxfuxMwZx3VtC7CK7cthG9MPIfASwZJg84SBbvmpfHCV_M3c2kCp6b_5PYcTxWXPAlpGx7jHFWGxtrE5Q3v7jcR"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-hidden flex relative bg-background dark:bg-background">
+<!-- Center Content (Charts & Lists) -->
+<div class="flex-1 overflow-y-auto p-lg flex flex-col gap-6">
+<!-- Page Header & Global Filters -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Gastos por Categoría</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Análisis de distribución del 1 al 31 de Octubre, 2023</p>
+</div>
+<div class="flex items-center gap-2 flex-wrap">
+<div class="bg-surface-container dark:bg-surface-container rounded-lg flex border border-outline-variant p-1">
+<button class="px-3 py-1.5 rounded-md bg-secondary-container dark:bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Mensual</button>
+<button class="px-3 py-1.5 rounded-md text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm">Trimestral</button>
+<button class="px-3 py-1.5 rounded-md text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm">Anual</button>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container dark:bg-surface-container border border-outline-variant rounded-lg font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                            Octubre 2023
+                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                            Filtros
+                        </button>
+</div>
+</div>
+<!-- Bento Grid Layout for Data -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-[500px]">
+<!-- Main Donut Chart Container -->
+<div class="lg:col-span-7 bg-surface-container dark:bg-surface-container rounded-xl border border-outline-variant p-6 flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-center mb-6 z-10">
+<h3 class="font-title-lg text-title-lg text-on-surface font-medium">Distribución Porcentual</h3>
+<button class="flex items-center gap-1 text-primary dark:text-chart-1 font-label-sm text-label-sm hover:underline">
+<span class="material-symbols-outlined text-[16px]">table_view</span>
+                                Ver datos
+                            </button>
+</div>
+<div class="flex-1 flex items-center justify-center relative z-10">
+<!-- SVG Donut Chart -->
+<div class="relative w-72 h-72">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background track -->
+<circle cx="50" cy="50" fill="transparent" opacity="0.1" r="40" stroke="var(--tw-colors-outline-variant)" stroke-width="40"></circle>
+<!-- Segments: Circumference = 2 * pi * r = ~251.2 -->
+<!-- Alimentación 36.7% = 92.2 -->
+<circle class="donut-segment active" cx="50" cy="50" fill="transparent" r="40" stroke="var(--tw-colors-chart-1)" stroke-dasharray="92.2 159" stroke-dashoffset="0" stroke-width="40"></circle>
+<!-- Transporte 19.9% = 50 -->
+<circle class="donut-segment" cx="50" cy="50" fill="transparent" r="40" stroke="var(--tw-colors-chart-2)" stroke-dasharray="50 201.2" stroke-dashoffset="-92.2" stroke-width="40"></circle>
+<!-- Vivienda 17.6% = 44.2 -->
+<circle class="donut-segment" cx="50" cy="50" fill="transparent" r="40" stroke="var(--tw-colors-chart-3)" stroke-dasharray="44.2 207" stroke-dashoffset="-142.2" stroke-width="40"></circle>
+<!-- Otros 25.8% = 64.8 -->
+<circle class="donut-segment" cx="50" cy="50" fill="transparent" r="40" stroke="var(--tw-colors-chart-4)" stroke-dasharray="64.8 186.4" stroke-dashoffset="-186.4" stroke-width="40"></circle>
+</svg>
+<!-- Center Text -->
+<div class="absolute inset-0 flex flex-col items-center justify-center rounded-full pointer-events-none">
+<div class="w-52 h-52 bg-surface-container dark:bg-surface-container rounded-full flex flex-col items-center justify-center z-10 shadow-inner">
+<span class="font-label-md text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Total Gastos</span>
+<span class="font-display-lg text-[32px] leading-tight font-bold text-on-surface">RD$ 31,198</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side List with Horizontal Bars -->
+<div class="lg:col-span-5 bg-surface-container dark:bg-surface-container rounded-xl border border-outline-variant p-0 flex flex-col overflow-hidden">
+<div class="p-4 border-b border-outline-variant">
+<h3 class="font-title-md text-title-md text-on-surface font-medium">Categorías Principales</h3>
+</div>
+<div class="flex-1 overflow-y-auto p-2">
+<!-- Category Row 1 (Active) -->
+<div class="p-3 rounded-lg bg-surface-container-high dark:bg-surface-container-high cursor-pointer border border-outline-variant relative overflow-hidden group mb-1">
+<div class="relative z-10 flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface dark:bg-surface flex items-center justify-center text-chart-1">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface leading-tight">Alimentación</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">14 Transacciones</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md font-bold text-on-surface">36.7%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">RD$ 11,450</p>
+</div>
+</div>
+<!-- Progress Bar Background -->
+<div class="w-full h-1.5 bg-surface dark:bg-surface rounded-full overflow-hidden">
+<div class="h-full bg-chart-1 rounded-full" style="width: 36.7%;"></div>
+</div>
+</div>
+<!-- Category Row 2 -->
+<div class="p-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-high cursor-pointer transition-colors mb-1">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low dark:bg-surface-container-low flex items-center justify-center text-chart-2">
+<span class="material-symbols-outlined text-[18px]">directions_car</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface leading-tight">Transporte</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">8 Transacciones</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md font-bold text-on-surface">19.9%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">RD$ 6,208</p>
+</div>
+</div>
+<div class="w-full h-1.5 bg-surface-container-low dark:bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-chart-2 rounded-full" style="width: 19.9%;"></div>
+</div>
+</div>
+<!-- Category Row 3 -->
+<div class="p-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-high cursor-pointer transition-colors mb-1">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low dark:bg-surface-container-low flex items-center justify-center text-chart-3">
+<span class="material-symbols-outlined text-[18px]">home</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface leading-tight">Vivienda</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">2 Transacciones</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md font-bold text-on-surface">17.6%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">RD$ 5,490</p>
+</div>
+</div>
+<div class="w-full h-1.5 bg-surface-container-low dark:bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-chart-3 rounded-full" style="width: 17.6%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Drawer (Detail Panel) -->
+<aside class="w-80 bg-surface-container dark:bg-surface-container border-l border-outline-variant flex flex-col h-full transform transition-transform duration-300 ease-in-out">
+<div class="p-4 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-chart-1 bg-opacity-20 flex items-center justify-center text-chart-1">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<h3 class="font-title-lg text-title-lg font-medium text-on-surface">Alimentación</h3>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<!-- KPI Cards -->
+<div class="bg-surface-container-low dark:bg-surface-container-low rounded-lg p-4 border border-outline-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wide">Total Gastado</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface mb-2">RD$ 11,450</p>
+<div class="flex items-center gap-2 text-chart-2">
+<div class="bg-error-container dark:bg-error-container text-on-error-container px-2 py-0.5 rounded text-xs flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                +16.8%
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vs. mes anterior</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-low dark:bg-surface-container-low rounded-lg p-3 border border-outline-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Promedio/Trans</p>
+<p class="font-title-md text-title-md font-medium text-on-surface">RD$ 817</p>
+</div>
+<div class="bg-surface-container-low dark:bg-surface-container-low rounded-lg p-3 border border-outline-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Mayor Gasto</p>
+<p class="font-title-md text-title-md font-medium text-on-surface">RD$ 3,450</p>
+</div>
+</div>
+<!-- Frequent Transactions -->
+<div>
+<h4 class="font-title-md text-title-md font-medium text-on-surface mb-3 flex items-center justify-between">
+                            Movimientos Frecuentes
+                            <button class="text-chart-1 font-label-sm text-label-sm hover:underline">Ver todos</button>
+</h4>
+<div class="space-y-3">
+<!-- Tx 1 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">storefront</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface leading-tight">Supermercado Bravo</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">12 Oct • Groceries</p>
+</div>
+</div>
+<p class="font-body-md text-body-md font-medium text-on-surface">RD$ 3,450</p>
+</div>
+<!-- Tx 2 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">local_cafe</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface leading-tight">Cafe Santo Domingo</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">08 Oct • Coffee</p>
+</div>
+</div>
+<p class="font-body-md text-body-md font-medium text-on-surface">RD$ 450</p>
+</div>
+<!-- Tx 3 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">restaurant_menu</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface leading-tight">Delivery PedidosYa</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">05 Oct • Fast Food</p>
+</div>
+</div>
+<p class="font-body-md text-body-md font-medium text-on-surface">RD$ 890</p>
+</div>
+</div>
+</div>
+<!-- Recommendation / Insight -->
+<div class="bg-primary-container bg-opacity-20 rounded-lg p-4 border border-primary-container border-opacity-30 flex gap-3">
+<span class="material-symbols-outlined text-chart-1">lightbulb</span>
+<div>
+<p class="font-label-sm text-label-sm font-bold text-on-surface mb-1">Insight</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Tus gastos en Alimentación están un 10% por encima de tu presupuesto establecido para este mes.</p>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-outline-variant bg-surface-container">
+<button class="w-full py-2 bg-surface-container-low border border-outline-variant hover:bg-surface-container-high text-on-surface rounded-lg font-label-lg text-label-lg transition-colors">
+                        Ajustar Presupuesto
+                    </button>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

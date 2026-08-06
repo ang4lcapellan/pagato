@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PagaTo - Recuperación de Contraseña</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Roboto+Flex:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#559469",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed-variant": "#0e512d",
+                      "tertiary": "#000802",
+                      "outline-variant": "#c4c6cf",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#002510",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#6f88ad",
+                      "surface-tint": "#476083",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#efeded",
+                      "surface-bright": "#fbf9f8",
+                      "surface-variant": "#e4e2e2",
+                      "surface-container-high": "#e9e8e7",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#afc8f0",
+                      "primary-fixed": "#d4e3ff",
+                      "secondary-container": "#d7e0f5",
+                      "surface-container-low": "#f5f3f3",
+                      "on-secondary-container": "#5a6375",
+                      "background": "#fbf9f8",
+                      "on-surface-variant": "#43474e",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#74777f",
+                      "on-primary-fixed-variant": "#2f486a",
+                      "tertiary-fixed-dim": "#94d5a6",
+                      "secondary": "#565f71",
+                      "secondary-fixed": "#dae3f8",
+                      "surface": "#fbf9f8",
+                      "primary": "#000613",
+                      "surface-container-highest": "#e4e2e2",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#dbdad9",
+                      "on-tertiary-fixed": "#00210e",
+                      "on-surface": "#1b1c1c",
+                      "on-secondary-fixed": "#131c2b",
+                      "inverse-primary": "#afc8f0",
+                      "on-secondary-fixed-variant": "#3e4758",
+                      "primary-container": "#001f3f",
+                      "secondary-fixed-dim": "#bec7db",
+                      "inverse-surface": "#303031",
+                      "on-background": "#1b1c1c",
+                      "inverse-on-surface": "#f2f0f0",
+                      "tertiary-fixed": "#b0f2c0",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#001c3a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "32px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "base": "8px",
+                      "lg": "24px",
+                      "gutter": "16px",
+                      "xs": "4px",
+                      "column-margin": "24px"
+              },
+              "fontFamily": {
+                      "title-md": ["Roboto Flex"],
+                      "headline-lg": ["Roboto Flex"],
+                      "display-lg": ["Roboto Flex"],
+                      "title-lg": ["Roboto Flex"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-lg": ["Inter"],
+                      "headline-lg-mobile": ["Roboto Flex"],
+                      "label-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                      "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex items-center justify-center p-md antialiased">
+<!-- Step 1: Recover Password -->
+<div class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-sm p-xl border border-outline-variant/50 transition-all duration-300" id="step-recover">
+<div class="flex flex-col items-center mb-lg text-center">
+<span class="material-symbols-outlined text-[48px] text-primary mb-md" style="font-variation-settings: 'FILL' 1;">lock_reset</span>
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">Recuperar Contraseña</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
+</div>
+<form onsubmit="event.preventDefault(); showStep('step-sent');">
+<div class="mb-lg">
+<label class="block font-label-lg text-label-lg text-on-surface mb-xs" for="email">Correo Electrónico</label>
+<input class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded-lg px-md py-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors font-body-lg" id="email" placeholder="ejemplo@correo.com" required="" type="email"/>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-lg text-label-lg rounded-full py-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all shadow-sm active:scale-95 duration-100 flex items-center justify-center gap-sm" type="submit">
+                Enviar Enlace
+                <span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+<div class="mt-lg text-center">
+<a class="font-label-lg text-label-lg text-primary hover:underline transition-colors flex items-center justify-center gap-xs" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Volver a Iniciar Sesión
+                </a>
+</div>
+</form>
+</div>
+<!-- Step 2: Email Sent -->
+<div class="hidden w-full max-w-md bg-surface-container-lowest rounded-xl shadow-sm p-xl border border-outline-variant/50 transition-all duration-300" id="step-sent">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">mark_email_read</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">Correo Enviado</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm mb-lg">Hemos enviado un enlace de recuperación a tu correo electrónico. Por favor, revisa tu bandeja de entrada o la carpeta de spam.</p>
+<button class="w-full bg-secondary-container text-on-secondary-container font-label-lg text-label-lg rounded-full py-md hover:bg-secondary-container/80 transition-all shadow-sm active:scale-95 duration-100 mb-md" onclick="showStep('step-reset')">
+                (Simular clic en enlace)
+            </button>
+<a class="font-label-lg text-label-lg text-primary hover:underline transition-colors" href="#">
+                Volver a Iniciar Sesión
+            </a>
+</div>
+</div>
+<!-- Step 3: Reset Password -->
+<div class="hidden w-full max-w-md bg-surface-container-lowest rounded-xl shadow-sm p-xl border border-outline-variant/50 transition-all duration-300" id="step-reset">
+<div class="flex flex-col items-center mb-lg text-center">
+<span class="material-symbols-outlined text-[48px] text-primary mb-md" style="font-variation-settings: 'FILL' 1;">password</span>
+<h1 class="font-title-lg text-title-lg text-primary font-bold mb-xs">Crear Nueva Contraseña</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">La nueva contraseña debe ser diferente a las utilizadas anteriormente.</p>
+</div>
+<form onsubmit="event.preventDefault(); showStep('step-success');">
+<div class="mb-md relative">
+<label class="block font-label-lg text-label-lg text-on-surface mb-xs" for="new-password">Nueva Contraseña</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded-lg px-md py-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors font-body-lg pr-10" id="new-password" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-on-surface-variant hover:text-primary" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Mínimo 8 caracteres, al menos un número y un símbolo.</p>
+</div>
+<div class="mb-lg relative">
+<label class="block font-label-lg text-label-lg text-on-surface mb-xs" for="confirm-password">Confirmar Contraseña</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded-lg px-md py-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors font-body-lg pr-10" id="confirm-password" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-on-surface-variant hover:text-primary" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-lg text-label-lg rounded-full py-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all shadow-sm active:scale-95 duration-100" type="submit">
+                Guardar Contraseña
+            </button>
+</form>
+<div class="mt-lg flex justify-center gap-sm text-xs">
+<button class="text-on-surface-variant hover:text-error underline" onclick="showStep('step-expired')">Simular Vencido</button>
+<button class="text-on-surface-variant hover:text-error underline" onclick="showStep('step-invalid')">Simular Inválido</button>
+</div>
+</div>
+<!-- Step 4: Success -->
+<div class="hidden w-full max-w-md bg-surface-container-lowest rounded-xl shadow-sm p-xl border border-outline-variant/50 transition-all duration-300" id="step-success">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-[#e6f4ea] rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-[#137333]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="font-title-lg text-title-lg text-primary font-bold mb-xs">¡Contraseña Actualizada!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm mb-lg">Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.</p>
+<button class="w-full bg-primary text-on-primary font-label-lg text-label-lg rounded-full py-md hover:bg-primary/90 transition-all shadow-sm active:scale-95 duration-100 flex items-center justify-center gap-sm" onclick="showStep('step-recover')">
+                Ir a Iniciar Sesión
+                <span class="material-symbols-outlined text-[20px]">login</span>
+</button>
+</div>
+</div>
+<!-- Error State: Link Expired -->
+<div class="hidden w-full max-w-md bg-surface-container-lowest rounded-xl shadow-sm p-xl border border-error/20 transition-all duration-300" id="step-expired">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-error-container rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-error" style="font-variation-settings: 'FILL' 1;">timer_off</span>
+</div>
+<h1 class="font-title-lg text-title-lg text-error font-bold mb-xs">Enlace Vencido</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm mb-lg">El enlace de recuperación ha expirado por motivos de seguridad (válido por 1 hora).</p>
+<button class="w-full bg-error text-on-error font-label-lg text-label-lg rounded-full py-md hover:bg-error/90 transition-all shadow-sm active:scale-95 duration-100" onclick="showStep('step-recover')">
+                Solicitar Nuevo Enlace
+            </button>
+</div>
+</div>
+<!-- Error State: Link Invalid -->
+<div class="hidden w-full max-w-md bg-surface-container-lowest rounded-xl shadow-sm p-xl border border-error/20 transition-all duration-300" id="step-invalid">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-error-container rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-error" style="font-variation-settings: 'FILL' 1;">link_off</span>
+</div>
+<h1 class="font-title-lg text-title-lg text-error font-bold mb-xs">Enlace Inválido</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm mb-lg">Este enlace de recuperación es inválido o ya ha sido utilizado.</p>
+<button class="w-full border border-outline-variant text-primary font-label-lg text-label-lg rounded-full py-md hover:bg-surface-container-low transition-all active:scale-95 duration-100 mb-md" onclick="showStep('step-recover')">
+                Volver a Intentar
+            </button>
+<a class="font-label-lg text-label-lg text-primary hover:underline transition-colors" href="#">
+                Contactar Soporte
+            </a>
+</div>
+</div>
+<script>
+        function showStep(stepId) {
+            const steps = ['step-recover', 'step-sent', 'step-reset', 'step-success', 'step-expired', 'step-invalid'];
+            
+            steps.forEach(id => {
+                const el = document.getElementById(id);
+                if (id === stepId) {
+                    el.classList.remove('hidden');
+                    // Small delay to allow display:block to apply before animating opacity/transform if needed
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    el.classList.add('hidden');
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(10px)';
+                }
+            });
+        }
+        
+        // Initial setup for animation classes
+        document.querySelectorAll('div[id^="step-"]').forEach(el => {
+            el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            if(el.id !== 'step-recover') {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+            }
+        });
+    </script>
+</body></html>

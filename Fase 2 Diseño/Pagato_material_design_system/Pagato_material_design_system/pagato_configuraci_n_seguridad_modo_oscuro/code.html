@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configuración - Seguridad</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#191c1e",
+                        "tertiary-fixed": "#ffdad7",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-container": "#6f88ad",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-fixed": "#111c2c",
+                        "inverse-primary": "#afc8f0",
+                        "tertiary": "#170001",
+                        "on-primary-fixed-variant": "#2f486a",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d5e0f7",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "secondary-fixed-dim": "#bcc7dd",
+                        "on-tertiary-container": "#f24846",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "inverse-surface": "#2d3133",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#545f72",
+                        "on-surface-variant": "#43474e",
+                        "surface-container-high": "#e6e8ea",
+                        "background": "#f7f9fb",
+                        "surface": "#f7f9fb",
+                        "surface-tint": "#476083",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1e",
+                        "on-secondary-container": "#586377",
+                        "error": "#ba1a1a",
+                        "primary": "#000613",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#470004",
+                        "primary-fixed": "#d4e3ff",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-tertiary-fixed": "#410004",
+                        "surface-container": "#eceef0",
+                        "secondary-fixed": "#d8e3fa",
+                        "primary-fixed-dim": "#afc8f0",
+                        "outline": "#74777f",
+                        "primary-container": "#001f3f",
+                        "on-primary-fixed": "#001c3a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "input-padding": "12px 16px",
+                        "stack-md": "16px",
+                        "section-gap": "48px",
+                        "nav-width": "240px",
+                        "stack-lg": "24px",
+                        "stack-xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Roboto Flex"],
+                        "display-lg": ["Roboto Flex"],
+                        "headline-md": ["Roboto Flex"],
+                        "nav-item": ["Roboto Flex"],
+                        "body-md": ["Roboto Flex"],
+                        "title-sm": ["Roboto Flex"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "nav-item": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #121212; /* Fallback for custom dark mode request */
+            color: #ffffff;
+        }
+        /* Override specific dark mode surface colors based on prompt request for dark mode, even though theme says light mode base */
+        .dark .bg-background { background-color: #0d0d0d; }
+        .dark .bg-on-background { background-color: #1a1a1a; }
+        .dark .bg-surface-container { background-color: #242424; }
+        .dark .bg-surface-container-high { background-color: #2a2a2a; }
+        .dark .bg-surface-container-highest { background-color: #333333; }
+        .dark .border-outline-variant { border-color: #3a3a3a; }
+        .dark .text-primary-fixed { color: #d4e3ff; }
+        .dark .text-secondary-fixed-dim { color: #bcc7dd; }
+        .dark .text-on-surface { color: #f2f2f2; }
+        .dark .text-on-surface-variant { color: #cccccc; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col md:flex-row">
+<!-- TopAppBar for Mobile (Hidden on md+) -->
+<header class="md:hidden flex justify-between items-center px-4 h-16 w-full border-b border-outline-variant bg-on-background sticky top-0 z-50">
+<div class="font-display-lg text-display-lg font-bold text-primary-fixed">
+            PagaTo
+        </div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary-fixed cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-primary-fixed cursor-pointer">menu</span>
+</div>
+</header>
+<!-- SideNavBar (Hidden on mobile, visible on md+) -->
+<nav class="hidden md:flex flex-col pt-6 w-nav-width h-screen sticky left-0 top-0 border-r border-outline-variant bg-on-background shrink-0">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md text-primary-fixed mb-1">Settings</h1>
+<p class="font-body-md text-body-md text-secondary-fixed-dim">Manage your account</p>
+</div>
+<ul class="flex flex-col w-full">
+<li>
+<a class="text-secondary-fixed-dim flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-nav-item text-nav-item">Profile</span>
+</a>
+</li>
+<li>
+<a class="text-secondary-fixed-dim flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">tune</span>
+<span class="font-nav-item text-nav-item">Preferences</span>
+</a>
+</li>
+<li>
+<a class="text-secondary-fixed-dim flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">palette</span>
+<span class="font-nav-item text-nav-item">Appearance</span>
+</a>
+</li>
+<li>
+<a class="text-primary-fixed bg-surface-container-highest border-l-4 border-primary-fixed flex items-center gap-3 px-6 py-3 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-nav-item text-nav-item">Security</span>
+</a>
+</li>
+<li>
+<a class="text-secondary-fixed-dim flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">manage_accounts</span>
+<span class="font-nav-item text-nav-item">Account</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-[800px] mx-auto p-6 md:p-8 space-y-section-gap">
+<!-- Header -->
+<div>
+<h2 class="font-display-lg text-display-lg font-bold text-on-surface mb-2">Seguridad</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestiona la seguridad de tu cuenta y dispositivos.</p>
+</div>
+<!-- Password Management Card -->
+<section>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-stack-md">Contraseña</h3>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<p class="font-body-md text-body-md text-on-surface font-semibold mb-1">Contraseña de acceso</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Última actualización: hace 3 meses</p>
+</div>
+<button class="bg-primary-fixed text-primary px-4 py-2 rounded-lg font-nav-item text-nav-item hover:opacity-90 transition-opacity">
+                        Actualizar Contraseña
+                    </button>
+</div>
+</div>
+</section>
+<!-- 2FA Section -->
+<section>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-stack-md">Autenticación de Dos Factores (2FA)</h3>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div class="flex items-start gap-4">
+<div class="p-2 bg-secondary-container/20 rounded-full text-secondary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<p class="font-body-md text-body-md text-on-surface font-semibold">App de Autenticación</p>
+<span class="bg-secondary-container/30 text-secondary-fixed px-2 py-0.5 rounded font-label-caps text-label-caps">Activo</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Protege tu cuenta con un código adicional.</p>
+</div>
+</div>
+<button class="border border-outline-variant text-on-surface px-4 py-2 rounded-lg font-nav-item text-nav-item hover:bg-surface-container-high transition-colors">
+                    Gestionar
+                </button>
+</div>
+</section>
+<!-- Active Sessions List -->
+<section>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-stack-md">Sesiones Activas</h3>
+<div class="bg-surface-container border border-outline-variant rounded-xl overflow-hidden">
+<!-- Current Session -->
+<div class="p-6 border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-surface-variant mt-1" style="font-variation-settings: 'FILL' 0;">laptop_mac</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-semibold mb-1">Opera en Windows <span class="text-secondary-fixed ml-2 font-normal text-xs">(Sesión actual)</span></p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Santo Domingo, DO • 192.168.1.1</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Activa ahora</p>
+</div>
+</div>
+</div>
+<!-- Other Session -->
+<div class="p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-surface-variant mt-1" style="font-variation-settings: 'FILL' 0;">smartphone</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-semibold mb-1">Safari en iPhone</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Santiago, DO • 10.0.0.5</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Última vez: ayer 14:30</p>
+</div>
+</div>
+<button class="text-error font-nav-item text-nav-item hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">logout</span>
+                        Cerrar sesión
+                    </button>
+</div>
+</div>
+</section>
+<!-- Security Activity Log -->
+<section>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-stack-md">Actividad de Seguridad</h3>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-0">
+<ul class="divide-y divide-outline-variant">
+<li class="p-4 flex gap-4 items-start">
+<span class="material-symbols-outlined text-secondary-fixed mt-0.5" style="font-variation-settings: 'FILL' 0;">login</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Inicio de sesión exitoso</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-0.5">Hoy, 09:41 AM • Windows, Opera</p>
+</div>
+</li>
+<li class="p-4 flex gap-4 items-start">
+<span class="material-symbols-outlined text-secondary-fixed mt-0.5" style="font-variation-settings: 'FILL' 0;">vpn_key</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Validación 2FA requerida</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-0.5">Hoy, 09:40 AM • App Autenticador</p>
+</div>
+</li>
+<li class="p-4 flex gap-4 items-start">
+<span class="material-symbols-outlined text-secondary-fixed mt-0.5" style="font-variation-settings: 'FILL' 0;">update</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Actualización de preferencias de seguridad</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-0.5">12 Oct 2023, 15:20 PM</p>
+</div>
+</li>
+</ul>
+<div class="p-4 border-t border-outline-variant text-center">
+<button class="text-primary-fixed font-nav-item text-nav-item hover:underline">Ver todo el historial</button>
+</div>
+</div>
+</section>
+</main>
+</body></html>
