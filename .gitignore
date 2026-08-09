@@ -24,3 +24,6 @@ TestResults/
 .~lock.*
 desktop.ini
 OneDriveTemp/
+
+# Database review artifact: contains the complete initial schema and stays local.
+Fase 3 Desarrollo/Database/pagato_initial_schema.sql
