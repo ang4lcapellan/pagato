@@ -6,6 +6,8 @@ coverage/
 .env
 .env.*
 !.env.example
+appsettings.Local.json
+secrets.json
 *.log
 *.tmp
 *.temp
