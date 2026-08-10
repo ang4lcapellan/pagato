@@ -1,64 +1,66 @@
 # PagaTo’
 
-Interfaz web navegable para una plataforma de finanzas personales. Esta etapa transforma los conceptos de Google Stitch en una aplicación React coherente con el PagaTo Design Language v2.0.
+Plataforma de finanzas personales con frontend web navegable y backend ASP.NET Core en desarrollo.
 
-## Estado
+## Estado actual
 
-Base visual web implementada con datos locales simulados. No existen backend, autenticación real, API, persistencia financiera ni sincronización offline.
+- Web React: interfaz visual con mocks, temas claro/oscuro y rutas navegables.
+- API .NET 10: base funcional con Identity, JWT, refresh tokens, módulos financieros MVP y OpenAPI.
+- PostgreSQL: migración inicial generada; pendiente de aplicar a Neon `development` después de rotar la credencial de conexión.
+- Móvil y sincronización offline: futuros.
 
 ## Stack
 
-React 19, TypeScript, Vite, Tailwind CSS 4, React Router, TanStack Query, React Hook Form, Zod, Recharts, clsx, tailwind-merge y date-fns.
+Web: React 19, TypeScript, Vite, Tailwind CSS, React Router y TanStack Query.
+
+Backend: ASP.NET Core 10, C#, EF Core 10, Npgsql, Identity, FluentValidation, Serilog, Swagger/OpenAPI, xUnit y Testcontainers PostgreSQL.
 
 ## Estructura
 
-- `apps/web`: aplicación visual.
-- `Fase 1 Analisis`: documentación previa del producto.
-- `Fase 2 Diseño`: PDL v2.0 y exportaciones originales de Stitch, solo referencia.
-- `Fase 3 Desarrollo`: auditoría y documentación de implementación.
+- `apps/web`: aplicación visual existente.
+- `apps/api`: solución `PagaTo.sln`, proyectos `src` y `tests`.
+- `Fase 3 Desarrollo/Backend`: auditoría y documentación backend.
+- `Fase 3 Desarrollo/Database`: diseño inicial; el SQL completo permanece ignorado.
 
-## Requisitos e instalación
+## Web
 
-Node.js 20 o superior y npm 10 o superior.
-
-```bash
+```powershell
 cd apps/web
 npm install
 npm run dev
 ```
 
-Verificación:
+## API
 
-```bash
-npm run typecheck
-npm run lint
-npm run build
+Requiere .NET SDK 10. Los secretos se configuran con `dotnet user-secrets`; nunca en `appsettings` o Git. Consulta `Fase 3 Desarrollo/Backend/08_Local_Development.md`.
+
+```powershell
+cd apps/api
+dotnet tool restore
+dotnet restore
+dotnet build PagaTo.sln
+dotnet run --project src/PagaTo.Api
 ```
 
-## Rutas
+API: `http://localhost:5147`. Swagger: `http://localhost:5147/swagger`. Health: `http://localhost:5147/health`.
 
-Acceso: `/login`, `/register`, `/forgot-password`, `/verify-email`, `/reset-password`.
+## Pruebas
 
-Aplicación: `/app/dashboard`, `/app/transactions`, `/app/transactions/new`, `/app/accounts`, `/app/accounts/new`, `/app/budgets`, `/app/reports`, `/app/settings`.
+```powershell
+cd apps/api
+dotnet test PagaTo.sln
+```
 
-El botón de login redirige al Dashboard mediante un flujo simulado. No se transmite ni persiste la contraseña.
-
-## Mocks y temas
-
-Los datos de usuario, cuentas, transacciones, presupuestos, reportes, notificaciones, sesiones y preferencias viven en `apps/web/src/mocks`. Los temas `light`, `dark` y `system` usan tokens semánticos y la preferencia se conserva en `localStorage`. También se conserva localmente el control visual de privacidad de importes.
-
-## Referencia visual
-
-La fuente de verdad es `Fase 2 Diseño/PagaTo_Design_System_PDL_v2.0.pdf`. Stitch es referencia secundaria. Los originales no se modificaron.
+Las pruebas de integración requieren Docker Desktop y crean PostgreSQL efímero; nunca usan Neon.
 
 ## Limitaciones
 
-- Datos únicamente demostrativos.
-- Sin i18n completa; la interfaz activa está en español.
-- Google Fonts requiere red; existen fallbacks locales seguros.
-- El bundle incluye Recharts en el paquete inicial y debe dividirse por rutas cuando el producto crezca.
-- Los importes son `number` solo en mocks; backend y contratos deberán usar precisión decimal.
+- Frontend aún no consume la API.
+- La migración no está aplicada a Neon.
+- Recuperación de contraseña no tiene proveedor de correo.
+- Tags, receipts, reportes avanzados y offline están pendientes.
+- No existe despliegue productivo.
 
 ## Próximos pasos
 
-Revisión del propietario, pruebas automatizadas de componentes, extracción completa de traducciones, code-splitting y diseño de contratos API antes de integrar el backend.
+Rotar la credencial Neon expuesta durante configuración, validar la migración en `development`, ejecutar Testcontainers con Docker activo y después integrar Auth desde el frontend.
