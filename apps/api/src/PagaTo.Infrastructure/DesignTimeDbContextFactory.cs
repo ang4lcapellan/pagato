@@ -8,7 +8,8 @@ public sealed class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Pag
     public PagaToDbContext CreateDbContext(string[] args)
     {
         var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
-            ?? "Host=localhost;Database=pagato_design;Username=design";
+            ?? throw new InvalidOperationException(
+                "Set ConnectionStrings__DefaultConnection before running Entity Framework design-time commands.");
         var options = new DbContextOptionsBuilder<PagaToDbContext>()
             .UseNpgsql(connectionString,
                 npgsql => npgsql.MigrationsHistoryTable("__ef_migrations_history", "pagato"))

@@ -6,7 +6,7 @@ Plataforma de finanzas personales con frontend web navegable y backend ASP.NET C
 
 - Web React: interfaz navegable conectada a los contratos HTTP del backend; conserva mocks solo como referencia visual no usada por las páginas principales.
 - API .NET 10: base funcional con Identity, JWT, refresh tokens, módulos financieros MVP y OpenAPI.
-- PostgreSQL: migración inicial generada; pendiente de aplicar a Neon `development` después de rotar la credencial de conexión.
+- PostgreSQL: migración inicial aplicada y verificada en Neon `development` el 17 de agosto de 2026.
 - Móvil y sincronización offline: futuros.
 
 ## Stack
@@ -58,7 +58,7 @@ Las pruebas de integración requieren Docker Desktop y crean PostgreSQL efímero
 
 ## Integración local
 
-1. Configura `ConnectionStrings:PagatoDatabase` y `Jwt:SigningKey` con `dotnet user-secrets` en `PagaTo.Api`.
+1. Configura `ConnectionStrings:DefaultConnection` y `Jwt:SigningKey` con `dotnet user-secrets` en `PagaTo.Api`.
 2. Aplica la migración únicamente a una base de desarrollo autorizada.
 3. Inicia la API en `http://localhost:5147`.
 4. Inicia Vite en `http://localhost:5173`.
@@ -67,12 +67,11 @@ El access token vive solo en memoria. El refresh token se entrega como cookie `H
 
 ## Limitaciones
 
-- La conexión y migración de Neon `development` están bloqueadas hasta confirmar la rotación de la credencial previamente expuesta.
-- La migración no está aplicada a Neon.
+- La conexión local apunta exclusivamente a la rama Neon `development`; no usar esta configuración para producción.
 - Recuperación de contraseña no tiene proveedor de correo.
 - Tags, receipts, reportes avanzados y offline están pendientes.
 - No existe despliegue productivo.
 
 ## Próximos pasos
 
-Rotar la credencial Neon expuesta durante configuración, validar la migración exclusivamente en `development` y ejecutar Testcontainers con Docker Desktop activo.
+Ejecutar Testcontainers con Docker Desktop activo y completar pruebas E2E del flujo web/API.
