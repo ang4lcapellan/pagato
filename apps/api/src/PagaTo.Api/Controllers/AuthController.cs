@@ -11,6 +11,8 @@ namespace PagaTo.Api.Controllers;
 [Route("api/v1/auth")]
 public sealed class AuthController(UserManager<ApplicationUser> users, PagaToDbContext db, TokenService tokens) : ApiControllerBase
 {
+    private const string RefreshCookie = "pagato_refresh";
+
     [HttpPost("register"), AllowAnonymous]
     public async Task<ActionResult<AuthResponse>> Register(RegisterRequest request, CancellationToken ct)
     {
@@ -40,7 +42,9 @@ public sealed class AuthController(UserManager<ApplicationUser> users, PagaToDbC
     [HttpPost("refresh"), AllowAnonymous]
     public async Task<ActionResult<AuthResponse>> Refresh(RefreshRequest request, CancellationToken ct)
     {
-        var existing = await db.RefreshTokens.SingleOrDefaultAsync(x => x.TokenHash == TokenService.Hash(request.RefreshToken), ct);
+        if (!Request.Cookies.TryGetValue(RefreshCookie, out var rawToken) || string.IsNullOrWhiteSpace(rawToken))
+            return Unauthorized(new ProblemDetails { Status = 401, Title = "Refresh session is missing" });
+        var existing = await db.RefreshTokens.SingleOrDefaultAsync(x => x.TokenHash == TokenService.Hash(rawToken), ct);
         if (existing is null || !existing.IsActive) return Unauthorized(new ProblemDetails { Status = 401, Title = "Invalid refresh token" });
         var user = await users.FindByIdAsync(existing.UserId.ToString());
         if (user is null || !user.IsActive) return Unauthorized();
@@ -49,14 +53,19 @@ public sealed class AuthController(UserManager<ApplicationUser> users, PagaToDbC
         existing.Revoke(replacement.Id); db.RefreshTokens.Add(replacement);
         var roles = await users.GetRolesAsync(user); var access = tokens.CreateAccessToken(user, roles);
         await db.SaveChangesAsync(ct);
-        return Ok(new AuthResponse(access.Token, next.Raw, access.ExpiresAt));
+        WriteRefreshCookie(next.Raw, next.ExpiresAt);
+        return Ok(new AuthResponse(access.Token, access.ExpiresAt));
     }
 
     [HttpPost("logout"), AllowAnonymous]
-    public async Task<IActionResult> Logout(LogoutRequest request, CancellationToken ct)
+    public async Task<IActionResult> Logout(CancellationToken ct)
     {
-        var token = await db.RefreshTokens.SingleOrDefaultAsync(x => x.TokenHash == TokenService.Hash(request.RefreshToken), ct);
-        if (token is not null && token.IsActive) { token.Revoke(); await db.SaveChangesAsync(ct); }
+        if (Request.Cookies.TryGetValue(RefreshCookie, out var rawToken) && !string.IsNullOrWhiteSpace(rawToken))
+        {
+            var token = await db.RefreshTokens.SingleOrDefaultAsync(x => x.TokenHash == TokenService.Hash(rawToken), ct);
+            if (token is not null && token.IsActive) { token.Revoke(); await db.SaveChangesAsync(ct); }
+        }
+        Response.Cookies.Delete(RefreshCookie, CookieOptions());
         return NoContent();
     }
 
@@ -73,7 +82,20 @@ public sealed class AuthController(UserManager<ApplicationUser> users, PagaToDbC
     {
         var roles = await users.GetRolesAsync(user); var access = tokens.CreateAccessToken(user, roles); var refresh = tokens.CreateRefreshToken();
         db.RefreshTokens.Add(new RefreshToken(user.Id, refresh.Hash, refresh.ExpiresAt, deviceInfo));
-        return new AuthResponse(access.Token, refresh.Raw, access.ExpiresAt);
+        WriteRefreshCookie(refresh.Raw, refresh.ExpiresAt);
+        return new AuthResponse(access.Token, access.ExpiresAt);
     }
-}
 
+    private void WriteRefreshCookie(string token, DateTimeOffset expiresAt) =>
+        Response.Cookies.Append(RefreshCookie, token, CookieOptions(expiresAt));
+
+    private CookieOptions CookieOptions(DateTimeOffset? expiresAt = null) => new()
+    {
+        HttpOnly = true,
+        Secure = Request.IsHttps,
+        SameSite = SameSiteMode.Strict,
+        Path = "/api/v1/auth",
+        Expires = expiresAt,
+        IsEssential = true
+    };
+}

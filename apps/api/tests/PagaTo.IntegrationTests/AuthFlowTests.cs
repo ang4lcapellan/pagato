@@ -26,6 +26,6 @@ public sealed class AuthFlowTests(ApiFactory factory) : IClassFixture<ApiFactory
         Assert.Equal(HttpStatusCode.OK, login.StatusCode);
         var auth = await login.Content.ReadFromJsonAsync<AuthResponse>();
         Assert.False(string.IsNullOrWhiteSpace(auth?.AccessToken));
-        Assert.False(string.IsNullOrWhiteSpace(auth?.RefreshToken));
+        Assert.Contains(register.Headers, header => header.Key == "Set-Cookie" && header.Value.Any(value => value.Contains("pagato_refresh=")));
     }
 }

@@ -4,9 +4,8 @@ namespace PagaTo.Application;
 
 public sealed record RegisterRequest(string Email, string Password, string DisplayName);
 public sealed record LoginRequest(string Email, string Password, string? DeviceInfo);
-public sealed record RefreshRequest(string RefreshToken, string? DeviceInfo);
-public sealed record LogoutRequest(string RefreshToken);
-public sealed record AuthResponse(string AccessToken, string RefreshToken, DateTimeOffset AccessTokenExpiresAt);
+public sealed record RefreshRequest(string? DeviceInfo);
+public sealed record AuthResponse(string AccessToken, DateTimeOffset AccessTokenExpiresAt);
 
 public sealed record CreateAccountRequest(string Name, AccountType Type, string CurrencyCode, decimal InitialBalance,
     DateOnly InitialBalanceDate, string? Description);
@@ -28,4 +27,3 @@ public sealed record CreateTransferRequest(decimal Amount, string CurrencyCode, 
 public sealed record CreateBudgetRequest(Guid? CategoryId, string Name, decimal Amount, string CurrencyCode,
     BudgetPeriodType PeriodType, DateOnly StartDate, DateOnly EndDate, decimal WarningThreshold);
 public sealed record UpdateBudgetRequest(string Name, decimal Amount, decimal WarningThreshold, BudgetStatus Status);
-
