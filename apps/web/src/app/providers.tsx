@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { AuthProvider } from './auth';
 
 type Theme = 'light' | 'dark' | 'system';
 type UiContextValue = { theme: Theme; setTheme: (theme: Theme) => void; amountsHidden: boolean; toggleAmounts: () => void };
@@ -16,7 +17,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
     root.style.colorScheme = dark ? 'dark' : 'light';
   }, [theme]);
   const value = useMemo(() => ({ theme, setTheme: (next: Theme) => { localStorage.setItem('pagato-theme', next); setThemeState(next); }, amountsHidden, toggleAmounts: () => setAmountsHidden((current) => { localStorage.setItem('pagato-private', String(!current)); return !current; }) }), [theme, amountsHidden]);
-  return <QueryClientProvider client={queryClient}><UiContext.Provider value={value}>{children}</UiContext.Provider></QueryClientProvider>;
+  return <QueryClientProvider client={queryClient}><AuthProvider><UiContext.Provider value={value}>{children}</UiContext.Provider></AuthProvider></QueryClientProvider>;
 }
 
 export function useUi() { const value = useContext(UiContext); if (!value) throw new Error('useUi debe usarse dentro de AppProviders'); return value; }
