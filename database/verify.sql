@@ -11,13 +11,15 @@ WHERE table_schema = 'pagato'
 ORDER BY table_type, table_name;
 
 SELECT
-  schemaname,
-  tablename,
-  rowsecurity,
-  forcerowsecurity
-FROM pg_tables
-WHERE schemaname = 'pagato'
-ORDER BY tablename;
+  n.nspname AS schemaname,
+  c.relname AS tablename,
+  c.relrowsecurity AS rowsecurity,
+  c.relforcerowsecurity AS forcerowsecurity
+FROM pg_class AS c
+JOIN pg_namespace AS n ON n.oid = c.relnamespace
+WHERE n.nspname = 'pagato'
+  AND c.relkind IN ('r', 'p')
+ORDER BY c.relname;
 
 SELECT
   schemaname,

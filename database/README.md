@@ -6,6 +6,7 @@ La base de datos usa PostgreSQL 18 en Neon y mantiene el modelo de la aplicació
 
 - `migrations/0001_initial_schema.sql`: esquema inicial, restricciones, índices, RLS, vistas y categorías predeterminadas.
 - `verify.sql`: comprobaciones de solo lectura después de aplicar la migración.
+- `security_smoke_test.sql`: prueba transaccional de aislamiento entre usuarios; siempre termina en `ROLLBACK`.
 - `schema.md`: explicación del modelo, relaciones y decisiones de integridad.
 
 ## Entornos
@@ -40,5 +41,6 @@ La aplicación debe conectarse con un rol de ejecución sin privilegios de propi
 1. Seleccionar la rama `development` en Neon.
 2. Ejecutar `migrations/0001_initial_schema.sql` como una transacción.
 3. Ejecutar `verify.sql`.
-4. Confirmar que todas las tablas están en el esquema `pagato` y que RLS está habilitado.
-5. No copiar la cadena de conexión a archivos versionados, logs o conversaciones.
+4. Ejecutar `security_smoke_test.sql` y confirmar que termina correctamente en `ROLLBACK`.
+5. Confirmar que todas las tablas están en el esquema `pagato` y que RLS está habilitado.
+6. No copiar la cadena de conexión a archivos versionados, logs o conversaciones.
