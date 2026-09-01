@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+:root {
+  --surface: #f5faf7;
+  --background: #ffffff;
+  --foreground: #17352d;
+  --ink: #17352d;
+  --muted: #60736d;
+  --brand: #12a683;
+  --brand-dark: #0b8065;
+  --brand-soft: #ccefe4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Segoe UI", Arial, Helvetica, sans-serif;
+  --font-mono: "Cascadia Code", Consolas, monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--background); color: var(--foreground); font-family: "Segoe UI", Arial, Helvetica, sans-serif; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.button { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; border-radius: 999px; padding: .75rem 1.25rem; font-weight: 650; transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease; }
+.button:hover { transform: translateY(-1px); }
+.button:focus-visible { outline: 3px solid color-mix(in srgb, var(--brand) 35%, transparent); outline-offset: 3px; }
+.button-primary { background: var(--brand); color: white; box-shadow: 0 12px 28px rgb(18 166 131 / 20%); }
+.button-primary:hover { background: var(--brand-dark); }
+.button-secondary { border: 1px solid rgb(23 53 45 / 15%); background: rgb(255 255 255 / 72%); color: var(--ink); }
+.eyebrow { display: inline-flex; border-radius: 999px; background: var(--brand-soft); padding: .45rem .8rem; color: var(--brand-dark); font-size: .75rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.metric-card { display: flex; flex-direction: column; gap: .35rem; border-radius: 1rem; background: #f4f8f6; padding: 1rem; }
+.metric-card span { color: var(--muted); font-size: .75rem; }
+.metric-card strong { color: var(--ink); font-size: .95rem; }
+.feature-card { border: 1px solid rgb(23 53 45 / 9%); border-radius: 1.5rem; background: rgb(255 255 255 / 74%); padding: 1.5rem; }
+.feature-number { color: var(--brand); font-size: .75rem; font-weight: 750; letter-spacing: .08em; }
+.feature-card h2 { margin-top: 1.5rem; color: var(--ink); font-size: 1.15rem; font-weight: 700; }
+.feature-card p { margin-top: .65rem; color: var(--muted); line-height: 1.65; }

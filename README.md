@@ -104,7 +104,7 @@ La documentacion de analisis incluye:
 - 15 requerimientos funcionales (`PG-01` a `PG-15`).
 - 15 requerimientos no funcionales (`RNF-01` a `RNF-15`).
 
-Los secretos y archivos de entorno reales no deben versionarse. `Fase 3 Desarrollo/.env.example` contiene solamente marcadores ficticios para documentar las variables requeridas.
+Los secretos y archivos de entorno reales no deben versionarse. `Fase 3 Desarrollo/app/.env.example` contiene solamente marcadores ficticios para documentar las variables requeridas.
 
 ## Proximos pasos
 
