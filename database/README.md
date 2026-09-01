@@ -11,7 +11,7 @@ La base de datos usa PostgreSQL 18 en Neon y mantiene el modelo de la aplicació
 
 ## Entornos
 
-- Git: `codex/develop`.
+- Git: `develop`.
 - Neon: `development`.
 - Base de datos: `neondb`.
 - Esquema de aplicación: `pagato`.
