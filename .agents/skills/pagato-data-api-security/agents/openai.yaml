@@ -1,0 +1,4 @@
+interface:
+  display_name: "PagaTo · Datos y API"
+  short_description: "Protege datos financieros y contratos"
+  default_prompt: "Usa $pagato-data-api-security para implementar o revisar este acceso a datos o endpoint."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PagaTo · Desarrollo seguro"
+  short_description: "Implementa funciones seguras desde el diseño"
+  default_prompt: "Usa $pagato-secure-development para implementar este cambio con controles de seguridad desde el diseño."

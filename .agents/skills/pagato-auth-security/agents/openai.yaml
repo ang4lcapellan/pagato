@@ -1,0 +1,4 @@
+interface:
+  display_name: "PagaTo · Seguridad de acceso"
+  short_description: "Protege identidad, sesiones y autorización"
+  default_prompt: "Usa $pagato-auth-security para implementar o revisar este flujo de acceso de PagaTo."

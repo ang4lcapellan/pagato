@@ -1,77 +1,112 @@
-# PagaTo’
+# PagaTo'
 
-Plataforma de finanzas personales con frontend web navegable y backend ASP.NET Core en desarrollo.
+PagaTo' es una aplicacion web de finanzas personales orientada a ayudar a sus usuarios a registrar, organizar y comprender sus ingresos y gastos de forma sencilla.
 
-## Estado actual
+El producto se desarrollara como una **Progressive Web App (PWA)**, por lo que podra utilizarse desde un navegador e instalarse en computadoras y dispositivos moviles sin depender inicialmente de Google Play o App Store.
 
-- Web React: interfaz navegable conectada a los contratos HTTP del backend; conserva mocks solo como referencia visual no usada por las páginas principales.
-- API .NET 10: base funcional con Identity, JWT, refresh tokens, módulos financieros MVP y OpenAPI.
-- PostgreSQL: migración inicial aplicada y verificada en Neon `development` el 17 de agosto de 2026.
-- Móvil y sincronización offline: futuros.
+## Estado del proyecto
 
-## Stack
+El proyecto se encuentra actualmente en la fase de analisis y definicion de arquitectura.
 
-Web: React 19, TypeScript, Vite, Tailwind CSS, React Router y TanStack Query.
+- Requerimientos funcionales iniciales: definidos.
+- Requerimientos no funcionales iniciales: definidos.
+- Arquitectura propuesta: seleccionada.
+- Diseno e implementacion: pendientes.
 
-Backend: ASP.NET Core 10, C#, EF Core 10, Npgsql, Identity, FluentValidation, Serilog, Swagger/OpenAPI, xUnit y Testcontainers PostgreSQL.
+## Objetivo del MVP
 
-## Estructura
+Construir una primera version simple y util que permita al usuario administrar su informacion financiera personal desde una misma cuenta, tanto en escritorio como en dispositivos moviles.
 
-- `apps/web`: aplicación visual existente.
-- `apps/api`: solución `PagaTo.sln`, proyectos `src` y `tests`.
-- `Fase 3 Desarrollo/Backend`: auditoría y documentación backend.
-- `Fase 3 Desarrollo/Database`: diseño inicial; el SQL completo permanece ignorado.
+El MVP contempla:
 
-## Web
+- Registro y autenticacion de usuarios.
+- Registro de ingresos y gastos.
+- Creacion y gestion de cuentas financieras.
+- Dashboard con un resumen financiero.
+- Historial de transacciones.
+- Edicion y eliminacion de transacciones.
+- Categorias personalizadas.
+- Presupuestos basicos.
+- Preferencias de apariencia, idioma y moneda.
+- Recuperacion de contrasena y cierre de sesion.
 
-```powershell
-cd apps/web
-npm install
-npm run typecheck
-npm run dev
+## Arquitectura seleccionada
+
+PagaTo' utilizara inicialmente un **monolito modular full-stack**. Esta arquitectura mantiene la implementacion y el despliegue sencillos, pero separa el sistema por modulos funcionales para facilitar su mantenimiento y crecimiento.
+
+```text
+PWA Next.js
+|-- Interfaz React
+|-- Logica del servidor
+|-- API interna
+|-- Autenticacion
+`-- Acceso a datos
+          |
+          `-- PostgreSQL
 ```
 
-La web usa `VITE_API_BASE_URL`. Copia `apps/web/.env.example` a un archivo local `.env.local` si necesitas cambiar `http://localhost:5147/api/v1`. No guardes secretos en variables `VITE_*`, porque se incluyen en el navegador.
+### Tecnologias previstas
 
-## API
+- Next.js con App Router.
+- React.
+- TypeScript.
+- PostgreSQL.
+- Prisma ORM o Drizzle ORM (decision pendiente).
+- Auth.js o una solucion equivalente (decision pendiente).
+- Tailwind CSS.
+- Zod para validaciones.
+- Vitest y Playwright para pruebas.
+- Web App Manifest y service worker para capacidades PWA.
 
-Requiere .NET SDK 10. Los secretos se configuran con `dotnet user-secrets`; nunca en `appsettings` o Git. Consulta `Fase 3 Desarrollo/Backend/08_Local_Development.md`.
+Las versiones y dependencias concretas se definiran al comenzar la implementacion.
 
-```powershell
-cd apps/api
-dotnet tool restore
-dotnet restore
-dotnet build PagaTo.sln
-dotnet run --project src/PagaTo.Api
-```
+## Modulos iniciales
 
-API: `http://localhost:5147`. Swagger: `http://localhost:5147/swagger`. Health: `http://localhost:5147/health`.
+La aplicacion se organizara alrededor de los siguientes modulos:
 
-## Pruebas
+- Autenticacion y usuarios.
+- Cuentas financieras.
+- Transacciones.
+- Categorias.
+- Presupuestos.
+- Dashboard.
+- Preferencias.
 
-```powershell
-cd apps/api
-dotnet test PagaTo.sln
-```
+Cada modulo debera mantener separadas, en la medida necesaria, la interfaz, las validaciones, los casos de uso y el acceso a datos.
 
-Las pruebas de integración requieren Docker Desktop y crean PostgreSQL efímero; nunca usan Neon.
+## Estrategia PWA
 
-## Integración local
+La aplicacion tendra una interfaz responsive e instalable desde navegadores compatibles. En el MVP, el funcionamiento sin conexion se limitara a la carga de la interfaz y a estados informativos.
 
-1. Configura `ConnectionStrings:DefaultConnection` y `Jwt:SigningKey` con `dotnet user-secrets` en `PagaTo.Api`.
-2. Aplica la migración únicamente a una base de desarrollo autorizada.
-3. Inicia la API en `http://localhost:5147`.
-4. Inicia Vite en `http://localhost:5173`.
+Las operaciones que modifiquen informacion financiera, como registrar o editar transacciones, requeriran conexion con el servidor para proteger la integridad y consistencia de los datos.
 
-El access token vive solo en memoria. El refresh token se entrega como cookie `HttpOnly`, se rota y nunca se guarda en `localStorage`.
+## Principios del proyecto
 
-## Limitaciones
+- Mantener el MVP pequeno y comprensible.
+- Priorizar seguridad, privacidad e integridad de los datos.
+- Evitar complejidad tecnica que no aporte valor inmediato.
+- Utilizar tecnologias aplicables al mercado laboral.
+- Mantener una experiencia consistente en web, escritorio y movil.
+- Preparar el sistema para crecer sin adoptar microservicios prematuramente.
 
-- La conexión local apunta exclusivamente a la rama Neon `development`; no usar esta configuración para producción.
-- Recuperación de contraseña no tiene proveedor de correo.
-- Tags, receipts, reportes avanzados y offline están pendientes.
-- No existe despliegue productivo.
+## Documentacion
 
-## Próximos pasos
+La documentacion de analisis incluye actualmente:
 
-Ejecutar Testcontainers con Docker Desktop activo y completar pruebas E2E del flujo web/API.
+- 15 requerimientos funcionales (`PG-01` a `PG-15`).
+- 15 requerimientos no funcionales (`RNF-01` a `RNF-15`).
+
+Los documentos completos se incorporaran al repositorio cuando se defina la estructura documental definitiva.
+
+## Proximos pasos
+
+1. Revisar y consolidar los requerimientos.
+2. Definir las reglas de negocio y los casos de uso.
+3. Diseñar el modelo inicial de datos.
+4. Confirmar las herramientas de persistencia y autenticacion.
+5. Crear la base tecnica del proyecto.
+6. Implementar el MVP por modulos.
+
+## Licencia
+
+La licencia del proyecto aun no ha sido definida.

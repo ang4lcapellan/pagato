@@ -1,0 +1,4 @@
+interface:
+  display_name: "PagaTo · Secretos y claves"
+  short_description: "Protege variables, tokens y credenciales"
+  default_prompt: "Usa $pagato-secrets para configurar o revisar estos secretos sin exponer valores sensibles."
