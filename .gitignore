@@ -1,31 +1,32 @@
+# Dependencies
 node_modules/
-.pnpm-store/
+.next/
+out/
 dist/
 coverage/
-*.tsbuildinfo
+playwright-report/
+test-results/
+
+# Environment variables and secrets
 .env
 .env.*
 !.env.example
-appsettings.Local.json
-secrets.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Tooling and local state
+.turbo/
+.vercel/
+.neon/
+.idea/
+.vscode/
 *.log
-*.tmp
-*.temp
+
+# Operating system
 .DS_Store
 Thumbs.db
-.idea/
-.vscode/*
-!.vscode/extensions.json
-.vs/
-bin/
-obj/
-TestResults/
-*.user
-*.suo
-~$*
-.~lock.*
-desktop.ini
-OneDriveTemp/
 
-# Database review artifact: contains the complete initial schema and stays local.
-Fase 3 Desarrollo/Database/pagato_initial_schema.sql
+# Temporary artifacts
+tmp/
