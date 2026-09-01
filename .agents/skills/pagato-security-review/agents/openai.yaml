@@ -1,4 +1,0 @@
-interface:
-  display_name: "PagaTo · Revisión de seguridad"
-  short_description: "Audita cambios antes de publicar"
-  default_prompt: "Usa $pagato-security-review para auditar estos cambios y priorizar riesgos antes de publicarlos."

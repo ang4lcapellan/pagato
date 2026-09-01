@@ -6,12 +6,14 @@ El producto se desarrollara como una **Progressive Web App (PWA)**, por lo que p
 
 ## Estado del proyecto
 
-El proyecto se encuentra actualmente en la fase de analisis y definicion de arquitectura.
+El proyecto se encuentra en transicion desde el diseno hacia la implementacion tecnica.
 
 - Requerimientos funcionales iniciales: definidos.
 - Requerimientos no funcionales iniciales: definidos.
 - Arquitectura propuesta: seleccionada.
-- Diseno e implementacion: pendientes.
+- Diseno visual inicial: definido.
+- Base de datos inicial: definida en `Fase 3 Desarrollo/database`.
+- Implementacion de la aplicacion: pendiente de iniciar.
 
 ## Objetivo del MVP
 
@@ -91,12 +93,18 @@ Las operaciones que modifiquen informacion financiera, como registrar o editar t
 
 ## Documentacion
 
-La documentacion de analisis incluye actualmente:
+El repositorio se organiza por fases:
+
+- `Fase 1 Analisis`: requerimientos funcionales y no funcionales.
+- `Fase 2 Diseño`: linea grafica y pantallas de referencia para escritorio y movil.
+- `Fase 3 Desarrollo`: base de datos, configuracion tecnica y codigo fuente de la aplicacion.
+
+La documentacion de analisis incluye:
 
 - 15 requerimientos funcionales (`PG-01` a `PG-15`).
 - 15 requerimientos no funcionales (`RNF-01` a `RNF-15`).
 
-Los documentos completos se incorporaran al repositorio cuando se defina la estructura documental definitiva.
+Los secretos y archivos de entorno reales no deben versionarse. `Fase 3 Desarrollo/.env.example` contiene solamente marcadores ficticios para documentar las variables requeridas.
 
 ## Proximos pasos
 
