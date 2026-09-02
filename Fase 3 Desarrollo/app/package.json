@@ -11,11 +11,13 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "test:db": "node --conditions=react-server tests/integration/profile-check.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "check": "npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {
+    "@fontsource-variable/manrope": "^5.3.0",
     "@neondatabase/auth": "0.5.0-beta",
     "@neondatabase/serverless": "^1.1.0",
     "drizzle-orm": "^0.45.2",

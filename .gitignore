@@ -23,6 +23,10 @@ test-results/
 .idea/
 .vscode/
 *.log
+AGENTS.md
+CLAUDE.md
+.agents/
+.codex/
 
 # Operating system
 .DS_Store

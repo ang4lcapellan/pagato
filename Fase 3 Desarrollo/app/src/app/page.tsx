@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandMark } from "@/modules/auth/components/brand-mark";
 
 const features = [
   { title: "Control de cuentas", description: "Organiza efectivo, bancos, ahorros y tarjetas por moneda." },
@@ -11,10 +12,7 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-[var(--surface)]">
       <div className="mx-auto max-w-7xl px-5 py-6 sm:px-8 lg:px-12">
         <header className="flex items-center justify-between">
-          <Link className="flex items-center gap-3" href="/" aria-label="PagaTo, inicio">
-            <span className="grid size-11 place-items-center rounded-2xl bg-[var(--brand)] text-xl font-bold text-white shadow-lg shadow-emerald-900/10">P</span>
-            <span className="text-xl font-bold tracking-tight text-[var(--ink)]">PagaTo&apos;</span>
-          </Link>
+          <BrandMark />
           <Link className="button button-secondary" href="/auth/sign-in">Iniciar sesión</Link>
         </header>
 
