@@ -5,6 +5,7 @@ La base de datos usa PostgreSQL 18 en Neon y mantiene el modelo de la aplicació
 ## Archivos
 
 - `migrations/0001_initial_schema.sql`: esquema inicial, restricciones, índices, RLS, vistas y categorías predeterminadas.
+- `migrations/0002_monthly_budget_plans.sql`: presupuesto mensual padre y vínculo opcional de los límites por categoría, sin reasignar datos anteriores.
 - `verify.sql`: comprobaciones de solo lectura después de aplicar la migración.
 - `security_smoke_test.sql`: prueba transaccional de aislamiento entre usuarios; siempre termina en `ROLLBACK`.
 - `schema.md`: explicación del modelo, relaciones y decisiones de integridad.
@@ -34,13 +35,27 @@ SELECT set_config('pagato.user_id', $1, true);
 
 El tercer argumento en `true` limita el valor a la transacción actual, evitando que el contexto de un usuario se reutilice en una conexión pooled.
 
-La aplicación debe conectarse con un rol de ejecución sin privilegios de propietario. La creación de ese rol y la integración con el proveedor de autenticación se realizarán cuando se defina Auth.js, Better Auth o Neon Auth.
+La aplicación integra Neon Auth y verifica la sesión en el servidor. La conexión de desarrollo todavía usa `neondb_owner`, que omite RLS; por eso cada consulta aplica también filtros explícitos de identidad y propiedad. Antes de producción se debe configurar un rol de ejecución sin privilegios de propietario. Estas migraciones no crean ese rol.
 
 ## Aplicación
 
 1. Seleccionar la rama `development` en Neon.
 2. Ejecutar `migrations/0001_initial_schema.sql` como una transacción.
-3. Ejecutar `verify.sql`.
-4. Ejecutar `security_smoke_test.sql` y confirmar que termina correctamente en `ROLLBACK`.
-5. Confirmar que todas las tablas están en el esquema `pagato` y que RLS está habilitado.
-6. No copiar la cadena de conexión a archivos versionados, logs o conversaciones.
+3. Ejecutar `migrations/0002_monthly_budget_plans.sql` como una transacción.
+4. Ejecutar `verify.sql` para comprobar el esquema inicial y revisar también las restricciones, índices y RLS de `budget_plans`.
+5. Ejecutar `security_smoke_test.sql` y confirmar que termina correctamente en `ROLLBACK`.
+6. Confirmar que todas las tablas están en el esquema `pagato` y que RLS está habilitado.
+7. No copiar la cadena de conexión a archivos versionados, logs o conversaciones.
+
+### Actualizar una base de desarrollo existente
+
+Desde `../app`, con Node.js 24 y `DIRECT_URL` en `.env.local`:
+
+```text
+node scripts/migrate-budget-plans.mjs
+node scripts/migrate-budget-plans.mjs --apply
+```
+
+El primer comando valida la segunda migración en una transacción que revierte obligatoriamente. El segundo la aplica. El script restringe el destino al endpoint de desarrollo del proyecto, comprueba que se conserven las filas anteriores y detecta si ya se aplicó. Para otro entorno se debe revisar y ejecutar el SQL mediante su procedimiento de despliegue autorizado; no quitar la protección para apuntar a producción.
+
+Después se puede ejecutar `npm run test:plans:db` desde la aplicación. Esta suite requiere una sesión de prueba activa y revierte sus datos temporales.

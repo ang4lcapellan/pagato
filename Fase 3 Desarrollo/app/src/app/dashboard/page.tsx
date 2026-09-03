@@ -2,6 +2,7 @@ import { signOutAction } from "@/modules/auth/actions";
 import { BrandMark } from "@/modules/auth/components/brand-mark";
 import { getFinancialProfile } from "@/modules/users/server/profile-service";
 import { ProfileSummary } from "@/modules/users/components/profile-summary";
+import Link from "next/link";
 
 export const metadata = { title: "Panel principal" };
 export const dynamic = "force-dynamic";
@@ -29,7 +30,9 @@ export default async function DashboardPage() {
         </section>
 
         <ProfileSummary profile={profile} />
-        <p className="mt-6 text-sm leading-6 text-[var(--muted)]">Siguiente módulo: cuentas financieras. Este panel muestra la preparación de tu perfil; todavía no es el dashboard financiero completo.</p>
+        <div className="mt-6 flex flex-wrap gap-3"><Link href="/transactions" className="button button-primary">Ver movimientos</Link><Link href="/accounts" className="button button-secondary">Ir a mis cuentas</Link><Link href="/categories" className="button button-secondary">Gestionar categorías</Link></div>
+        <Link href="/budgets" className="button button-secondary mt-3">Ver presupuestos</Link>
+        <p className="mt-4 text-sm leading-6 text-[var(--muted)]">Ya puedes registrar movimientos y definir presupuestos por categoría. El progreso se calcula a partir de tus gastos. Los gráficos se incorporarán en el módulo Dashboard.</p>
         </> : <section className="profile-card mt-8" aria-labelledby="profile-error-title">
           <h1 id="profile-error-title" className="text-xl font-semibold">
             {result.status === "inactive" ? "Tu perfil no está disponible" : result.status === "invalid-session" ? "Necesitas iniciar sesión de nuevo" : "No pudimos preparar tu perfil"}

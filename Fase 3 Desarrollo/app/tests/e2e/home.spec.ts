@@ -20,6 +20,20 @@ test("protege el panel sin una sesión activa", async ({ page }) => {
   await expect(page).toHaveURL(/\/auth\/sign-in$/);
 });
 
+test("protege las cuentas sin una sesión activa", async ({ page }) => {
+  await page.goto("/accounts");
+  await expect(page).toHaveURL(/\/auth\/sign-in$/);
+  await expect(page.getByRole("heading", { name: /inicia sesión/i })).toBeVisible();
+});
+
+for (const route of ["/categories", "/settings", "/transactions", "/budgets", "/budgets/10000000-0000-4000-8000-000000000001"]) {
+  test(`protege ${route} sin una sesión activa`, async ({ page }) => {
+    await page.goto(route);
+    await expect(page).toHaveURL(/\/auth\/sign-in$/);
+    await expect(page.getByRole("heading", { name: /inicia sesión/i })).toBeVisible();
+  });
+}
+
 test("el acceso se adapta a una pantalla móvil", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/auth/sign-in");
