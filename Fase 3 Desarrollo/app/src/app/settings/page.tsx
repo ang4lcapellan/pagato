@@ -1,19 +1,24 @@
-import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
-import { Icon } from "@/components/ui/icon";
 import { requireSession } from "@/lib/auth/session";
+import { getSqlClient } from "@/lib/db/client";
+import { getFinancialProfile } from "@/modules/users/server/profile-service";
+import { readPreferences } from "@/modules/preferences/server/repository";
+import { PreferencesScreen } from "@/modules/preferences/components/preferences-screen";
+import { Text } from "@/modules/preferences/components/presentation-provider";
+import { preferencesSchema } from "@/modules/preferences/model";
+import { privatePageMetadata } from "@/lib/page-metadata";
 
-export const metadata = { title: "Ajustes" };
+export const metadata = privatePageMetadata("Preferencias · Settings", "Configura apariencia, idioma, moneda, zona horaria y formatos de PagaTo.");
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
   const session = await requireSession();
+  await getFinancialProfile();
+  let record = null;
+  try { record = await readPreferences(getSqlClient(), { userId: session.user.id, sessionId: session.session.id }); }
+  catch { console.error("[preferences] No se pudieron cargar las preferencias."); }
+  const valid = record && preferencesSchema.safeParse(record.preferences);
   return <AppShell active="/settings" name={session.user.name || "Mi cuenta"}>
-    <header className="accounts-heading"><div><h1>Ajustes</h1><p>Organiza PagaTo a tu manera.</p></div></header>
-    <section className="mt-8 max-w-3xl" aria-labelledby="organization-title"><h2 id="organization-title" className="mb-4 text-xs font-bold uppercase tracking-widest text-[var(--muted)]">Organización financiera</h2>
-      <Link href="/categories" className="settings-category-link"><span className="empty-wallet"><Icon name="categories" /></span><div className="min-w-0 flex-1"><h3 className="text-base font-bold">Categorías</h3><p className="mt-1 text-sm leading-6 text-[var(--muted)]">Personaliza cómo clasificas tus ingresos y gastos.</p></div><Icon name="arrow" className="shrink-0" /></Link>
-      <Link href="/budgets" className="settings-category-link mt-4"><span className="empty-wallet"><Icon name="budget" /></span><div className="min-w-0 flex-1"><h3 className="text-base font-bold">Presupuestos</h3><p className="mt-1 text-sm leading-6 text-[var(--muted)]">Define límites por categoría y sigue tus gastos.</p></div><Icon name="arrow" className="shrink-0" /></Link>
-    </section>
-    <p className="mt-6 max-w-xl text-sm leading-6 text-[var(--muted)]">Las preferencias de apariencia, idioma y otros ajustes se incorporarán en su módulo correspondiente.</p>
+    {record && valid?.success ? <PreferencesScreen record={{ ...record, preferences: valid.data }} name={session.user.name || "Mi cuenta"} email={session.user.email} timezones={Intl.supportedValuesOf("timeZone")} /> : <section role="alert" className="account-alert"><h1><Text value="Preferencias no disponibles" /></h1><p><Text value="No pudimos cargar tus preferencias. Recarga la página para reintentar." /></p><a className="button button-secondary mt-4" href="/settings"><Text value="Reintentar" /></a></section>}
   </AppShell>;
 }

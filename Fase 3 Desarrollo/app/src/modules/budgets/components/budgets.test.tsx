@@ -23,7 +23,7 @@ afterEach(() => { cleanup(); vi.clearAllMocks(); });
 it("shows real progress above 100%, available and exceeded without overfilling the bar", () => {
   render(<BudgetsScreen {...props} />);
   const card = within(screen.getByRole("article", { name: budget.name }));
-  expect(card.getByText("125,00% usado")).toBeInTheDocument();
+  expect(card.getByText("125.00% usado")).toBeInTheDocument();
   expect(card.getByText("Límite superado")).toBeInTheDocument();
   expect(card.getByText("Excedido")).toBeInTheDocument();
   expect(card.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "100");

@@ -38,6 +38,7 @@ describe("account actions", () => {
     expect(await saveAccountAction(initialAccountState, form({ user_id: "attacker" }))).toMatchObject({ status: "success" });
     expect(vi.mocked(createAccountQueries).mock.calls[0][1]).toEqual({ userId: "verified-user", sessionId: "verified-session" });
     expect(revalidatePath).toHaveBeenCalledWith("/accounts");
+    expect(revalidatePath).toHaveBeenCalledWith("/dashboard");
   });
   it("no comunica éxito al editar una cuenta ajena o con una versión desactualizada", async () => {
     vi.mocked(getSqlClient).mockReturnValue({ transaction: vi.fn().mockResolvedValue([[], []]) } as unknown as ReturnType<typeof getSqlClient>);
@@ -49,5 +50,12 @@ describe("account actions", () => {
     vi.mocked(accountStatusQuery).mockResolvedValue([]);
     expect(await changeAccountStatusAction(initialAccountState, form({ status: "archived", revision: "2026-09-02T10:00:00.123456Z" }))).toMatchObject({ status: "error" });
     expect(vi.mocked(accountStatusQuery).mock.calls[0][1]).toEqual({ userId: "verified-user", sessionId: "verified-session" });
+  });
+  it("actualiza Inicio al archivar o reactivar una cuenta", async () => {
+    vi.mocked(accountStatusQuery).mockResolvedValue([{ id: "updated" }]);
+    for (const status of ["archived", "active"]) {
+      expect(await changeAccountStatusAction(initialAccountState, form({ status, revision: "2026-09-02T10:00:00.123456Z" }))).toMatchObject({ status: "success" });
+      expect(revalidatePath).toHaveBeenCalledWith("/dashboard");
+    }
   });
 });

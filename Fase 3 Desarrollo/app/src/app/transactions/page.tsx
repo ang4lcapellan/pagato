@@ -9,8 +9,9 @@ import { listCategories } from "@/modules/categories/server/repository";
 import { historyUrl, PAGE_SIZE, transactionFiltersSchema } from "@/modules/transactions/model";
 import { getHistory } from "@/modules/transactions/server/repository";
 import { TransactionsScreen } from "@/modules/transactions/components/transactions-screen";
+import { privatePageMetadata } from "@/lib/page-metadata";
 
-export const metadata = { title: "Transacciones" };
+export const metadata = privatePageMetadata("Transacciones", "Consulta y administra ingresos, gastos y transferencias entre tus cuentas.");
 export const dynamic = "force-dynamic";
 export default async function TransactionsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const session = await requireSession();

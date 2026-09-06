@@ -5,8 +5,9 @@ import { getSqlClient } from "@/lib/db/client";
 import { getFinancialProfile } from "@/modules/users/server/profile-service";
 import { listAccounts } from "@/modules/accounts/server/repository";
 import { AccountsScreen } from "@/modules/accounts/components/accounts-screen";
+import { privatePageMetadata } from "@/lib/page-metadata";
 
-export const metadata = { title: "Cuentas" };
+export const metadata = privatePageMetadata("Cuentas", "Administra tus cuentas financieras y consulta sus saldos por moneda.");
 export const dynamic = "force-dynamic";
 
 export default async function AccountsPage() {

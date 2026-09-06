@@ -1,0 +1,35 @@
+name: Security checks
+
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+  schedule:
+    - cron: "17 9 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  application:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "Fase 3 Desarrollo/app"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: "Fase 3 Desarrollo/app/package-lock.json"
+      - run: npm ci
+      - run: npm run security:secrets
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:e2e

@@ -12,7 +12,8 @@ import { BudgetsScreen } from "@/modules/budgets/components/budgets-screen";
 import { listPlans } from "@/modules/budgets/plans/repository";
 import { PlansScreen } from "@/modules/budgets/plans/components/plans-screen";
 import { BudgetRetryButton } from "@/modules/budgets/components/retry-button";
-export const metadata = { title: "Presupuestos" };
+import { privatePageMetadata } from "@/lib/page-metadata";
+export const metadata = privatePageMetadata("Presupuestos", "Crea presupuestos mensuales y controla sus límites por categoría.");
 export const dynamic = "force-dynamic";
 export default async function BudgetsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const session = await requireSession();

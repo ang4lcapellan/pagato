@@ -34,9 +34,9 @@ export type PlanDetail = { plan: Plan; budgets: Budget[]; timezone: string };
 export type PlanList = { plans: Plan[]; count: number };
 export type PlanActionState = { status: "idle" | "success" | "error"; message?: string; fields?: Record<string, string[]>; id?: string; version?: number };
 export const initialPlanState: PlanActionState = { status: "idle" };
-export function monthlyName(month: string) {
-  const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-  return `Presupuesto ${months[Number(month.slice(5)) - 1]} ${month.slice(0, 4)}`;
+export function monthlyName(month: string, locale: "es" | "en" = "es") {
+  const months = locale === "en" ? ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] : ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  return `${locale === "en" ? "Budget" : "Presupuesto"} ${months[Number(month.slice(5)) - 1]} ${month.slice(0, 4)}`;
 }
 export function nextMonth(month: string) {
   const [y, m] = month.split("-").map(Number);

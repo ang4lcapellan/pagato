@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const email = z.string().trim().email("Escribe un correo electrónico válido.").max(254);
-const password = z.string().min(8, "Usa al menos 8 caracteres.").max(128, "La contraseña es demasiado larga.");
+const password = z.string().min(12, "Usa al menos 12 caracteres.").max(128, "La contraseña es demasiado larga.");
 
 export const signInSchema = z.object({
   email,

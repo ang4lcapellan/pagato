@@ -1,11 +1,28 @@
 import { expect, test } from "@playwright/test";
 
+test.beforeEach(async ({ context }) => {
+  await context.addInitScript(() => localStorage.setItem("pagato.telemetry-consent.v1", "declined"));
+});
+
 test("muestra la portada y permite abrir el registro", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /entiende tu dinero/i })).toBeVisible();
-  await page.getByRole("link", { name: /crear mi cuenta/i }).click();
+  await page.getByRole("link", { name: /crear mi cuenta/i }).first().click();
   await expect(page).toHaveURL(/\/auth\/sign-up$/);
   await expect(page.getByRole("heading", { name: /crea tu cuenta/i })).toBeVisible();
+});
+
+test("la portada ofrece navegación móvil, CTA durante scroll y volver arriba", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const menu = page.getByRole("button", { name: "Abrir o cerrar menú" });
+  await expect(menu).toBeVisible(); await menu.click();
+  await expect(page.getByRole("navigation", { name: "Navegación móvil de la portada" }).getByRole("link", { name: "Seguridad" })).toBeVisible();
+  await page.locator(".landing-scroll-cta").scrollIntoViewIfNeeded();
+  await expect(page.locator(".landing-scroll-cta").getByRole("link", { name: "Crear mi cuenta" })).toBeVisible();
+  const back = page.getByRole("link", { name: "Volver arriba" }); await back.scrollIntoViewIfNeeded(); await back.click();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(50);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 
 test("permite navegar por recuperación de contraseña", async ({ page }) => {

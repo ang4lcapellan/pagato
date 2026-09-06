@@ -16,10 +16,15 @@ function EmailField({ errors }: { errors?: string[] }) {
   );
 }
 
+function BotField() {
+  return <label className="auth-bot-field" aria-hidden="true">No completar este campo<input name="website" tabIndex={-1} autoComplete="off" /></label>;
+}
+
 export function SignInForm() {
   const [state, action] = useActionState(signInAction, initialAuthActionState);
   return (
     <form action={action} className="space-y-5" noValidate>
+      <BotField />
       <FormMessage state={state} />
       <EmailField errors={state.fieldErrors?.email} />
       <PasswordInput name="password" label="Contraseña" error={state.fieldErrors?.password} />
@@ -37,14 +42,15 @@ export function SignUpForm() {
   const [state, action] = useActionState(signUpAction, initialAuthActionState);
   return (
     <form action={action} className="space-y-5" noValidate>
+      <BotField />
       <FormMessage state={state} />
       <label className="block"><span className="mb-2 block text-sm font-semibold text-[var(--ink)]">Nombre</span><input className="auth-input" name="name" autoComplete="name" placeholder="Tu nombre" aria-invalid={Boolean(state.fieldErrors?.name)} aria-describedby={state.fieldErrors?.name ? "name-error" : undefined} required /><FieldError errors={state.fieldErrors?.name} id="name-error" /></label>
       <EmailField errors={state.fieldErrors?.email} />
       <PasswordInput name="password" label="Contraseña" error={state.fieldErrors?.password} autoComplete="new-password" />
       <PasswordInput name="confirmPassword" label="Confirmar contraseña" error={state.fieldErrors?.confirmPassword} autoComplete="new-password" />
-      <label className="flex min-h-11 cursor-pointer items-start gap-3 text-sm leading-5 text-[var(--muted)]"><input className="mt-0.5 size-4 shrink-0 accent-[var(--brand)]" name="acceptedTerms" type="checkbox" aria-invalid={Boolean(state.fieldErrors?.acceptedTerms)} /> <span>Acepto los términos de uso y la política de privacidad.</span></label>
+      <label className="flex min-h-11 cursor-pointer items-start gap-3 text-sm leading-5 text-[var(--muted)]"><input className="mt-0.5 size-4 shrink-0 accent-[var(--brand)]" name="acceptedTerms" type="checkbox" aria-invalid={Boolean(state.fieldErrors?.acceptedTerms)} /> <span>Acepto los <Link className="auth-link font-semibold text-[var(--brand-dark)]" href="/terms" target="_blank" rel="noopener noreferrer">términos de uso</Link> y la <Link className="auth-link font-semibold text-[var(--brand-dark)]" href="/privacy" target="_blank" rel="noopener noreferrer">política de privacidad</Link>.</span></label>
       <FieldError errors={state.fieldErrors?.acceptedTerms} id="terms-error" />
-      <p className="text-xs leading-5 text-[var(--muted)]">Usa 8 caracteres o más. PagaTo&apos; nunca guarda tu contraseña directamente.</p>
+      <p className="text-xs leading-5 text-[var(--muted)]">Usa 12 caracteres o más. PagaTo&apos; nunca guarda tu contraseña directamente.</p>
       <SubmitButton idle="Crear mi cuenta" busy="Creando cuenta…" />
       <p className="text-center text-sm text-[var(--muted)]">¿Ya tienes una cuenta? <Link className="auth-link font-bold text-[var(--brand-dark)]" href="/auth/sign-in">Inicia sesión</Link></p>
     </form>
@@ -55,6 +61,7 @@ export function ForgotPasswordForm() {
   const [state, action] = useActionState(requestPasswordResetAction, initialAuthActionState);
   return (
     <form action={action} className="space-y-5" noValidate>
+      <BotField />
       <FormMessage state={state} />
       <EmailField errors={state.fieldErrors?.email} />
       <SubmitButton idle="Enviar enlace" busy="Enviando…" />
@@ -67,6 +74,7 @@ export function ResetPasswordForm({ token }: { token: string }) {
   const [state, action] = useActionState(resetPasswordAction, initialAuthActionState);
   return (
     <form action={action} className="space-y-5" noValidate>
+      <BotField />
       <input name="token" type="hidden" value={token} />
       <FormMessage state={state} />
       <PasswordInput name="password" label="Nueva contraseña" error={state.fieldErrors?.password} autoComplete="new-password" />

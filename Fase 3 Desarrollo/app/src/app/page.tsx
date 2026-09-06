@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { publicPageMetadata } from "@/lib/page-metadata";
 import { BrandMark } from "@/modules/auth/components/brand-mark";
+import { LandingBackToTop, LandingEnhancements, LandingHeader } from "@/components/landing-interactions";
 
 const features = [
   { title: "Control de cuentas", description: "Organiza efectivo, bancos, ahorros y tarjetas por moneda." },
@@ -7,16 +9,15 @@ const features = [
   { title: "Presupuestos útiles", description: "Define límites por categoría y conoce tu progreso en cada período." },
 ];
 
+export const metadata = publicPageMetadata("PagaTo' — Finanzas personales claras", "Organiza cuentas, movimientos y presupuestos en una aplicación privada y multidispositivo.", "/");
+
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[var(--surface)]">
+    <main className="landing-page min-h-screen overflow-hidden bg-[var(--surface)]">
       <div className="mx-auto max-w-7xl px-5 py-6 sm:px-8 lg:px-12">
-        <header className="flex items-center justify-between">
-          <BrandMark />
-          <Link className="button button-secondary" href="/auth/sign-in">Iniciar sesión</Link>
-        </header>
+        <LandingHeader />
 
-        <section className="grid items-center gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
+        <section className="landing-hero grid items-center gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
           <div className="max-w-2xl">
             <p className="eyebrow">Finanzas personales sin complicaciones</p>
             <h1 className="mt-5 text-5xl font-bold leading-[1.04] tracking-[-0.045em] text-[var(--ink)] sm:text-6xl lg:text-7xl">Entiende tu dinero y decide con calma.</h1>
@@ -46,15 +47,32 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="beneficios" className="grid gap-4 pb-16 md:grid-cols-3">
+        <section id="beneficios" className="landing-section grid gap-4 pb-16 md:grid-cols-3" aria-labelledby="beneficios-title">
+          <div className="landing-section-heading md:col-span-3" data-reveal>
+            <p className="eyebrow">Una visión completa</p><h2 id="beneficios-title">Lo necesario para entender tu dinero</h2><p>Cuentas, movimientos y presupuestos conectados en una experiencia sencilla.</p>
+          </div>
           {features.map((feature, index) => (
-            <article className="feature-card" key={feature.title}>
+            <article className="feature-card" key={feature.title} data-reveal>
               <span className="feature-number">0{index + 1}</span>
               <h2>{feature.title}</h2>
               <p>{feature.description}</p>
             </article>
           ))}
         </section>
+
+        <LandingEnhancements />
+
+        <section id="seguridad" className="landing-trust" data-reveal>
+          <div><p className="eyebrow">Privacidad desde el diseño</p><h2>Tus finanzas no se convierten en contenido público</h2><p>Las rutas financieras requieren una sesión activa. La versión instalable no guarda saldos, movimientos, sesiones ni respuestas privadas para usarlas sin conexión.</p></div>
+          <ul><li><strong>Sesión protegida</strong><span>El acceso se verifica antes de mostrar información financiera.</span></li><li><strong>Datos separados</strong><span>Cada consulta y operación se limita al propietario autenticado.</span></li><li><strong>Offline seguro</strong><span>Sin internet se muestra información neutral, sin copias privadas.</span></li></ul>
+        </section>
+
+        <section id="multidispositivo" className="landing-device" data-reveal>
+          <div className="landing-device-preview" aria-hidden="true"><div><span /><span /><span /></div><p>PagaTo’</p><strong>RD$ 48,250</strong><i /></div>
+          <div><p className="eyebrow">Una sola aplicación</p><h2>En escritorio y también en tu pantalla de inicio</h2><p>El diseño se adapta a teléfonos, tabletas y computadoras. Instala PagaTo desde un navegador compatible y recibe las nuevas versiones sin descargar otra aplicación.</p><Link href="/auth/sign-up" className="button button-primary">Probar PagaTo</Link></div>
+        </section>
+
+        <footer className="landing-footer"><BrandMark /><p>Finanzas personales claras, privadas y sin complicaciones.</p><nav aria-label="Información legal"><Link href="/privacy">Privacidad</Link><Link href="/terms">Términos</Link><LandingBackToTop /></nav></footer>
       </div>
     </main>
   );

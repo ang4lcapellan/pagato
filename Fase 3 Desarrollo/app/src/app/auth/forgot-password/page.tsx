@@ -1,7 +1,8 @@
 import { ForgotPasswordForm } from "@/modules/auth/components/auth-forms";
 import { AuthShell } from "@/modules/auth/components/auth-shell";
+import { privatePageMetadata } from "@/lib/page-metadata";
 
-export const metadata = { title: "Recuperar contraseña" };
+export const metadata = privatePageMetadata("Recuperar contraseña", "Solicita de forma segura un enlace para recuperar el acceso a PagaTo.");
 
 export default function ForgotPasswordPage() {
   return (

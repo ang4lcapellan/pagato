@@ -41,3 +41,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated from the versioned worker source during predev/prebuild
+/public/sw.js

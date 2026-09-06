@@ -5,8 +5,9 @@ import { getSqlClient } from "@/lib/db/client";
 import { getFinancialProfile } from "@/modules/users/server/profile-service";
 import { listCategories } from "@/modules/categories/server/repository";
 import { CategoriesScreen } from "@/modules/categories/components/categories-screen";
+import { privatePageMetadata } from "@/lib/page-metadata";
 
-export const metadata = { title: "Categorías" };
+export const metadata = privatePageMetadata("Categorías", "Organiza categorías de ingresos y gastos para clasificar tus movimientos.");
 export const dynamic = "force-dynamic";
 
 export default async function CategoriesPage() {

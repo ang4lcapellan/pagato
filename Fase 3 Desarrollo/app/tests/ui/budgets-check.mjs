@@ -5,6 +5,7 @@ import { createServer } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwind from "@tailwindcss/postcss";
 import { chromium } from "@playwright/test";
+import { checkMotion } from "./motion-check.mjs";
 
 // Run the real components and stylesheet with isolated, in-memory actions; no auth or database writes.
 const stubs = {
@@ -41,6 +42,11 @@ try {
   for (const width of [1440, 390, 320]) {
     const page = await browser.newPage({ locale: "es-DO", viewport: { width, height: width > 1000 ? 1000 : 844 } });
     const errors = []; page.on("pageerror", error => errors.push(error.message));
+    if (process.argv.includes("--motion")) {
+      await checkMotion(page, width);
+      assert.deepEqual(errors, []);
+      await page.close(); continue;
+    }
     if (process.argv.includes("--monthly")) {
       await page.goto("http://127.0.0.1:4175/?monthly=1&screen=overview");
       await page.getByRole("heading", { name: "Primero tu mes, después tus categorías" }).waitFor();

@@ -1,0 +1,22 @@
+// @vitest-environment node
+import { beforeEach, expect, it, vi } from "vitest";
+vi.mock("server-only", () => ({}));
+vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
+vi.mock("@/lib/auth/session", () => ({ requireSession: vi.fn() }));
+vi.mock("@/lib/db/client", () => ({ getSqlClient: vi.fn() }));
+vi.mock("./repository", () => ({ savePreferencesQuery: vi.fn() }));
+import { revalidatePath } from "next/cache";
+import { requireSession } from "@/lib/auth/session";
+import { getSqlClient } from "@/lib/db/client";
+import { savePreferencesQuery } from "./repository";
+import { savePreferencesAction } from "./actions";
+import { DEFAULT_PREFERENCES, initialPreferencesState } from "../model";
+const record = { preferences: DEFAULT_PREFERENCES, revision: "2026-09-03T10:00:00.123456Z" };
+const form = (values = {}) => { const data = new FormData(); for (const [k,v] of Object.entries({ ...DEFAULT_PREFERENCES, mode: "save", revision: record.revision, ...values })) data.set(k,String(v)); return data; };
+beforeEach(() => { vi.clearAllMocks(); vi.mocked(requireSession).mockResolvedValue({ user: { id: "verified" }, session: { id: "session" } } as Awaited<ReturnType<typeof requireSession>>); vi.mocked(savePreferencesQuery).mockResolvedValue([record]); });
+it("requires authentication before reading or writing", async () => { vi.mocked(requireSession).mockRejectedValue(new Error("redirect")); await expect(savePreferencesAction(initialPreferencesState,form())).rejects.toThrow("redirect"); expect(getSqlClient).not.toHaveBeenCalled(); });
+it("validates every field and revision before querying", async () => { expect(await savePreferencesAction(initialPreferencesState,form({timezone: "invalid"}))).toMatchObject({status:"error",fields:{timezone:expect.any(Array)}}); expect(await savePreferencesAction(initialPreferencesState,form({revision:"yesterday"}))).toMatchObject({status:"error"}); expect(savePreferencesQuery).not.toHaveBeenCalled(); });
+it("uses only verified identity and refreshes all presentation", async () => { expect(await savePreferencesAction(initialPreferencesState,form({userId:"other"}))).toMatchObject({status:"success"}); expect(vi.mocked(savePreferencesQuery).mock.calls[0][1]).toEqual({userId:"verified",sessionId:"session"}); expect(revalidatePath).toHaveBeenCalledWith("/","layout"); });
+it("restores server defaults regardless of submitted values", async () => { await savePreferencesAction(initialPreferencesState,form({mode:"reset",theme:"dark",baseCurrency:"USD"})); expect(vi.mocked(savePreferencesQuery).mock.calls[0][2]).toEqual(DEFAULT_PREFERENCES); });
+it("does not report success for stale revisions or inactive sessions", async () => { vi.mocked(savePreferencesQuery).mockResolvedValue([]); expect(await savePreferencesAction(initialPreferencesState,form())).toMatchObject({status:"error"}); expect(revalidatePath).not.toHaveBeenCalled(); });
+it("does not disclose database details on failure", async () => { vi.mocked(savePreferencesQuery).mockRejectedValue(new Error("postgres://secret")); const log=vi.spyOn(console,"error").mockImplementation(()=>{}); const state=await savePreferencesAction(initialPreferencesState,form()); expect(state.status).toBe("error"); expect(JSON.stringify(state)).not.toContain("secret"); expect(log.mock.calls.flat().join()).not.toContain("secret"); log.mockRestore(); });

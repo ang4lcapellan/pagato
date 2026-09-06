@@ -2,7 +2,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/re
 import type { ReactNode } from "react";
 import { afterEach, expect, it, vi } from "vitest";
 vi.mock("next/navigation", () => ({ useRouter: () => ({ refresh: vi.fn() }) }));
-vi.mock("@/components/ui/modal", () => ({ Modal: ({ title, children }: { title: string; children: ReactNode }) => <section role="dialog" aria-label={title}>{children}</section> }));
+vi.mock("@/components/ui/modal", () => ({ Modal: ({ title, children, onClose }: { title: string; children: ReactNode; onClose: () => void }) => <section role="dialog" aria-label={title} onClickCapture={event => { if (event.target instanceof Element && event.target.closest("[data-modal-close]")) onClose(); }}>{children}</section> }));
 vi.mock("../server/actions", () => ({ saveTransactionAction: vi.fn(), deleteTransactionAction: vi.fn() }));
 import { saveTransactionAction, deleteTransactionAction } from "../server/actions";
 import { TransactionEditor } from "./transaction-editor";

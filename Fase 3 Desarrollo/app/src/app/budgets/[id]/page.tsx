@@ -8,7 +8,8 @@ import { getFinancialProfile } from "@/modules/users/server/profile-service";
 import { listCategories } from "@/modules/categories/server/repository";
 import { getPlan } from "@/modules/budgets/plans/repository";
 import { PlanWorkspace } from "@/modules/budgets/plans/components/plan-workspace";
-export const metadata = { title: "Mi presupuesto mensual" };
+import { privatePageMetadata } from "@/lib/page-metadata";
+export const metadata = privatePageMetadata("Mi presupuesto mensual", "Detalle privado del presupuesto, distribución por categorías y progreso del período.");
 export const dynamic = "force-dynamic";
 export default async function PlanPage({ params }: { params: Promise<{ id: string }> }) {
   const session = await requireSession(); const { id } = await params;

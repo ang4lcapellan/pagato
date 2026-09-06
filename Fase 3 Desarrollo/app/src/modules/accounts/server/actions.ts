@@ -36,6 +36,7 @@ export async function saveAccountAction(_state: AccountActionState, formData: Fo
   }
   revalidatePath("/accounts");
   revalidatePath("/transactions");
+  revalidatePath("/dashboard");
   return { status: "success", message: editing ? "Cambios guardados." : "Cuenta creada correctamente." };
 }
 
@@ -53,5 +54,6 @@ export async function changeAccountStatusAction(_state: AccountActionState, form
   }
   revalidatePath("/accounts");
   revalidatePath("/transactions");
+  revalidatePath("/dashboard");
   return { status: "success", message: input.data.status === "active" ? "Cuenta reactivada." : "Cuenta archivada. Su historial se conserva." };
 }
