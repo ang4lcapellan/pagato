@@ -49,13 +49,13 @@ El service worker solo conserva recursos públicos necesarios para la pantalla s
 PagaTo'/
 ├── Fase 1 Analisis/          # Alcance, requisitos y reglas del producto
 ├── Fase 2 Diseño/            # Manual Mint Flow, marca y referencias visuales
-└── Fase 3 Desarrollo/        # Implementación técnica, datos, pruebas y operación
+└── fase-3-desarrollo/        # Implementación técnica, datos, pruebas y operación
 ```
 
 ### Composición de la Fase 3
 
 ```text
-Fase 3 Desarrollo/
+fase-3-desarrollo/
 ├── app/
 │   ├── public/               # Manifest, iconos y recursos PWA
 │   ├── scripts/              # Preparación PWA, migraciones y controles de seguridad
@@ -103,7 +103,7 @@ La separación es lógica y no requiere dos proyectos desplegables: el servidor 
 Requisitos: Node.js 24, npm y acceso a la rama `development` de Neon.
 
 ```powershell
-cd "Fase 3 Desarrollo/app"
+cd "fase-3-desarrollo/app"
 Copy-Item .env.example .env.local
 npm install
 npm run dev
@@ -154,7 +154,7 @@ npm run test:preferences:db
 5. Corre las pruebas de integración del dominio afectado.
 6. Promueve el cambio primero a `development` y solo después a `production`.
 
-La aplicación usa el endpoint pooled en ejecución y reserva el endpoint directo para herramientas que necesitan una sesión estable. Consulta la [documentación de base de datos](Fase%203%20Desarrollo/database/README.md).
+La aplicación usa el endpoint pooled en ejecución y reserva el endpoint directo para herramientas que necesitan una sesión estable. Consulta la [documentación de base de datos](fase-3-desarrollo/database/README.md).
 
 ## Flujo de entrega
 
@@ -181,13 +181,13 @@ rama de trabajo → develop → pruebas y Preview → main → Vercel Production
 
 ## Documentación técnica
 
-- [Aplicación y módulos](Fase%203%20Desarrollo/app/README.md)
-- [Arquitectura del dashboard](Fase%203%20Desarrollo/app/docs/DASHBOARD.md)
-- [Preferencias y formatos](Fase%203%20Desarrollo/app/docs/PREFERENCIAS.md)
-- [PWA e instalación](Fase%203%20Desarrollo/app/docs/PWA.md)
-- [Seguridad](Fase%203%20Desarrollo/app/docs/SEGURIDAD.md)
-- [Calidad de lanzamiento](Fase%203%20Desarrollo/app/docs/CALIDAD_LANZAMIENTO.md)
-- [Base de datos](Fase%203%20Desarrollo/database/README.md)
+- [Aplicación y módulos](fase-3-desarrollo/app/README.md)
+- [Arquitectura del dashboard](fase-3-desarrollo/app/docs/DASHBOARD.md)
+- [Preferencias y formatos](fase-3-desarrollo/app/docs/PREFERENCIAS.md)
+- [PWA e instalación](fase-3-desarrollo/app/docs/PWA.md)
+- [Seguridad](fase-3-desarrollo/app/docs/SEGURIDAD.md)
+- [Calidad de lanzamiento](fase-3-desarrollo/app/docs/CALIDAD_LANZAMIENTO.md)
+- [Base de datos](fase-3-desarrollo/database/README.md)
 
 ## Licencia
 

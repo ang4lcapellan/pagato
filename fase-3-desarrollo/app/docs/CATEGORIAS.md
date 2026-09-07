@@ -29,7 +29,7 @@ Se reutilizan `pagato.categories`, sus índices únicos y el trigger `updated_at
 
 ## Prueba manual
 
-1. Desde `Fase 3 Desarrollo/app`, ejecuta `npm run dev`. Inicia sesión y abre `http://localhost:3000/categories`.
+1. Desde `fase-3-desarrollo/app`, ejecuta `npm run dev`. Inicia sesión y abre `http://localhost:3000/categories`.
 2. Comprueba las categorías iniciales, cambia entre Gastos e Ingresos y usa búsqueda y filtros.
 3. Crea una personalizada, por ejemplo «Mascotas», de gasto. Elige icono y color. Debe aparecer con la marca «Personalizada».
 4. Edita el nombre o el color. Recarga y comprueba persistencia. El tipo debe permanecer bloqueado.

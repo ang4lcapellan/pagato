@@ -27,7 +27,7 @@ La migración 0003 añade number_format sin modificar registros financieros. El 
 
 ## Pruebas
 
-Desde `Fase 3 Desarrollo/app`:
+Desde `fase-3-desarrollo/app`:
 
 ```powershell
 npm run check

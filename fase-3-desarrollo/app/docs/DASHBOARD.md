@@ -36,7 +36,7 @@ La conexión de desarrollo sigue usando `neondb_owner`; antes de producción con
 
 ## Cómo probarlo
 
-1. Desde `Fase 3 Desarrollo/app`, ejecuta `npm run dev`, inicia sesión y entra a Inicio (`http://localhost:3000/dashboard`).
+1. Desde `fase-3-desarrollo/app`, ejecuta `npm run dev`, inicia sesión y entra a Inicio (`http://localhost:3000/dashboard`).
 2. Selecciona un mes y una moneda. Comprueba el saldo contra Cuentas y los ingresos/gastos contra Movimientos del mismo período.
 3. Registra un ingreso y un gasto desde Inicio. Verifica que las cifras y el gráfico se actualicen. Abre un movimiento reciente, edítalo y luego elimínalo para comprobar el recálculo.
 4. Registra una transferencia: no debe alterar ingresos, gastos ni ahorro. Si es entre cuentas activas de la misma moneda, no cambia su balance agregado.
