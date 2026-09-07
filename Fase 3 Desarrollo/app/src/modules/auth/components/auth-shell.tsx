@@ -4,7 +4,7 @@ import { BrandMark } from "./brand-mark";
 export function AuthShell({ eyebrow, title, description, children }: { eyebrow: string; title: string; description: string; children: ReactNode }) {
   return (
     <main className="auth-page grid place-items-center px-5 py-8 sm:px-8 sm:py-12">
-      <section className="auth-grid auth-card relative z-10 grid w-full max-w-[68rem] overflow-hidden rounded-3xl border border-emerald-950/10 bg-white lg:min-h-[43rem] lg:grid-cols-[.86fr_1.14fr]">
+      <section className="auth-grid auth-card relative z-10 grid w-full max-w-[68rem] overflow-hidden rounded-3xl border lg:min-h-[43rem] lg:grid-cols-[.86fr_1.14fr]">
         <aside className="auth-panel hidden flex-col justify-between p-10 text-white lg:flex xl:p-12">
           <BrandMark inverted />
           <div className="relative z-10 max-w-sm">
