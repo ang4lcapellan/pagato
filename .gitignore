@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+.next/
+out/
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Tooling and local state
+.turbo/
+.vercel/
+.neon/
+.idea/
+.vscode/
+*.log
+AGENTS.md
+CLAUDE.md
+.agents/
+.codex/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Temporary artifacts
+tmp/
