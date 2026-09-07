@@ -30,7 +30,7 @@ export default function Home() {
 
           <div className="relative mx-auto w-full max-w-lg" aria-hidden="true">
             <div className="absolute -inset-8 rounded-full bg-[var(--brand-soft)] blur-3xl" />
-            <div className="relative rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-[0_30px_80px_rgba(21,54,45,0.14)] backdrop-blur">
+            <div className="landing-demo-card relative rounded-[2rem] p-6 backdrop-blur">
               <div className="flex items-center justify-between">
                 <div><p className="text-sm font-medium text-[var(--muted)]">Balance disponible</p><p className="mt-2 text-4xl font-bold tracking-tight text-[var(--ink)]">RD$ 48,250</p></div>
                 <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700">+8.4%</span>
