@@ -61,6 +61,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .landing-section-heading { max-width: 680px; margin-bottom: 20px; }
 .landing-section-heading h2, .landing-trust h2, .landing-device h2 { margin-top: 16px; color: var(--ink); font-size: clamp(28px, 4vw, 44px); font-weight: 750; line-height: 1.12; letter-spacing: -.035em; }
 .landing-section-heading > p:last-child, .landing-trust > div > p:last-child, .landing-device > div:last-child > p { margin-top: 18px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+.landing-demo-card { border: 1px solid var(--border); background: var(--background); box-shadow: 0 30px 80px rgb(21 54 45 / 14%); }
 .landing-trust, .landing-device { scroll-margin-top: 24px; content-visibility: auto; contain-intrinsic-size: auto 520px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: clamp(32px, 7vw, 88px); margin: 36px 0 88px; padding: clamp(28px, 5vw, 56px); border: 1px solid var(--border); border-radius: 32px; background: var(--background); }
 .landing-trust ul { display: grid; gap: 14px; }
 .landing-trust li { display: grid; gap: 5px; padding: 18px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); }
