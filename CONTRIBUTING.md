@@ -11,6 +11,8 @@ Este repositorio utiliza un flujo simple de dos ramas permanentes. La separació
 
 Las ramas `feature/*`, `fix/*` y `chore/*` son temporales. Se crean desde `develop`, se revisan mediante Pull Request y se eliminan después de fusionarlas. No se trabaja directamente sobre `main`.
 
+La carpeta técnica usa nombres sin espacios (`fase-3-desarrollo`) para que los empaquetadores de Vercel y las herramientas de CI generen funciones portables en cualquier entorno.
+
 Dependabot puede crear ramas temporales para actualizaciones de npm. Las actualizaciones están agrupadas para limitar el número de Pull Requests abiertos; solo deben fusionarse cuando los checks de seguridad y pruebas estén en verde.
 
 ## Flujo recomendado
