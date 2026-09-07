@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Fase%202%20Dise%C3%B1o/Mint%20Flow%20UI/Brand/Logo_Billetera_Amable.svg" width="88" alt="PagaTo'">
+  <img src="Fase%202%20Dise%C3%B1o/Mint%20Flow%20UI/Brand/Logo_Billetera_Amable.svg" width="152" alt="PagaTo'">
 </p>
 
 <h1 align="center">PagaTo' · Guía de desarrollo</h1>
