@@ -12,12 +12,12 @@ La base de datos usa PostgreSQL 18 en Neon y mantiene el modelo de la aplicació
 
 ## Entornos
 
-- Git: `develop`.
-- Neon: `development`.
+- Desarrollo: rama Git `develop` y rama Neon `development`.
+- Producción: rama Git `main` y rama Neon `production`.
 - Base de datos: `neondb`.
 - Esquema de aplicación: `pagato`.
 
-La rama `main` de Neon no debe recibir cambios durante el desarrollo. Las migraciones se prueban primero en `development` y solo se promueven después de una revisión y aprobación explícita.
+Las migraciones se prueban primero en `development` y solo se promueven a `production` después de una revisión y aprobación explícita. La aplicación publicada utiliza exclusivamente la conexión pooled de la rama `production`.
 
 ## Conexiones
 
@@ -35,7 +35,7 @@ SELECT set_config('pagato.user_id', $1, true);
 
 El tercer argumento en `true` limita el valor a la transacción actual, evitando que el contexto de un usuario se reutilice en una conexión pooled.
 
-La aplicación integra Neon Auth y verifica la sesión en el servidor. La conexión de desarrollo todavía usa `neondb_owner`, que omite RLS; por eso cada consulta aplica también filtros explícitos de identidad y propiedad. Antes de producción se debe configurar un rol de ejecución sin privilegios de propietario. Estas migraciones no crean ese rol.
+La aplicación integra Neon Auth y verifica la sesión en el servidor. Las conexiones actuales usan `neondb_owner`, que omite RLS; por eso cada consulta aplica también filtros explícitos de identidad y propiedad. Como endurecimiento posterior se debe configurar un rol de ejecución sin privilegios de propietario y establecer `pagato.user_id` dentro de cada transacción. Estas migraciones todavía no crean ese rol.
 
 ## Aplicación
 

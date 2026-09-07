@@ -30,8 +30,15 @@ test("rechaza cuerpos excesivos antes de entregarlos al proveedor de autenticaci
 });
 
 test("fuerza recursos HTTPS solo cuando la solicitud original ya es segura", async ({ request }) => {
-  const local = await request.get("/");
-  expect(local.headers()["content-security-policy"]).not.toContain("upgrade-insecure-requests");
+  const response = await request.get("/");
+  const policy = response.headers()["content-security-policy"];
+
+  if (new URL(response.url()).protocol === "https:") {
+    expect(policy).toContain("upgrade-insecure-requests");
+  } else {
+    expect(policy).not.toContain("upgrade-insecure-requests");
+  }
+
   const secure = await request.get("/", { headers: { "x-forwarded-proto": "https" } });
   expect(secure.headers()["content-security-policy"]).toContain("upgrade-insecure-requests");
 });
