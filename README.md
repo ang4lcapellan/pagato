@@ -1,194 +1,137 @@
 <p align="center">
-  <img src="Fase%202%20Dise%C3%B1o/Mint%20Flow%20UI/Brand/Logo_Billetera_Amable.svg" width="88" alt="PagaTo'">
+  <img src="Fase%202%20Dise%C3%B1o/Mint%20Flow%20UI/Brand/Logo_Billetera_Amable.svg" width="152" alt="Logo de PagaTo'">
 </p>
 
-<h1 align="center">PagaTo' · Guía de desarrollo</h1>
+<h1 align="center">PagaTo'</h1>
 
 <p align="center">
-  Documentación técnica del sistema de finanzas personales PagaTo'.
+  <strong>Tu dinero, más simple y bajo control.</strong><br>
+  Organiza cuentas, registra movimientos y crea presupuestos desde cualquier dispositivo.
 </p>
 
 <p align="center">
-  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-111111?logo=nextdotjs">
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white">
-  <img alt="Neon" src="https://img.shields.io/badge/Neon-PostgreSQL-00E599?logo=postgresql&logoColor=white">
-  <img alt="Drizzle" src="https://img.shields.io/badge/ORM-Drizzle-C5F74F">
-  <img alt="PWA" src="https://img.shields.io/badge/PWA-instalable-16A085?logo=pwa&logoColor=white">
+  <a href="https://pagato.vercel.app"><strong>Usar PagaTo' ahora ↗</strong></a>
+  ·
+  <a href="#primeros-pasos">Ver cómo empezar</a>
 </p>
 
-> Esta es la documentación de la rama `develop`. La rama `main` contiene la presentación del producto destinada a usuarios y es la única fuente de despliegues de producción.
+<p align="center">
+  <img alt="Aplicación disponible" src="https://img.shields.io/badge/estado-disponible-168C65">
+  <img alt="Instalable" src="https://img.shields.io/badge/PWA-instalable-16A085?logo=pwa&logoColor=white">
+  <img alt="Diseño adaptable" src="https://img.shields.io/badge/dise%C3%B1o-escritorio%20%2B%20m%C3%B3vil-0B6B58">
+</p>
 
-## Entornos y ramas
+![Portada de PagaTo'](fase-3-desarrollo/app/docs/images/landing-page.png)
 
-| Rama Git | Uso | Vercel | Rama de Neon |
-| --- | --- | --- | --- |
-| `develop` | Integración y validación | Preview / local | `development` |
-| `main` | Versión estable | Production | `production` |
+## Una visión clara de tus finanzas
 
-Cada entorno tiene su propia cadena de conexión, Neon Auth y secreto de cookies. No reutilices credenciales de producción en desarrollo ni almacenes archivos `.env` en Git.
+PagaTo' reúne la información que necesitas para entender tu dinero sin depender de hojas de cálculo dispersas. Tus cuentas, ingresos, gastos, transferencias y presupuestos conviven en un espacio privado y fácil de consultar.
 
-## Cómo funciona el sistema
+Con PagaTo' puedes:
 
-PagaTo' es un monolito modular full-stack. Next.js sirve la interfaz y ejecuta el backend mediante Server Components, Server Actions y Route Handlers. La sesión se valida en el servidor con Neon Auth; Drizzle construye consultas parametrizadas sobre PostgreSQL y cada operación financiera verifica que el registro pertenezca al usuario autenticado.
+- Conocer tu balance y el flujo de ingresos y gastos del período.
+- Registrar movimientos y transferencias entre tus propias cuentas.
+- Organizar cada operación con categorías predeterminadas o personales.
+- Crear presupuestos mensuales y asignar límites por categoría.
+- Copiar la estructura de un presupuesto anterior a un nuevo mes.
+- Consultar avances, ahorro proyectado y movimientos recientes.
+- Personalizar idioma, moneda, zona horaria, formatos y apariencia.
+- Instalar la aplicación en Android, iPhone o computadora.
 
-```mermaid
-flowchart LR
-  UI[React · App Router] --> SERVER[Server Actions y Route Handlers]
-  SERVER --> AUTH[Neon Auth]
-  SERVER --> VALIDATION[Zod]
-  VALIDATION --> ORM[Drizzle ORM]
-  ORM --> DB[(Neon PostgreSQL)]
-  SW[Service worker] --> PUBLIC[Recursos públicos offline]
-```
+## Tu panel financiero
 
-El service worker solo conserva recursos públicos necesarios para la pantalla sin conexión. Las respuestas privadas, cookies y datos financieros no se guardan en caché.
+El inicio resume lo importante: balance, ingresos, gastos, ahorro, evolución, categorías, presupuestos y actividad reciente. El selector de período te permite observar un mes, un año o un intervalo personalizado sin mezclar monedas distintas.
 
-## Fases del proyecto
+<p align="center">
+  <img src="fase-3-desarrollo/app/docs/images/dashboard-desktop.png" width="920" alt="Dashboard de PagaTo' en una computadora">
+</p>
 
-```text
-PagaTo'/
-├── Fase 1 Analisis/          # Alcance, requisitos y reglas del producto
-├── Fase 2 Diseño/            # Manual Mint Flow, marca y referencias visuales
-└── fase-3-desarrollo/        # Implementación técnica, datos, pruebas y operación
-```
+## Pensada para cada pantalla
 
-### Composición de la Fase 3
+La navegación cambia de forma natural según el dispositivo. En móvil, las acciones principales permanecen al alcance del pulgar; en escritorio, el espacio se aprovecha para comparar métricas y gráficos con mayor detalle.
 
-```text
-fase-3-desarrollo/
-├── app/
-│   ├── public/               # Manifest, iconos y recursos PWA
-│   ├── scripts/              # Preparación PWA, migraciones y controles de seguridad
-│   ├── src/
-│   │   ├── app/              # Rutas, layouts, páginas y endpoints de Next.js
-│   │   ├── components/       # Componentes compartidos de la aplicación
-│   │   ├── lib/              # Configuración y utilidades transversales
-│   │   └── modules/          # Dominios funcionales aislados
-│   ├── tests/
-│   │   ├── integration/      # Comprobaciones contra una rama aislada de Neon
-│   │   ├── ui/               # Flujos de interfaz y PWA
-│   │   └── e2e/              # Recorridos completos en escritorio y móvil
-│   └── docs/                 # Operación, seguridad y decisiones técnicas
-└── database/
-    ├── migrations/           # Evolución versionada del esquema PostgreSQL
-    └── README.md             # Modelo, roles y flujo de migraciones
-```
+<p align="center">
+  <img src="fase-3-desarrollo/app/docs/images/dashboard-mobile.png" width="320" alt="Dashboard móvil de PagaTo'">
+</p>
 
-Dentro de `src/modules`, cada dominio separa componentes de interfaz, acciones del servidor, validación y acceso a datos. Los módulos actuales son autenticación, perfiles, cuentas, categorías, transacciones, presupuestos, dashboard, preferencias, PWA y telemetría consentida.
+> Las capturas utilizan información de demostración y no muestran datos financieros reales.
 
-## Frontend y backend
+## Primeros pasos
 
-| Capa | Responsabilidad | Ubicación principal |
-| --- | --- | --- |
-| Frontend | Pantallas responsivas, estados, formularios, navegación y animación | `src/app`, `src/components`, `src/modules/*/components` |
-| Backend | Autorización, casos de uso, validación y transacciones de datos | `src/modules/*/server`, `src/app/api` |
-| Persistencia | Esquema, consultas y migraciones | `src/db`, `database/migrations` |
-| Plataforma | PWA, cabeceras, observabilidad y configuración | `public`, `src/proxy.ts`, `next.config.ts`, `vercel.json` |
+1. Abre [PagaTo' en producción](https://pagato.vercel.app).
+2. Selecciona **Crear mi cuenta** y registra tus datos.
+3. Agrega tus cuentas: efectivo, banco, ahorro o tarjeta.
+4. Revisa las categorías iniciales y crea las que necesites.
+5. Registra tus ingresos, gastos o transferencias.
+6. Crea un presupuesto mensual y distribuye el límite entre categorías.
+7. Regresa a **Inicio** para consultar tu resumen actualizado.
 
-La separación es lógica y no requiere dos proyectos desplegables: el servidor nunca expone `DATABASE_URL`, credenciales ni reglas privadas al navegador.
+### Cuentas
 
-## Tecnologías
+Cada cuenta mantiene su nombre, tipo, moneda, saldo inicial y estado. Puedes archivarla sin perder el historial y reactivarla cuando la necesites.
 
-- Next.js 16, React 19 y TypeScript.
-- Tailwind CSS 4 y estilos semánticos basados en Mint Flow.
-- Neon PostgreSQL y Neon Auth.
-- Drizzle ORM para acceso tipado a datos.
-- Zod para validar entradas y límites.
-- Vitest y Testing Library para pruebas unitarias.
-- Playwright para pruebas E2E en Chromium y WebKit.
-- Web App Manifest y service worker propio para la PWA.
+### Movimientos
 
-## Preparación local
+Registra ingresos y gastos con fecha, categoría, método de pago, descripción y notas. Las transferencias actualizan de forma consistente las dos cuentas involucradas y no se cuentan como ingreso ni como gasto.
 
-Requisitos: Node.js 24, npm y acceso a la rama `development` de Neon.
+### Presupuestos
 
-```powershell
-cd "fase-3-desarrollo/app"
-Copy-Item .env.example .env.local
-npm install
-npm run dev
-```
+Crea un plan para el mes, define un límite general y distribúyelo entre tus categorías de gasto. PagaTo' calcula lo consumido, lo disponible y el porcentaje usado a medida que registras o corriges movimientos.
 
-Abre `http://localhost:3000`. `.env.local` debe contener únicamente credenciales de desarrollo:
+### Preferencias
 
-| Variable | Propósito |
-| --- | --- |
-| `DATABASE_URL` | Conexión pooled usada por la aplicación. |
-| `DIRECT_URL` | Conexión directa usada solo por migraciones. |
-| `NEON_AUTH_BASE_URL` | Endpoint de Neon Auth del entorno. |
-| `NEON_AUTH_COOKIE_SECRET` | Secreto independiente de al menos 32 caracteres. |
-| `APP_URL` | Origen local o público para callbacks. |
-| `SUPPORT_EMAIL` | Dirección mostrada en páginas legales. |
+Escoge tema claro, oscuro o automático; español o inglés; moneda principal; zona horaria y formatos de fecha y números. Cambiar la moneda de presentación no altera los importes originales de tus operaciones.
 
-## Comandos habituales
+## Instalar PagaTo'
 
-```powershell
-npm run dev                 # servidor de desarrollo
-npm run build               # compilación equivalente a producción
-npm run check               # lint, tipos y pruebas unitarias
-npm run test:e2e            # recorridos completos responsive
-npm run test:pwa:production # manifest, SW y comportamiento instalado
-npm run security:check      # secretos y dependencias vulnerables
-```
+PagaTo' es una aplicación web instalable. No necesitas descargar una aplicación distinta desde una tienda.
 
-Las suites de integración se ejecutan de forma explícita para no modificar una base compartida:
+**En Android o Chrome:** abre el sitio, utiliza **Instalar aplicación** o elige **Agregar a pantalla de inicio** desde el menú del navegador.
 
-```powershell
-npm run test:db
-npm run test:accounts:db
-npm run test:categories:db
-npm run test:transactions:db
-npm run test:transactions:concurrency
-npm run test:budgets:db
-npm run test:plans:db
-npm run test:dashboard:db
-npm run test:preferences:db
-```
+**En iPhone o iPad:** abre el sitio en Safari, pulsa **Compartir** y selecciona **Agregar a pantalla de inicio**.
 
-## Datos y migraciones
+**En computadora:** abre PagaTo' en Chrome o Edge y selecciona el icono de instalación disponible en la barra de direcciones.
 
-1. Crea o reinicia una rama aislada de Neon para el cambio.
-2. Modifica el esquema tipado y genera la migración con `npm run db:generate`.
-3. Revisa el SQL antes de aplicarlo.
-4. Ejecuta la migración con la conexión directa: `npm run db:migrate`.
-5. Corre las pruebas de integración del dominio afectado.
-6. Promueve el cambio primero a `development` y solo después a `production`.
+La pantalla sin conexión solo conserva recursos públicos. Para protegerte, las sesiones y la información financiera siempre requieren una conexión segura.
 
-La aplicación usa el endpoint pooled en ejecución y reserva el endpoint directo para herramientas que necesitan una sesión estable. Consulta la [documentación de base de datos](fase-3-desarrollo/database/README.md).
+## Privacidad y seguridad
 
-## Flujo de entrega
+- Tu sesión se verifica antes de mostrar cualquier ruta financiera.
+- Cada consulta se limita a los registros del usuario autenticado.
+- Las credenciales y cadenas de conexión permanecen en el servidor.
+- La aplicación utiliza HTTPS, cookies protegidas y validación de entradas.
+- Los datos financieros privados no se almacenan en la caché de la PWA.
+- La medición de rendimiento opcional requiere tu consentimiento.
 
-```text
-rama de trabajo → develop → pruebas y Preview → main → Vercel Production
-                         Neon development        Neon production
-```
+Puedes consultar la [política de privacidad](https://pagato.vercel.app/privacy) y los [términos y condiciones](https://pagato.vercel.app/terms) desde la aplicación.
 
-- Los cambios funcionales se integran primero en `develop`.
-- El conjunto completo debe aprobar lint, tipos, pruebas, compilación y controles de seguridad.
-- `main` recibe un merge explícito y representa una versión desplegable.
-- Vercel Production sigue únicamente `main`; los previews de `develop` usan Neon `development`.
-- Los secretos se administran en Neon y Vercel, nunca en commits o capturas.
+## Preguntas frecuentes
 
-## Seguridad
+<details>
+  <summary><strong>¿Puedo usar PagaTo' solamente para mí?</strong></summary>
+  <p>Sí. Cada cuenta de usuario tiene un espacio independiente y privado.</p>
+</details>
 
-- Autenticación y autorización verificadas en el servidor.
-- Propiedad del usuario comprobada en cada consulta financiera.
-- Consultas parametrizadas y entradas validadas con Zod.
-- Cookies protegidas, CSP con nonce, TLS y cabeceras defensivas.
-- Rate limiting, honeypot y respuestas que evitan enumerar cuentas.
-- Eliminación lógica y operaciones consistentes para transferencias.
-- Dependabot, auditoría de paquetes y escaneo de secretos.
+<details>
+  <summary><strong>¿Puedo usar varias monedas?</strong></summary>
+  <p>Sí. Las cuentas y movimientos conservan su moneda original. El dashboard evita sumar monedas distintas sin una conversión definida.</p>
+</details>
 
-## Documentación técnica
+<details>
+  <summary><strong>¿Eliminar una cuenta borra mi historial?</strong></summary>
+  <p>No. Las cuentas, categorías y movimientos utilizan archivo o eliminación lógica cuando corresponde para conservar la trazabilidad.</p>
+</details>
 
-- [Aplicación y módulos](fase-3-desarrollo/app/README.md)
-- [Arquitectura del dashboard](fase-3-desarrollo/app/docs/DASHBOARD.md)
-- [Preferencias y formatos](fase-3-desarrollo/app/docs/PREFERENCIAS.md)
-- [PWA e instalación](fase-3-desarrollo/app/docs/PWA.md)
-- [Seguridad](fase-3-desarrollo/app/docs/SEGURIDAD.md)
-- [Calidad de lanzamiento](fase-3-desarrollo/app/docs/CALIDAD_LANZAMIENTO.md)
-- [Base de datos](fase-3-desarrollo/database/README.md)
+<details>
+  <summary><strong>¿Funciona sin conexión?</strong></summary>
+  <p>La PWA muestra una pantalla informativa y conserva recursos públicos. Los datos financieros y las sesiones no se guardan para uso offline por seguridad.</p>
+</details>
+
+<p align="center">
+  <strong>Empieza a ordenar tus finanzas con claridad.</strong><br><br>
+  <a href="https://pagato.vercel.app"><strong>Abrir PagaTo' ↗</strong></a>
+</p>
 
 ## Licencia
 
-El proyecto no publica todavía una licencia de uso. Todos los derechos permanecen reservados a su autor.
+Todos los derechos permanecen reservados a su autor. El proyecto no publica actualmente una licencia de uso.
