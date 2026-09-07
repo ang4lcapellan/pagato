@@ -14,6 +14,9 @@
   --positive: #168c65;
   --negative: #e65454;
   --border: #e2eeea;
+  --auth-glow-primary: rgb(216 243 234 / 78%);
+  --auth-glow-secondary: rgb(22 160 133 / 10%);
+  --auth-focus-ring: #ffffff;
   --motion-feedback: 200ms;
   --motion-enter: 360ms;
   --motion-page: 440ms;
@@ -242,8 +245,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   min-height: 100svh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 10% 12%, rgb(216 243 234 / 78%), transparent 34rem),
-    radial-gradient(circle at 92% 85%, rgb(22 160 133 / 10%), transparent 28rem),
+    radial-gradient(circle at 10% 12%, var(--auth-glow-primary), transparent 34rem),
+    radial-gradient(circle at 92% 85%, var(--auth-glow-secondary), transparent 28rem),
     var(--surface);
 }
 .auth-page::before,
@@ -273,7 +276,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: var(--background);
   animation: auth-breathe 8s ease-in-out 1;
 }
-.auth-card { box-shadow: 0 28px 80px rgb(16 42 39 / 12%); }
+.auth-card { border-color: var(--border); background: var(--background); box-shadow: 0 28px 80px rgb(16 42 39 / 12%); }
 .auth-input {
   width: 100%;
   min-height: 3rem;
@@ -287,7 +290,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .auth-input::placeholder { color: #8ca09b; }
 .auth-input:hover { border-color: rgb(22 160 133 / 45%); }
-.auth-input:focus-visible { border-color: var(--brand); box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--brand); }
+.auth-input:focus-visible { border-color: var(--brand); box-shadow: 0 0 0 2px var(--auth-focus-ring), 0 0 0 4px var(--brand); }
 .auth-input[aria-invalid="true"] { border-color: var(--negative); }
 .auth-submit { transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease; }
 .auth-submit:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 14px 32px rgb(22 160 133 / 25%); }
