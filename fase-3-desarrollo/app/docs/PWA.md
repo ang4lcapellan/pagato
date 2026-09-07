@@ -18,7 +18,7 @@ La navegación inferior conserva los cinco accesos: Inicio, Movimientos, Cuentas
 
 ## Ejecutar y probar
 
-Desde `Fase 3 Desarrollo/app`, en una terminal de VS Code:
+Desde `fase-3-desarrollo/app`, en una terminal de VS Code:
 
 ```powershell
 npm run build

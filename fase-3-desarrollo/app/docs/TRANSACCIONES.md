@@ -50,7 +50,7 @@ Se siguen los SVG de Transacciones y Nueva transacción de Fase 2: logo oficial,
 
 ## Cómo probar
 
-En `Fase 3 Desarrollo/app`, ejecuta `npm run dev`. Inicia sesión y abre `http://localhost:3000/transactions`.
+En `fase-3-desarrollo/app`, ejecuta `npm run dev`. Inicia sesión y abre `http://localhost:3000/transactions`.
 
 1. Crea dos cuentas de prueba, ambas DOP: A con saldo inicial 1,000 y B con saldo 0. No uses tus cuentas reales para estas comprobaciones.
 2. Registra un ingreso de 500 en A: debe quedar en 1,500.

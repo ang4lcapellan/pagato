@@ -33,7 +33,7 @@ Referencias: `Fase 2 Diseño/Mint Flow UI/Desktop/03_Cuentas_Desktop.svg` y `Mob
 
 ## Prueba manual
 
-1. Desde `Fase 3 Desarrollo/app`, ejecuta `npm run dev` e inicia sesión.
+1. Desde `fase-3-desarrollo/app`, ejecuta `npm run dev` e inicia sesión.
 2. Entra al panel y pulsa «Ir a mis cuentas»; también puedes abrir `http://localhost:3000/accounts`.
 3. Crea «Efectivo de prueba» con DOP y saldo inicial `1500.50`. Comprueba que aparece la tarjeta y el total.
 4. Abre el detalle y edita nombre, institución y color. Recarga la página: los cambios deben persistir.

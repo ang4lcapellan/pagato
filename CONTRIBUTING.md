@@ -21,7 +21,7 @@ feature/* → develop → Pull Request → main → Vercel Production
 ```
 
 1. Crea una rama corta desde `develop` (`feat/nombre`, `fix/nombre` o `chore/nombre`).
-2. Ejecuta las comprobaciones locales desde `Fase 3 Desarrollo/app`:
+2. Ejecuta las comprobaciones locales desde `fase-3-desarrollo/app`:
 
    ```bash
    npm run check
@@ -43,4 +43,4 @@ Los fallos de compilación deben corregirse antes de fusionar. Los fallos histó
 
 - Nunca subas `.env.local`, claves API, contraseñas ni URLs de conexión.
 - Las migraciones se ejecutan primero en Neon `development` y luego en Neon `production` durante una promoción revisada.
-- El frontend y las rutas API viven en `Fase 3 Desarrollo/app`; las migraciones y verificaciones están en `Fase 3 Desarrollo/database`.
+- El frontend y las rutas API viven en `fase-3-desarrollo/app`; las migraciones y verificaciones están en `fase-3-desarrollo/database`.

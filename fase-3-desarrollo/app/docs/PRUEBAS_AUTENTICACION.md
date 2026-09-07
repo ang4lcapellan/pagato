@@ -2,7 +2,7 @@
 
 ## 1. Abrir la aplicación
 
-En VS Code abre la terminal dentro de `Fase 3 Desarrollo/app` (donde está `package.json`):
+En VS Code abre la terminal dentro de `fase-3-desarrollo/app` (donde está `package.json`):
 
 ```powershell
 npm run dev
@@ -88,7 +88,7 @@ La entrega real del correo y el recorrido completo de recuperación siguen pendi
 
 ## 5. Pruebas automatizadas
 
-Desde `Fase 3 Desarrollo/app`:
+Desde `fase-3-desarrollo/app`:
 
 ```powershell
 npm run check

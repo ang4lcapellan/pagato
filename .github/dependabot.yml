@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/Fase 3 Desarrollo/app"
+    directory: "/fase-3-desarrollo/app"
     schedule:
       interval: weekly
     open-pull-requests-limit: 5

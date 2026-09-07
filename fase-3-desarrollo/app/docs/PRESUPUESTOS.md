@@ -95,7 +95,7 @@ Se mantiene la restricción de despliegue documentada: la conexión de desarroll
 
 ## Pruebas automatizadas
 
-Desde `Fase 3 Desarrollo/app`:
+Desde `fase-3-desarrollo/app`:
 
 ```text
 npm run check
